@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+    <div id="container">
+        <div id="spot">
+            <div class="img-box sub03">
+                <div class="tit-box">
+                    <h2>메타데이터</h2>
+                </div>
+            </div>
+            <div id="snb">
+                <ul class="nav">
+                    <li>
+                        <a href="#">메타데이터 소개</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">메타데이터 항목 검색</a>
+                    </li>
+                    <li>
+                        <a href="#">데이터셋별 메타데이터 목록</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            <div id="con">
+                <div class="sub-tit">
+                    <h3>메타데이터 항목 검색</h3>
+                    <ul id="navigater">
+                        <li class="home"></li>
+                        <li>메타데이터</li>
+                        <li class="m-now">메타데이터 항목 검색</li>
+                    </ul>
+                </div>
+                <div class="con-area">
+                    <div class="form-search">
+                        <ul class="search-list-01">
+                            <li>
+                                <div class="input-box">
+                                    <div class="tit-wrap">
+                                        <strong>도메인</strong>
+                                    </div>
+                                    <div class="int-wrap">
+                                        <div class="select-box">
+                                            <select>
+                                                <option value="">DM (Demographics)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="input-box">
+                                    <div class="tit-wrap">
+                                        <strong>변수명</strong>
+                                    </div>
+                                    <div class="int-wrap">
+                                        <input type="text" class="intxt"/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="input-box">
+                                    <div class="tit-wrap">
+                                        <strong>항목명</strong>
+                                    </div>
+                                    <div class="int-wrap">
+                                        <input type="text" class="intxt"/>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="from-btn">
+                            <input type="button" value="조회" class="rfc-btn">
+                            <a href="#" class="down-btn">엑셀다운로드</a>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table class="table-01">
+                            <tr>
+                                <th>도메인</th>
+                                <th>변수명</th>
+                                <th>항목명</th>
+                                <th>데이터유형</th>
+                                <th>데이터타입</th>
+                                <th>코드 설명</th>
+                                <th>길이</th>
+                                <th>단위</th>
+                            </tr>
+                            <tr>
+                                <td>DM (Demographics)</td>
+                                <td>SUBJID</td>
+                                <td>연구대상자 ID</td>
+                                <td>String</td>
+                                <td>TextBox</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>DM (Demographics)</td>
+                                <td>DMCTC</td>
+                                <td>인구학적 정보 수집일</td>
+                                <td>Date</td>
+                                <td>Date</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>DM (Demographics)</td>
+                                <td>DMBRTHDTC</td>
+                                <td>생년월일</td>
+                                <td>Date</td>
+                                <td>Date</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>DM (Demographics)</td>
+                                <td>DMSEX</td>
+                                <td>성별</td>
+                                <td>Date</td>
+                                <td>Date</td>
+                                <td>
+                                    1: MALE <br>
+                                    2: FEMALE
+                                </td>
+                                <td>1</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>DM (Demographics)</td>
+                                <td>DMSMK</td>
+                                <td>흡연여부</td>
+                                <td>String</td>
+                                <td>TextBox</td>
+                                <td>
+                                    0 : 비흡연자 <br>
+                                    1 : 과거흡연자 <br>
+                                    2: 현재흡연자
+                                </td>
+                                <td>1</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>DM (Demographics)</td>
+                                <td>DMSMKDUR</td>
+                                <td>흡연기간</td>
+                                <td>Date</td>
+                                <td>Date</td>
+                                <td></td>
+                                <td>3</td>
+                                <td>Year</td>
+                            </tr>
+                            <tr>
+                                <td>DM (Demographics)</td>
+                                <td>DMNSMKDUR</td>
+                                <td>금연기간</td>
+                                <td>String</td>
+                                <td>TextBox</td>
+                                <td></td>
+                                <td>3</td>
+                                <td>Year</td>
+                            </tr>
+                            <tr>
+                                <td>DM (Demographics)</td>
+                                <td>DMDRK</td>
+                                <td>음주여부</td>
+                                <td>String</td>
+                                <td>TextBox</td>
+                                <td>
+                                    0 : 비흡연자 <br>
+                                    1 : 과거흡연자 <br>
+                                    2: 현재흡연자
+                                </td>
+                                <td>1</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>DM (Demographics)</td>
+                                <td>DMDRKDUR</td>
+                                <td>음주기간 </td>
+                                <td>Integer</td>
+                                <td>TextBox</td>
+                                <td></td>
+                                <td>3</td>
+                                <td>Year</td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                    <div class="paging">
+                        <p>
+                            <a href="#" class="btn-prev"></a>
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#" class="btn-next"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</th:block>
+
+</body>
+</html>

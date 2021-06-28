@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">KCIC-한의학임상연구정보지원센터</title>
+    <!-- 공통 css, js, meta tag -->
+    <th:block th:replace="layout/mainHeader"></th:block>
+</head>
+
+<body>
+<div id="wrap">
+    <th:block th:replace="layout/commonMenu"></th:block>
+
+    <th:block layout:fragment="content"></th:block>
+
+    <th:block th:replace="layout/commonFooter"></th:block>
+</div>
+</body>
+</html>

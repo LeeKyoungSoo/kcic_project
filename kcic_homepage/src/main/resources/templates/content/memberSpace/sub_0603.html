@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+    <div id="container">
+        <div id="spot">
+            <div class="img-box sub02">
+                <div class="tit-box">
+                    <h2>회원공간</h2>
+                </div>
+            </div>
+            <div id="snb">
+                <ul class="nav">
+                    <li>
+                        <a href="#">DM&Monitoring</a>
+                    </li>
+                    <li>
+                        <a href="#">공지사항</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">자료실</a>
+                    </li>
+                    <li>
+                        <a href="#">일정관리</a>
+                    </li>
+                    <li>
+                        <a href="#">Q&A</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            <div id="con">
+                <div class="sub-tit">
+                    <h3>공지사항</h3>
+                    <ul id="navigater">
+                        <li class="home"></li>
+                        <li>회원공간</li>
+                        <li class="m-now">자료실</li>
+                    </ul>
+                </div>
+                <div class="con-area">
+                    <div class="form-search">
+                        <ul class="search-list-01">
+                            <li>
+                                <div class="input-box">
+                                    <div class="tit-wrap">
+                                        <strong>제목</strong>
+                                    </div>
+                                    <div class="int-wrap">
+                                        <input type="text" class="intxt">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="input-box">
+                                    <div class="tit-wrap">
+                                        <strong>등록일자</strong>
+                                    </div>
+                                    <div class="int-wrap">
+                                        <ul class="date-list">
+                                            <li>
+                                                <div class="date-box">
+                                                    <input type="text" class="intxt" id="startDate">
+                                                    <script>
+                                                        $(function () {
+                                                            $("#startDate").datepicker();
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </li>
+                                            <li class="txt">
+                                                ~
+                                            </li>
+                                            <li>
+                                                <div class="date-box">
+                                                    <input type="text" class="intxt" id="endDate">
+                                                    <script>
+                                                        $(function () {
+                                                            $("#endDate").datepicker();
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="from-btn">
+                            <input type="button" value="조회" class="rfc-btn">
+                        </div>
+                    </div>
+
+
+
+
+                    <p class="all-material">총 <span>16건</span>의 자료가 있습니다.</p>
+                    <div class="table-wrap">
+                        <table class="table-01">
+                            <colgroup>
+                                <col width="5%">
+                                <col width="55%">
+                                <col width="10%">
+                                <col width="20%">
+                                <col width="10%">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th>선택</th>
+                                <th>제목</th>
+                                <th>파일</th>
+                                <th>등록일</th>
+                                <th>작성자</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-01">
+                                        <label for="list-01">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="#">자료이용신청서</a>
+                                </td>
+                                <td>
+                                    <img src="/images/sub/06/i_file.png" alt="첨부파일">
+                                </td>
+                                <td>2021-01-05</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-02">
+                                        <label for="list-02">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="#">연구과제요약서</a>
+                                </td>
+                                <td>
+                                    <img src="/images/sub/06/i_file.png" alt="첨부파일">
+                                </td>
+                                <td>2021-01-05</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-03">
+                                        <label for="list-03">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="#">자료요청명세</a>
+                                </td>
+                                <td>
+                                    <img src="/images/sub/06/i_file.png" alt="첨부파일">
+                                </td>
+                                <td>2021-01-05</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-04">
+                                        <label for="list-04">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="#">개인정보수집.동의서</a>
+                                </td>
+                                <td>
+                                    <img src="/images/sub/06/i_file.png" alt="첨부파일">
+                                </td>
+                                <td>2021-01-05</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-05">
+                                        <label for="list-05">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="#">서약서</a>
+                                </td>
+                                <td>
+                                    <img src="/images/sub/06/i_file.png" alt="첨부파일">
+                                </td>
+                                <td>2021-01-05</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-06">
+                                        <label for="list-06">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="#">가이드라인 2.0</a>
+                                </td>
+                                <td>
+                                    <img src="/images/sub/06/i_file.png" alt="첨부파일">
+                                </td>
+                                <td>2021-01-05</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-07">
+                                        <label for="list-07">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="#">Code book</a>
+                                </td>
+                                <td>
+                                    <img src="/images/sub/06/i_file.png" alt="첨부파일">
+                                </td>
+                                <td>2021-01-05</td>
+                                <td>관리자</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="paging">
+                        <p>
+                            <a href="#" class="btn-prev"></a>
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#" class="btn-next"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</th:block>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+    <div id="container">
+        <div id="spot">
+            <div class="img-box sub04">
+                <div class="tit-box">
+                    <h2>데이터 분양</h2>
+                </div>
+            </div>
+            <div id="snb">
+                <ul class="nav">
+                    <li>
+                        <a href="#">분양 절차 안내 및 신청</a>
+                    </li>
+                    <li>
+                        <a href="#">분양 자료 항목 및 검색</a>
+                    </li>
+                    <li>
+                        <a href="#">분양 현황</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">연구성과</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            <div id="con">
+                <div class="sub-tit">
+                    <h3>연구성과</h3>
+                    <ul id="navigater">
+                        <li class="home"></li>
+                        <li>데이터 분양</li>
+                        <li class="m-now">연구성과</li>
+                    </ul>
+                </div>
+                <div class="con-area">
+                    <div class="search-wrap">
+                        <ul>
+                            <li class="li01">
+                                <div class="select-warp">
+                                    <div class="select-box">
+                                        <select name="" id="">
+                                            <option value="">주제</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="li01">
+                                <div class="select-warp">
+                                    <div class="select-box">
+                                        <select name="" id="">
+                                            <option value="">제목+내용</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="search-int">
+                                    <div class="int-wrap">
+                                        <input type="text" class="intxt" />
+                                    </div>
+                                    <div class="btn-wrap">
+                                        <input type="button" value="검색" class="srh-btn">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <p class="all-material">총 <span>16건</span>의 자료가 있습니다.</p>
+
+                    <ul class="table-list">
+                        <li>
+                            <div class="num-box">
+                                <span>202</span>
+                            </div>
+                            <div class="con-box">
+                                <a href="#" class="con-warp">
+                                    <span class="tag">SCI</span>
+                                    <strong>Effects of Sleep restriction on subject Effects of Sleep restriction on subjectEffects of Sleep restriction on subject</strong>
+                                    <p>백영화(한국한의학연구원), 이시우(한국한의학연구원), 정경식(한국한의학연구원)</p>
+                                    <span class="ex-txt">SLEEP MEDICINE</span>
+                                </a>
+                                <span class="date">2020-03-20</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="num-box">
+                                <span>201</span>
+                            </div>
+                            <div class="con-box">
+                                <a href="#" class="con-warp">
+                                    <span class="tag">SCI</span>
+                                    <strong>사상체질에 따른 식습관과 주관적 건강상</strong>
+                                    <p>정경식(한국한의학연구원), 백영화(한국한의학연구원), 김호석(한국한의학연구원), 이시우(한국한의학연구원)</p>
+                                    <span class="ex-txt">대한동의생리병리학회지</span>
+                                </a>
+                                <span class="date">2020-03-20</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="num-box">
+                                <span>200</span>
+                            </div>
+                            <div class="con-box">
+                                <a href="#" class="con-warp">
+                                    <span class="tag">SCI</span>
+                                    <strong>신체 생체 지표를 이용한 사상체질 판별</strong>
+                                    <p>박정수(세명대학교), 백영화(한국한의학연구원), 성현경(세명대학교), 신선미(세명대학교), 고호연(세명대학교), 이시우(한국한의학연구원)</p>
+                                    <span class="ex-txt">대한예방한의학회지</span>
+                                </a>
+                                <span class="date">2020-03-20</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="num-box">
+                                <span>199</span>
+                            </div>
+                            <div class="con-box">
+                                <a href="#" class="con-warp">
+                                    <span class="tag">SCI</span>
+                                    <strong>Relationship of sociodemographic and</strong>
+                                    <p>정영석(근로복지공단 경기산재요양병원) 외 5명</p>
+                                    <span class="ex-txt">ASIA PACIFIC JOURNAL OF CLINIICAL NUTRITION</span>
+                                </a>
+                                <span class="date">2019-12-12</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="paging">
+                        <p>
+                            <a href="#" class="btn-prev"></a>
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#" class="btn-next"></a>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</th:block>
+
+</body>
+</html>

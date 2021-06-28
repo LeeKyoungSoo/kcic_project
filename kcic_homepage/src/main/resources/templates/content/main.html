@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/mainLayout">
+
+<th:block layout:fragment="content">
+    <div id="container">
+        <div id="visual">
+            <div class="txt-box">
+                <strong class="tit-01">KCIC</strong>
+                <strong class="tit-02">한의학 임상연구 정보지원센터</strong>
+
+                <div class="search-box">
+                    <div class="intwrap">
+                        <input type="text" class="intxt" placeholder="찾고싶으신 데이터를 입력하세요."/>
+                    </div>
+                    <div class="btnwrap">
+                        <input type="button" class="s-btn" value="검색" />
+                    </div>
+                </div>
+                <p>
+                    보건복지부 한의약 임상연구를 통하여 생산된 질환별 레지스트리 데이터를 체계적으로 수집 및 관리하고 <br>
+                    공급활용을 위한 정보지원서비스를 제공합니다.
+                </p>
+            </div>
+            <div class="i-scroll">
+                <p>SCROLL DOWN</p>
+            </div>
+        </div>
+
+        <div id="content">
+
+            <div id="section01" class="section">
+                <div class="section-area">
+                    <div class="h-box">
+                        <p>숫자로 보는 한의학 임상연구</p>
+                        <h2 class="tit">
+                            정보지원센터
+                            <span>인포그래픽</span>
+                        </h2>
+                    </div>
+                    <div class="chart-box">
+                        <ul class="chart-list">
+                            <li>
+                                <div class="tit-box">
+                                    <strong>자료현황</strong>
+                                    <a href="#" class="more-btn"></a>
+                                </div>
+                                <div class="chart-wrap">
+                                    <img src="/images/main/chart_01.jpg" alt="자료현황">
+                                </div>
+                                <div class="chart-info">
+                                    <strong>전체등록 현황</strong>
+                                    <p>
+                                        <span class="num">2021. 1. 1</span> ~ 현재
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="tit-box">
+                                    <strong>중재종류</strong>
+                                </div>
+                                <div class="chart-wrap">
+                                    <img src="/images/main/chart_02.jpg" alt="중재종류">
+                                </div>
+                                <div class="chart-info">
+                                    <strong>등록전체 인원</strong>
+                                    <p>
+                                        <span class="num">10,451</span>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="section02" class="section">
+                <div class="section-area">
+                    <div class="h-box">
+                        <p>숫자로 보는 한의학 임상연구</p>
+                        <h2 class="tit">
+                            TOP5
+                            <span>레지스트리 현황</span>
+                        </h2>
+                    </div>
+                    <div class="tab-box">
+                        <div class="tab-wrap">
+                            <ul class="tab">
+                                <li class="tab-list current" data-target="tab-01">
+                                    <strong class="tit">
+                                        <span class="num">01</span>
+                                        뇌졸증
+                                    </strong>
+                                    <p>4,323</p>
+                                </li>
+                                <li class="tab-list" data-target="tab-02">
+                                    <strong class="tit">
+                                        <span class="num">02</span>
+                                        정신질환
+                                    </strong>
+                                    <p>3,333</p>
+                                </li>
+                                <li class="tab-list" data-target="tab-03">
+                                    <strong class="tit">
+                                        <span class="num">03</span>
+                                        퇴행성 관절질환
+                                    </strong>
+                                    <p>3,333</p>
+                                </li>
+                                <li class="tab-list" data-target="tab-04">
+                                    <strong class="tit">
+                                        <span class="num">04</span>
+                                        대사질환
+                                    </strong>
+                                    <p>1,323</p>
+                                </li>
+                                <li class="tab-list" data-target="tab-05">
+                                    <strong class="tit">
+                                        <span class="num">05</span>
+                                        비만
+                                    </strong>
+                                    <p>923</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-con-box">
+                            <div id="tab-01" class="tab-con current">
+                                <div class="chart-box">
+                                    <ul>
+                                        <li>
+                                            <div class="tit-box">
+                                                <strong>중재종류</strong>
+                                            </div>
+                                            <div class="chart-wrap">
+                                                <img src="/images/main/chart_03.png" alt="중재종류">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="tit-box">
+                                                <strong>보고서 현황</strong>
+                                            </div>
+                                            <div class="chart-wrap">
+                                                <img src="/images/main/chart_04.png" alt="보고서 현황">
+                                                <a href="#" class="go-btn">레지스트리 바로가기</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="tab-02" class="tab-con">
+                                <div class="chart-box">
+                                    <ul>
+                                        <li>
+                                            <div class="tit-box">
+                                                <strong>중재종류2</strong>
+                                            </div>
+                                            <div class="chart-wrap">
+                                                <img src="/images/main/chart_03.png" alt="중재종류">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="tit-box">
+                                                <strong>보고서 현황2</strong>
+                                            </div>
+                                            <div class="chart-wrap">
+                                                <img src="/images/main/chart_04.png" alt="보고서 현황">
+                                                <a href="#" class="go-btn">레지스트리 바로가기</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="tab-03" class="tab-con">
+                                <div class="chart-box">
+                                    <ul>
+                                        <li>
+                                            <div class="tit-box">
+                                                <strong>중재종류3</strong>
+                                            </div>
+                                            <div class="chart-wrap">
+                                                <img src="/images/main/chart_03.png" alt="중재종류">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="tit-box">
+                                                <strong>보고서 현황3</strong>
+                                            </div>
+                                            <div class="chart-wrap">
+                                                <img src="/images/main/chart_04.png" alt="보고서 현황">
+                                                <a href="#" class="go-btn">레지스트리 바로가기</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="tab-04" class="tab-con">
+                                <div class="chart-box">
+                                    <ul>
+                                        <li>
+                                            <div class="tit-box">
+                                                <strong>중재종류4</strong>
+                                            </div>
+                                            <div class="chart-wrap">
+                                                <img src="/images/main/chart_03.png" alt="중재종류">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="tit-box">
+                                                <strong>보고서 현황4</strong>
+                                            </div>
+                                            <div class="chart-wrap">
+                                                <img src="/images/main/chart_04.png" alt="보고서 현황">
+                                                <a href="#" class="go-btn">레지스트리 바로가기</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="tab-05" class="tab-con">
+                                <div class="chart-box">
+                                    <ul>
+                                        <li>
+                                            <div class="tit-box">
+                                                <strong>중재종류5</strong>
+                                            </div>
+                                            <div class="chart-wrap">
+                                                <img src="/images/main/chart_03.png" alt="중재종류">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="tit-box">
+                                                <strong>보고서 현황5</strong>
+                                            </div>
+                                            <div class="chart-wrap">
+                                                <img src="/images/main/chart_04.png" alt="보고서 현황">
+                                                <a href="#" class="go-btn">레지스트리 바로가기</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="section03" class="section">
+                <ul class="menu-banner">
+                    <li>
+                        <a href="#">
+                            <div class="menu-bg"></div>
+                            <div class="img-box">
+                                <img src="/images/main/i_01.png" alt="회원가입">
+                            </div>
+                            <div class="txt-box">
+                                <strong class="tit">회원가입</strong>
+                                <p>회원가입을 통한 데이터 습득</p>
+                            </div>
+                            <span class="ic-arr"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="menu-bg"></div>
+                            <div class="img-box">
+                                <img src="/images/main/i_02.png" alt="데이터 검색">
+                            </div>
+                            <div class="txt-box">
+                                <strong class="tit">데이터 검색</strong>
+                                <p>체계적인 데이터 검색 및 활용</p>
+                            </div>
+                            <span class="ic-arr"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="menu-bg"></div>
+                            <div class="img-box">
+                                <img src="/images/main/i_03.png" alt="데이터 신청">
+                            </div>
+                            <div class="txt-box">
+                                <strong class="tit">데이터 신청</strong>
+                                <p>공공활용을 위한 데이터 신청</p>
+                            </div>
+                            <span class="ic-arr"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="menu-bg"></div>
+                            <div class="img-box">
+                                <img src="/images/main/i_04.png" alt="FAQ">
+                            </div>
+                            <div class="txt-box">
+                                <strong class="tit">FAQ</strong>
+                                <p>무엇이든 물어보세요</p>
+                            </div>
+                            <span class="ic-arr"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="menu-bg"></div>
+                            <div class="img-box">
+                                <img src="/images/main/i_05.png" alt="동영상 메뉴얼">
+                            </div>
+                            <div class="txt-box">
+                                <strong class="tit">동영상 메뉴얼</strong>
+                                <p>동영상 메뉴얼을 통한 가이드 습득</p>
+                            </div>
+                            <span class="ic-arr"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="section04" class="section">
+                <div class="section-area">
+                    <div class="board-list-wrap">
+                        <ul class="board-list">
+                            <li>
+                                <div class="board-box">
+                                    <div class="tit-box">
+                                        <strong class="tit">
+                                            <span>공지</span>
+                                            사항
+                                        </strong>
+                                        <a href="#" class="more-btn"></a>
+                                    </div>
+                                    <div class="board-wrap">
+                                        <a href="#" class="top-write">
+                                            <div class="img-box">
+                                                <img src="/images/main/01.jpg" alt="">
+                                            </div>
+                                            <div class="con-box">
+                                                <strong class="tit">제1회 KCIC 심포지엄 개최 및 사전등록 안내</strong>
+                                                <p>
+                                                    2021 식품의약품안전처의 식품의약품 산업동향에 따르면, 국내 제약 시장 규모(생산액-수출)...
+                                                </p>
+                                                <span class="date">2021. 04. 30</span>
+                                            </div>
+                                        </a>
+                                        <ul class="write-list">
+                                            <li>
+                                                <a href="#">2021년 일반인 대상 연차보고서 배포 완료</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">연구데이터 폐기 확인서, 연구데이터 성과...</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">수집자료 서식 (SOP 2.0 기준)</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="board-box">
+                                    <div class="tit-box">
+                                        <strong class="tit">
+                                            <span>보도</span>
+                                            자료
+                                        </strong>
+                                        <a href="#" class="more-btn"></a>
+                                    </div>
+                                    <div class="board-wrap">
+                                        <a href="#" class="top-write">
+                                            <div class="img-box">
+                                                <img src="/images/main/02.jpg" alt="">
+                                            </div>
+                                            <div class="con-box">
+                                                <strong class="tit">국민 위한 ‘한의약 공익적 임상연구’로 사회적...</strong>
+                                                <p>
+                                                    국민들이 객관적인 한의의료 정보를 제공받아 합리적인 의료 소비를 할 수 있도록 돕기 위한 ‘한의약 공익적 임상연구...
+                                                </p>
+                                                <span class="date">2021. 04. 30</span>
+                                            </div>
+                                        </a>
+                                        <ul class="write-list">
+                                            <li>
+                                                <a href="#">한의치료 보장성 강화 위한 공익적 임상연구에...</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">공익적임상연구, 한의계 치료기술 보장성강화...</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">[민족의학신문 2020-10-30] 한의약진흥원, 한의약 ...</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="qiuck-wrap">
+                        <div class="tit-box">
+                            <strong class="tit">
+                                <span>빠른</span>
+                                안내
+                            </strong>
+                        </div>
+                        <ul class="qiuck-menu">
+                            <li>
+                                <a href="#">
+                                    <div class="mask-wrap">
+                                        <div class="circle-01"></div>
+                                        <div class="circle-02"></div>
+                                        <div class="circle-03"></div>
+                                    </div>
+                                    <strong class="tit">분양자료 검색</strong>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="mask-wrap">
+                                        <div class="circle-01"></div>
+                                        <div class="circle-02"></div>
+                                        <div class="circle-03"></div>
+                                    </div>
+                                    <strong class="tit">e-CRF (My Trail)</strong>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="mask-wrap">
+                                        <div class="circle-01"></div>
+                                        <div class="circle-02"></div>
+                                        <div class="circle-03"></div>
+                                    </div>
+                                    <strong class="tit">
+                                        임상연구자료 표준화 <br>
+                                        가이드라인 (ver 2.0)
+                                    </strong>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="mask-wrap">
+                                        <div class="circle-01"></div>
+                                        <div class="circle-02"></div>
+                                        <div class="circle-03"></div>
+                                    </div>
+                                    <strong class="tit">
+                                        Code Book
+                                    </strong>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="link-site">
+                <ul>
+                    <li>
+                        <a href="http://www.nckm.or.kr/" target="_blank">
+                            <img src="/images/main/logo_01.png" alt="국가한의임상정보포털">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.hira.or.kr/main.do" target="_blank">
+                            <img src="/images/main/logo_02.png" alt="건강보험심사평가원">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://nikom.or.kr/nikom/index.do" target="_blank">
+                            <img src="/images/main/logo_03.png" alt="한국한의햑진흥원">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nice.org.uk/" target="_blank">
+                            <img src="/images/main/logo_04.png" alt="NICE">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.akom.org/Home/Main" target="_blank">
+                            <img src="/images/main/logo_05.png" alt="대한한의사협회">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.mohw.go.kr/react/index.jsp" target="_blank">
+                            <img src="/images/main/logo_06.png" alt="보건복지부">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</th:block>
+
+</body>
+</html>

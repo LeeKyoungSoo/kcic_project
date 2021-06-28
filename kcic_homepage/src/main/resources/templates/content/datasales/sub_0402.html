@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+    <div id="container">
+        <div id="spot">
+            <div class="img-box sub04">
+                <div class="tit-box">
+                    <h2>데이터 분양</h2>
+                </div>
+            </div>
+            <div id="snb">
+                <ul class="nav">
+                    <li class="active">
+                        <a href="#">분양 절차 안내 및 신청</a>
+                    </li>
+                    <li>
+                        <a href="#">분양 자료 항목 및 검색</a>
+                    </li>
+                    <li>
+                        <a href="#">분양 현황</a>
+                    </li>
+                    <li>
+                        <a href="#">연구성과</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            <div id="con">
+                <div class="sub-tit">
+                    <h3>분양 자료 항목 및 검색</h3>
+                    <ul id="navigater">
+                        <li class="home"></li>
+                        <li>데이터 분양</li>
+                        <li class="m-now">분양 자료 항목 및 검색</li>
+                    </ul>
+                </div>
+                <div class="con-area">
+                    <strong class="s-tit">분양자료 검색</strong>
+                    <div class="check-search">
+                        <ul class="search-list">
+                            <li>
+                                <div class="check-box">
+                                    <input type="checkbox" id="material-01" />
+                                    <label for="material-01">
+                                        <span></span>인구학적 정보
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="check-box">
+                                    <input type="checkbox" id="material-02" />
+                                    <label for="material-02">
+                                        <span></span>활력징후
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="check-box">
+                                    <input type="checkbox" id="material-03" />
+                                    <label for="material-03">
+                                        <span></span>병용약물
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="check-box">
+                                    <input type="checkbox" id="material-04" />
+                                    <label for="material-04">
+                                        <span></span>중재항목
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="check-box">
+                                    <input type="checkbox" id="material-05" />
+                                    <label for="material-05">
+                                        <span></span>이상반응
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="check-box">
+                                    <input type="checkbox" id="material-06" />
+                                    <label for="material-06">
+                                        <span></span>병력
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="check-box">
+                                    <input type="checkbox" id="material-07" />
+                                    <label for="material-07">
+                                        <span></span>실험실 검사
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="check-box">
+                                    <input type="checkbox" id="material-08" />
+                                    <label for="material-08">
+                                        <span></span>이학적 검사
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="check-box">
+                                    <input type="checkbox" id="material-09" />
+                                    <label for="material-09">
+                                        <span></span>한열문진
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="check-box">
+                                    <input type="checkbox" id="material-10" />
+                                    <label for="material-10">
+                                        <span></span>사상체질 설문
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="check-box">
+                                    <input type="checkbox" id="material-11" />
+                                    <label for="material-11">
+                                        <span></span>EQ-5D
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="check-box">
+                                    <input type="checkbox" id="material-12" />
+                                    <label for="material-12">
+                                        <span></span>EQ-5D VAS
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="from-btn">
+                            <input type="button" value="조회" class="rfc-btn">
+                        </div>
+                    </div>
+
+                    <p class="all-material">총 <span>16건</span>의 자료가 있습니다.</p>
+
+                    <div class="table-wrap">
+                        <table class="table-01">
+                            <tr>
+                                <th></th>
+                                <th>도메인</th>
+                                <th>변수명</th>
+                                <th>항목명</th>
+                                <th>데이터유형</th>
+                                <th>데이터타입</th>
+                                <th>코드 설명</th>
+                                <th>길이</th>
+                                <th>단위</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-01" />
+                                        <label for="list-01">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>DM (Demographics)</td>
+                                <td>SUBJID</td>
+                                <td>연구대상자 ID</td>
+                                <td>String</td>
+                                <td>TextBox</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-02" />
+                                        <label for="list-02">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>DM (Demographics)</td>
+                                <td>DMCTC</td>
+                                <td>인구학적 정보 수집일</td>
+                                <td>Date</td>
+                                <td>Date</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-03" />
+                                        <label for="list-03">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>DM (Demographics)</td>
+                                <td>DMBRTHDTC</td>
+                                <td>생년월일</td>
+                                <td>Date</td>
+                                <td>Date</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-04" />
+                                        <label for="list-04">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>DM (Demographics)</td>
+                                <td>DMSEX</td>
+                                <td>성별</td>
+                                <td>Date</td>
+                                <td>Date</td>
+                                <td>
+                                    1: MALE <br>
+                                    2: FEMALE
+                                </td>
+                                <td>1</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-05" />
+                                        <label for="list-05">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>DM (Demographics)</td>
+                                <td>DMSMK</td>
+                                <td>흡연여부</td>
+                                <td>String</td>
+                                <td>TextBox</td>
+                                <td>
+                                    0 : 비흡연자 <br>
+                                    1 : 과거흡연자 <br>
+                                    2: 현재흡연자
+                                </td>
+                                <td>1</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-06" />
+                                        <label for="list-06">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>DM (Demographics)</td>
+                                <td>DMSMKDUR</td>
+                                <td>흡연기간</td>
+                                <td>Date</td>
+                                <td>Date</td>
+                                <td></td>
+                                <td>3</td>
+                                <td>Year</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-07" />
+                                        <label for="list-07">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>DM (Demographics)</td>
+                                <td>DMNSMKDUR</td>
+                                <td>금연기간</td>
+                                <td>String</td>
+                                <td>TextBox</td>
+                                <td></td>
+                                <td>3</td>
+                                <td>Year</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-08" />
+                                        <label for="list-08">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>DM (Demographics)</td>
+                                <td>DMDRK</td>
+                                <td>음주여부</td>
+                                <td>String</td>
+                                <td>TextBox</td>
+                                <td>
+                                    0 : 비흡연자 <br>
+                                    1 : 과거흡연자 <br>
+                                    2: 현재흡연자
+                                </td>
+                                <td>1</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="list-09" />
+                                        <label for="list-09">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>DM (Demographics)</td>
+                                <td>DMDRKDUR</td>
+                                <td>음주기간 </td>
+                                <td>Integer</td>
+                                <td>TextBox</td>
+                                <td></td>
+                                <td>3</td>
+                                <td>Year</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div class="from-btn tmar_20">
+                        <a href="#" class="apply-btn">분양신청</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</th:block>
+
+</body>
+</html>
