@@ -1,4 +1,4 @@
-package com.bethesda.kcic.controller;
+package com.bethesda.kcic.datasales.controller;
 
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
@@ -11,6 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 @Log
 @RequestMapping("/datasales")
 public class DatasalesController {
+
+    @RequestMapping(value = "/sub01")
+    public ModelAndView goSub01(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("content/datasales/sub_0402.html");
+        return mav;
+    }
 
     @RequestMapping(value = "/sub02")
     public ModelAndView goSub02(HttpServletRequest request) throws Exception {
@@ -30,6 +37,27 @@ public class DatasalesController {
     public ModelAndView goSub04(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("content/datasales/sub_0404.html");
+        return mav;
+    }
+
+    @RequestMapping(value = "/sub05")
+    public ModelAndView goSub05(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("content/datasales/sub_0402.html");
+        return mav;
+    }
+
+    @RequestMapping(value = "/sub06")
+    public ModelAndView goSub06(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("content/datasales/sub_0402.html");
+        return mav;
+    }
+
+    @RequestMapping(value = "/sub07")
+    public ModelAndView goSub07(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("content/datasales/sub_0402.html");
         return mav;
     }
 }

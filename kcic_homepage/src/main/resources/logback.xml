@@ -1,5 +1,5 @@
 <configuration>
-    <property name="LOG_DIR" value="/home/kcic/system/logs" />
+    <property name="LOG_DIR" value="/home/kcic/web/logs" />
     <property name="SERVER_NAME" value="collection"/>
     <property name="LOG_PATH_NAME" value="${LOG_DIR}/${SERVER_NAME}" />
     <property name="FILE_NAME" value="collectionServer" />

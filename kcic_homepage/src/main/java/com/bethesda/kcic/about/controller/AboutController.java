@@ -1,4 +1,4 @@
-package com.bethesda.kcic.controller;
+package com.bethesda.kcic.about.controller;
 
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
@@ -9,21 +9,29 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @Log
-@RequestMapping("/memberSpace")
-public class MemberSpaceController {
+@RequestMapping("/about")
+public class AboutController {
+
+    @RequestMapping(value = "/sub01")
+    public ModelAndView goSub01(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("content/about/sub_0101.html");
+        return mav;
+    }
 
     @RequestMapping(value = "/sub02")
     public ModelAndView goSub02(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/memberSpace/sub_0602.html");
+        mav.setViewName("content/about/sub_0101.html");
         return mav;
     }
 
     @RequestMapping(value = "/sub03")
     public ModelAndView goSub03(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/memberSpace/sub_0603.html");
+        mav.setViewName("content/about/sub_0101.html");
         return mav;
     }
 
 }
+

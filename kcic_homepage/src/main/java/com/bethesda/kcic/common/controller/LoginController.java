@@ -1,4 +1,4 @@
-package com.bethesda.kcic.controller;
+package com.bethesda.kcic.common.controller;
 
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;

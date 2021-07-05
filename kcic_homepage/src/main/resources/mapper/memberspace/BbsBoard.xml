@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bethesda.kcic.memberspace.mapper.BbsBoard">
+    <select id="getBbsDataCnt" parameterType="com.bethesda.kcic.memberspace.domain.BoardVO" resultType="int">
+        <![CDATA[
+        /* BbsBoard.getBbsDataCnt */
+        SELECT count(*) as cnt
+        FROM tb_bbs_board
+        WHERE 1 = 1
+        ]]>
+        <if test='gubun != null and !gubun.equals("")'>
+            AND gubun = #{gubun}
+        </if>
+        <if test='subject != null and !subject.equals("")'>
+            AND subject LIKE CONCAT('%', #{subject}, '%')
+        </if>
+        <if test='(sRegDt != null and !sRegDt.equals("")) and (eRegDt != null and !eRegDt.equals(""))'>
+            AND DATE_FORMAT(regDt, '%Y%m%d')
+            BETWEEN DATE_FORMAT(IFNULL(NULLIF(#{sRegDt},''),'00000000'), '%Y%m%d')
+            AND DATE_FORMAT(IFNULL(NULLIF(#{eRegDt},''),'99991231'), '%Y%m%d')
+        </if>
+    </select>
+
+    <resultMap id="BbsDataMap" type="com.bethesda.kcic.memberspace.domain.BoardVO">
+        <result property="bId" column="bId"/>
+        <collection property="fileList" column="{bId=bId}"
+                    ofType="com.bethesda.kcic.memberspace.domain.BoardFileVO"
+                    select="getFileList" />
+    </resultMap>
+
+    <select id="getBbsDataList" parameterType="com.bethesda.kcic.memberspace.domain.BoardVO" resultMap="BbsDataMap">
+        <![CDATA[
+        /* BbsBoard.getBbsDataList */
+        SELECT
+            bId
+            ,gubun
+            ,subject
+            ,content
+            ,regId
+            ,regNm
+            ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
+            ,modDt
+            ,hit
+            ,notiYn
+        FROM tb_bbs_board
+        WHERE 1 = 1
+        ]]>
+        <if test='gubun != null and !gubun.equals("")'>
+            AND gubun = #{gubun}
+        </if>
+        <if test='subject != null and !subject.equals("")'>
+            AND subject LIKE CONCAT('%', #{subject}, '%')
+        </if>
+        <if test='(sRegDt != null and !sRegDt.equals("")) and (eRegDt != null and !eRegDt.equals(""))'>
+            AND DATE_FORMAT(regDt, '%Y%m%d')
+                BETWEEN DATE_FORMAT(IFNULL(NULLIF(#{sRegDt},''),'00000000'), '%Y%m%d')
+                AND DATE_FORMAT(IFNULL(NULLIF(#{eRegDt},''),'99991231'), '%Y%m%d')
+        </if>
+        ORDER BY bId DESC
+        <if test='offSet > -1'>
+            LIMIT #{offSet}, #{limit}
+        </if>
+    </select>
+
+    <select id="getFileList" parameterType="map" resultType="com.bethesda.kcic.memberspace.domain.BoardFileVO">
+        <!-- 참여자 AE Tree -->
+        <![CDATA[
+        /* AEMntmg.selectFavoriteCode */
+        SELECT
+            fId
+            ,bId
+            ,fileOrgNm
+            ,fileSaveNm
+            ,fileSize
+            ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
+        FROM tb_bbs_file
+        WHERE bId = #{bId}
+        ORDER BY fid DESC
+        ]]>
+    </select>
+
+</mapper>

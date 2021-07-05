@@ -1,4 +1,4 @@
-package com.bethesda.kcic.controller;
+package com.bethesda.kcic.infomation.controller;
 
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
@@ -9,13 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @Log
-@RequestMapping("/registry")
-public class RegistryController {
-
+@RequestMapping("/infomation")
+public class InfomationController {
     @RequestMapping(value = "/sub01")
     public ModelAndView goSub01(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/registry/sub_02001.html");
+        mav.setViewName("content/infomation/sub_0101.html");
+        return mav;
+    }
+
+    @RequestMapping(value = "/sub02")
+    public ModelAndView goSub02(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("content/infomation/sub_0101.html");
         return mav;
     }
 }

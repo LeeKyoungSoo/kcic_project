@@ -42,7 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**")
                 .permitAll();
 
-
+        http.cors().and();
+        http.csrf().disable();
     }
 
     /*private PersistentTokenRepository getTokenSeries() {
