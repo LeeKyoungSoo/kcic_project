@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/")
 public class LoginController {
 
-    @RequestMapping(value = "/main")
+    @RequestMapping(value = {"/","/main"})
     public ModelAndView goMain(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("content/main.html");

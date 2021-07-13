@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+<div id="container">
+    <div id="spot">
+        <div class="img-box sub01">
+            <div class="tit-box">
+                <h2>About KCIC</h2>
+            </div>
+        </div>
+        <div id="snb">
+            <ul class="nav">
+                <li>
+                    <a th:href="@{/about/sub01}">인사말</a>
+                </li>
+                <li>
+                    <a th:href="@{/about/sub02}">KCIC 소개</a>
+                </li>
+                <li class="active">
+                    <a th:href="@{/about/sub03}">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div id="con">
+            <div class="sub-tit">
+                <h3>Contact Us</h3>
+                <ul id="navigater">
+                    <li class="home"></li>
+                    <li>About KCIC</li>
+                    <li class="m-now">Contact Us</li>
+                </ul>
+            </div>
+            <div class="con-area">
+                <div class="sub0103">
+                    <strong class="s-tit">찾아오시는 길</strong>
+                    <div class="map">
+                        <!-- * 카카오맵 - 지도퍼가기 -->
+                        <!-- 1. 지도 노드 -->
+                        <div id="daumRoughmapContainer1624601669786" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%;height:100%;"></div>
+
+                        <!--
+                            2. 설치 스크립트
+                            * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
+                        -->
+                        <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+                        <!-- 3. 실행 스크립트 -->
+                        <script charset="UTF-8">
+                            new daum.roughmap.Lander({
+                                "timestamp" : "1624601669786",
+                                "key" : "26dot",
+                            }).render();
+                        </script>
+                    </div>
+                    <strong class="s-tit">대전한방병원 한의약임상연구정보지원센터</strong>
+                    <ul class="info-list">
+                        <li>
+                            <strong>연락처</strong>
+                            <p class="txt">042-470-9488</p>
+                        </li>
+                        <li>
+                            <strong>주소</strong>
+                            <p class="txt">대전광역시 서구 대덕대로 176번길 75 대전대학교 대전한방병원 한의약임상연구정보지원센터</p>
+                        </li>
+                    </ul>
+                    <a href="http://kko.to/YfaOvjM4o" class="map-btn" target="_blank">카카오맵으로 보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</th:block>
+
+</body>
+</html>

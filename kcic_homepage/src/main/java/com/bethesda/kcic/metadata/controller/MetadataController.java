@@ -42,7 +42,7 @@ public class MetadataController {
     @RequestMapping(value = "/sub01")
     public ModelAndView goSub01(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/metadata/sub_0302.html");
+        mav.setViewName("content/metadata/sub_0301.html");
         return mav;
     }
 
@@ -57,7 +57,7 @@ public class MetadataController {
     @RequestMapping(value = "/sub03")
     public ModelAndView goSub03(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/metadata/sub_0303_01.html");
+        mav.setViewName("content/metadata/sub_0303.html");
         return mav;
     }
 

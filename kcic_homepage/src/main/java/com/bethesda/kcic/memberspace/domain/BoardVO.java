@@ -14,7 +14,7 @@ public class BoardVO extends CommonVO {
     private String bId;
     private String gubun;
     private String subject;
-    private String content;
+    private String cont;
     private String regId;
     private String regNm;
     private String regDt;
@@ -24,6 +24,7 @@ public class BoardVO extends CommonVO {
 
     private List<BoardFileVO> fileList;
 
+    private String sSubject;
     private String sRegDt;
     private String eRegDt;
 }

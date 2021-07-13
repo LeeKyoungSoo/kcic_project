@@ -29,7 +29,7 @@ public class MemberSpaceController {
     @RequestMapping(value = "/sub01")
     public ModelAndView goSub01(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/memberSpace/sub_0602.html");
+        mav.setViewName("content/memberSpace/sub_0601.html");
         return mav;
     }
 
@@ -40,6 +40,15 @@ public class MemberSpaceController {
         return mav;
     }
 
+    @RequestMapping(value = "/sub02View")
+    public ModelAndView goSub02View(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("param", request);
+        mav.setViewName("content/memberSpace/sub_0602_view.html");
+        return mav;
+    }
+
     @RequestMapping(value = "/sub03")
     public ModelAndView goSub03(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
@@ -47,17 +56,24 @@ public class MemberSpaceController {
         return mav;
     }
 
+    @RequestMapping(value = "/sub03View")
+    public ModelAndView goSub03View(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("content/memberSpace/sub_0603_view.html");
+        return mav;
+    }
+
     @RequestMapping(value = "/sub04")
     public ModelAndView goSub04(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/memberSpace/sub_0603.html");
+        mav.setViewName("content/memberSpace/sub_0604.html");
         return mav;
     }
 
     @RequestMapping(value = "/sub05")
     public ModelAndView goSub05(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/memberSpace/sub_0603.html");
+        mav.setViewName("content/memberSpace/sub_0605.html");
         return mav;
     }
 

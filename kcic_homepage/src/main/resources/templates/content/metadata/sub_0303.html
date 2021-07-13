@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+<div id="container">
+    <div id="spot">
+        <div class="img-box sub03">
+            <div class="tit-box">
+                <h2>메타데이터</h2>
+            </div>
+        </div>
+        <div id="snb">
+            <ul class="nav">
+                <li>
+                    <a th:href="@{/metadata/sub01}">메타데이터 소개</a>
+                </li>
+                <li>
+                    <a th:href="@{/metadata/sub02}">메타데이터 항목 검색</a>
+                </li>
+                <li class="active">
+                    <a th:href="@{/metadata/sub03}">데이터셋별 메타데이터 목록</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div id="con">
+            <div class="sub-tit">
+                <h3>데이터셋별 메타데이터 목록</h3>
+                <ul id="navigater">
+                    <li class="home"></li>
+                    <li>메타데이터</li>
+                    <li class="m-now">데이터셋별 메타데이터 목록</li>
+                </ul>
+            </div>
+            <div class="con-area">
+                <div class="metadata-list">
+                    <div class="metadata-tab">
+                        <div class="h-box">
+                            <strong>데이터셋</strong>
+                        </div>
+                        <ul class="metadata-menu">
+                            <li>
+                                <a href="#">뇌졸중 레지스트리</a>
+                                <ul class="metadata-menu-02">
+                                    <li>
+                                        <a href="#">
+                                            <span>DM (Demographics)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>MH (Medical History)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>PE (Physical Examination)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>CE (Clinical Events)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>LB (Laboratory Test Results)</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">한의정신건강질환 레지스트리</a>
+                                <ul class="metadata-menu-02">
+                                    <li>
+                                        <a href="#">
+                                            <span>DM (Demographics)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>MH (Medical History)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>PE (Physical Examination)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>CE (Clinical Events)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>LB (Laboratory Test Results)</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">한의비만 레지스트리</a>
+                                <ul class="metadata-menu-02">
+                                    <li>
+                                        <a href="#">
+                                            <span>DM (Demographics)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>MH (Medical History)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>PE (Physical Examination)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>CE (Clinical Events)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>LB (Laboratory Test Results)</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">퇴행성 관절질환 레지스트리</a>
+                                <ul class="metadata-menu-02">
+                                    <li>
+                                        <a href="#">
+                                            <span>DM (Demographics)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>MH (Medical History)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>PE (Physical Examination)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>CE (Clinical Events)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>LB (Laboratory Test Results)</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">의-한 정밀의료 중재 대사질환 레지스트리</a>
+                                <ul class="metadata-menu-02">
+                                    <li>
+                                        <a href="#">
+                                            <span>DM (Demographics)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>MH (Medical History)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>PE (Physical Examination)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>CE (Clinical Events)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>LB (Laboratory Test Results)</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">의-한협진 한의암치료 레지스트리</a>
+                                <ul class="metadata-menu-02">
+                                    <li>
+                                        <a href="#">
+                                            <span>DM (Demographics)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>MH (Medical History)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>PE (Physical Examination)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>CE (Clinical Events)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>LB (Laboratory Test Results)</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="metadata-table">
+                        <div class="table-wrap">
+                            <table class="table-01">
+                                <tr>
+                                    <th>도메인</th>
+                                    <th>변수명</th>
+                                    <th>항목명</th>
+                                    <th>데이터유형</th>
+                                    <th>데이터타입</th>
+                                    <th>코드 설명</th>
+                                    <th>길이</th>
+                                    <th>단위</th>
+                                </tr>
+                                <tr>
+                                    <td>DM (Demographics)</td>
+                                    <td>SUBJID</td>
+                                    <td>연구대상자 ID</td>
+                                    <td>String</td>
+                                    <td>TextBox</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>DM (Demographics)</td>
+                                    <td>DMCTC</td>
+                                    <td>인구학적 정보 수집일</td>
+                                    <td>Date</td>
+                                    <td>Date</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>DM (Demographics)</td>
+                                    <td>DMBRTHDTC</td>
+                                    <td>생년월일</td>
+                                    <td>Date</td>
+                                    <td>Date</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>DM (Demographics)</td>
+                                    <td>DMSEX</td>
+                                    <td>성별</td>
+                                    <td>Date</td>
+                                    <td>Date</td>
+                                    <td>
+                                        1: MALE <br>
+                                        2: FEMALE
+                                    </td>
+                                    <td>1</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>DM (Demographics)</td>
+                                    <td>DMSMK</td>
+                                    <td>흡연여부</td>
+                                    <td>String</td>
+                                    <td>TextBox</td>
+                                    <td>
+                                        0 : 비흡연자 <br>
+                                        1 : 과거흡연자 <br>
+                                        2: 현재흡연자
+                                    </td>
+                                    <td>1</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>DM (Demographics)</td>
+                                    <td>DMSMKDUR</td>
+                                    <td>흡연기간</td>
+                                    <td>Date</td>
+                                    <td>Date</td>
+                                    <td></td>
+                                    <td>3</td>
+                                    <td>Year</td>
+                                </tr>
+                                <tr>
+                                    <td>DM (Demographics)</td>
+                                    <td>DMNSMKDUR</td>
+                                    <td>금연기간</td>
+                                    <td>String</td>
+                                    <td>TextBox</td>
+                                    <td></td>
+                                    <td>3</td>
+                                    <td>Year</td>
+                                </tr>
+                                <tr>
+                                    <td>DM (Demographics)</td>
+                                    <td>DMDRK</td>
+                                    <td>음주여부</td>
+                                    <td>String</td>
+                                    <td>TextBox</td>
+                                    <td>
+                                        0 : 비흡연자 <br>
+                                        1 : 과거흡연자 <br>
+                                        2: 현재흡연자
+                                    </td>
+                                    <td>1</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>DM (Demographics)</td>
+                                    <td>DMDRKDUR</td>
+                                    <td>음주기간 </td>
+                                    <td>Integer</td>
+                                    <td>TextBox</td>
+                                    <td></td>
+                                    <td>3</td>
+                                    <td>Year</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div class="from-btn">
+                            <a href="#" class="down-btn">엑셀다운로드</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</th:block>
+
+</body>
+</html>

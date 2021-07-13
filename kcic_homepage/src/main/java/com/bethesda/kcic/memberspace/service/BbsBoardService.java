@@ -1,10 +1,12 @@
 package com.bethesda.kcic.memberspace.service;
 
+import com.bethesda.kcic.memberspace.domain.BoardFileVO;
 import com.bethesda.kcic.memberspace.domain.BoardVO;
 import com.bethesda.kcic.memberspace.mapper.BbsBoard;
 import com.bethesda.kcic.util.BaseMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,5 +21,47 @@ public class BbsBoardService {
 
     public List<BoardVO> getBbsDataList(BoardVO vo) throws Exception {
         return bbsBoard.getBbsDataList(vo);
+    }
+
+    @Transactional
+    public int insBbsData(BoardVO vo) throws Exception {
+        return bbsBoard.insBbsData(vo);
+    }
+
+    @Transactional
+    public int uptBbsData(BoardVO vo) throws Exception {
+        return bbsBoard.uptBbsData(vo);
+    }
+
+    @Transactional
+    public int delBbsData(BoardVO vo) throws Exception {
+        return bbsBoard.delBbsData(vo);
+    }
+
+    public BoardVO getBbsDataView(BoardVO vo) throws  Exception {
+        return bbsBoard.getBbsDataView(vo);
+    }
+
+    @Transactional
+    public int uptBbsDataHitUp(BoardVO vo) throws Exception {
+        return bbsBoard.uptBbsDataHitUp(vo);
+    }
+
+    @Transactional
+    public int intFileData(BoardFileVO vo) throws  Exception {
+        return bbsBoard.intFileData(vo);
+    }
+
+    @Transactional
+    public int delFileData(BoardFileVO vo) throws  Exception {
+        return bbsBoard.delFileData(vo);
+    }
+
+    public List<BoardFileVO> getFileDataList(BoardFileVO vo) throws  Exception {
+        return bbsBoard.getFileDataList(vo);
+    }
+
+    public BoardFileVO getFileData(BoardFileVO vo) throws  Exception {
+        return bbsBoard.getFileData(vo);
     }
 }

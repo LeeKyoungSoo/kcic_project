@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+<div id="container">
+    <div id="spot">
+        <div class="img-box sub02">
+            <div class="tit-box">
+                <h2>이용안내</h2>
+            </div>
+        </div>
+        <div id="snb">
+            <ul class="nav">
+                <li class="active">
+                    <a th:href="@{/infomation/sub01}">홈페이지 이용안내</a>
+                </li>
+                <li>
+                    <a th:href="@{/infomation/sub02}">레지스트리 연구자 이용안내</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div id="con">
+            <div class="sub-tit">
+                <h3>홈페이지 이용안내</h3>
+                <ul id="navigater">
+                    <li class="home"></li>
+                    <li>이용안내</li>
+                    <li class="m-now">홈페이지 이용안내</li>
+                </ul>
+            </div>
+            <div class="con-area">
+                <div class="text-wrap">
+                    <strong class="s-tit">이용안내</strong>
+                    <p class="txt">한의 임상연구 정보 시스템 서비스 홈페이지는 본 이용약관과 개인정보취급방침에 동의한 이용자들에게 무료로 제공됩니다. 이용자가 동의함 버튼을 누르는 시점부터 본 이용약관에 동의한 것으로 간주됩니다.</p>
+                </div>
+                <div class="text-wrap">
+                    <strong class="s-tit">제공자료</strong>
+                    <p class="txt bmar_10">한의 임상연구 정보시스템 서비스는 다음과 같은 자료를 제공합니다.</p>
+                    <ul class="num-list">
+                        <li>
+                            <span>1</span>
+                            <p class="txt">한의 질환별 레지스트리 메타데이터 항목 검색</p>
+                        </li>
+                        <li>
+                            <span>2</span>
+                            <p class="txt">한의 질환별 통계 시각화 자료</p>
+                        </li>
+                        <li>
+                            <span>3</span>
+                            <p class="txt">데이터 분양 서비스</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-wrap">
+                    <strong class="s-tit">회원가입</strong>
+                    <p class="txt bmar_10">회원가입은 이용자가 약관의 내용에 대하여 동의를 하고 회원가입신청을 한 후 기관이 이러한 신청에 대해서 승낙함으로써 체결됩니다. 회원가입 신청서에는 다음 사항을 기재해야합니다.</p>
+                    <ul class="num-list bmar_10">
+                        <li>
+                            <span>1</span>
+                            <p class="txt">희망하는 아이디</p>
+                        </li>
+                        <li>
+                            <span>2</span>
+                            <p class="txt">이메일</p>
+                        </li>
+                        <li>
+                            <span>3</span>
+                            <p class="txt">이름</p>
+                        </li>
+                        <li>
+                            <span>4</span>
+                            <p class="txt">직업</p>
+                        </li>
+                        <li>
+                            <span>5</span>
+                            <p class="txt">소속명</p>
+                        </li>
+                    </ul>
+                    <p class="txt">회원가입의계약 성립 시기는 기관의 승낙이 이용자에게 도달한 시점으로 합니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</th:block>
+
+</body>
+</html>

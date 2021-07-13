@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+<div id="container">
+    <div id="spot">
+        <div class="img-box sub02">
+            <div class="tit-box">
+                <h2>이용안내</h2>
+            </div>
+        </div>
+        <div id="snb">
+            <ul class="nav">
+                <li>
+                    <a th:href="@{/infomation/sub01}">홈페이지 이용안내</a>
+                </li>
+                <li class="active">
+                    <a th:href="@{/infomation/sub02}">레지스트리 연구자 이용안내</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div id="con">
+            <div class="sub-tit">
+                <h3>레지스트리 연구자 이용안내</h3>
+                <ul id="navigater">
+                    <li class="home"></li>
+                    <li>이용안내</li>
+                    <li class="m-now">레지스트리 연구자 이용안내</li>
+                </ul>
+            </div>
+            <div class="con-area">
+                <div class="sub0502">
+                    <div class="text-wrap">
+                        <strong class="s-tit">레지스트리 연구자</strong>
+                        <ul class="researcher">
+                            <li>
+                                <div class="researcher-info">
+                                    <strong>E-CRF 신청</strong>
+                                    <ul class="num-list-02">
+                                        <li>
+                                            <div class="tit-box">
+                                                <span>1</span>
+                                                <p>NCKM 접속</p>
+                                            </div>
+                                            <p class="txt">
+                                                국가 한의 임상정보 포털에 접속 합니다.
+                                                <span>htttp://nikom.or.kr</span>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <div class="tit-box">
+                                                <span>2</span>
+                                                <p>E-CRF 신청</p>
+                                            </div>
+                                            <p class="txt">
+                                                KCKM E-CRF 이용방법 절차에 따라서 신청합니다.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <div class="tit-box">
+                                                <span>3</span>
+                                                <p>E-CRF 사용</p>
+                                            </div>
+                                            <p class="txt">
+                                                Study ID 발급 완료 후 E-CRF를 사용합니다.
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="researcher-info">
+                                    <strong>E-CRF 개발 및 사용법</strong>
+                                    <ul class="num-list-02">
+                                        <li>
+                                            <div class="tit-box">
+                                                <span>1</span>
+                                                <p>NCKM 접속</p>
+                                            </div>
+                                            <p class="txt">
+                                                국가 한의 임상정보 포털에 접속 합니다.
+                                                <span>htttp://nikom.or.kr</span>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <div class="tit-box">
+                                                <span>2</span>
+                                                <p>상단 교육메뉴 클릭</p>
+                                            </div>
+                                            <p class="txt">NCKM 홈페이지 상단에 교육 메뉴에서 E-CRF 이용방법 메뉴를 클릭합니다.</p>
+                                        </li>
+                                        <li>
+                                            <div class="tit-box">
+                                                <span>3</span>
+                                                <p>교육동영상</p>
+                                            </div>
+                                            <p class="txt">교육동영상 및 관련 자료를 참고하여 E-CRF를 제작합니다.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="https://nikom.or.kr/nckm/index.do" class="link-btn" target="_blank">
+                            <span>국가 한의 임상정보포털 바로가기</span>
+                        </a>
+                    </div>
+                    <div class="text-wrap">
+                        <strong class="s-tit">레지스트리 code book 사용법</strong>
+                        <div class="use-list">
+                            <ul class="dot-list">
+                                <li class="txt">본 code book은 가이드라인 2.0에 수록 된 공통 변수들로 구성되어 있습니다.</li>
+                                <li class="txt">code book을 다운로드 받아 mytrial e-crf 개발에 활용하시기 바랍니다.</li>
+                                <li class="txt">공통변수 이외에 개별레지스트리에서 수집하고자 하는 변수들은 code book에 변수를 추가해주시기 바랍니다.</li>
+                                <li class="txt">코드북 작성 방법은 코드북작성 매뉴얼을 참고하여 작성해주시기 바랍니다. (코드북 작성.pdf 파일 첨부)</li>
+                            </ul>
+                            <ul class="down-btn-list">
+                                <li>
+                                    <a href="#" download="">
+                                        Code Book <br>
+                                        다운로드
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" download="">
+                                        가이드라인 2.0 <br>
+                                        다운로드
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" download="">
+                                        코드북 작성 PDF <br>
+                                        다운로드
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class="logo-link">
+                        <li>
+                            <a href="#" target="_blank">
+                                <img src="/images/sub/05/logo_01.png" alt="NCKM 홈페이지 바로가기">
+                                <span>NCKM 홈페이지 바로가기</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <img src="/images/sub/05/logo_02.png" alt="E-CRF 교육 바로가기">
+                                <span>E-CRF 교육 바로가기</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <img src="/images/sub/05/logo_03.png" alt="E-CRF 바로가기">
+                                <span>E-CRF 바로가기</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</th:block>
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+    <div id="container">
+        <div id="spot">
+            <div class="img-box sub02">
+                <div class="tit-box">
+                    <h2>회원공간</h2>
+                </div>
+            </div>
+            <div id="snb">
+                <ul class="nav">
+                    <li>
+                        <a th:href="@{/memberSpace/sub01}">DM&Monitoring</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/memberSpace/sub02}">공지사항</a>
+                    </li>
+                    <li class="active">
+                        <a th:href="@{/memberSpace/sub03}">자료실</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/memberSpace/sub04}">일정관리</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/memberSpace/sub05}">Q&A</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            <div id="con">
+                <div class="sub-tit">
+                    <h3>자료실</h3>
+                    <ul id="navigater">
+                        <li class="home"></li>
+                        <li>회원공간</li>
+                        <li class="m-now">자료실</li>
+                    </ul>
+                </div>
+                <form id="metadataFrm" name="metadataFrm" method="post">
+                    <input type="hidden" id="gubun" name="gubun" th:value="${param.gubun}"/>
+                    <input type="hidden" id="pageNum" name="pageNum" th:value="${param.pageNum}"/>
+                    <input type="hidden" id="pageSize" name="pageSize" th:value="${param.pageSize}"/>
+                    <input type="hidden" id="selItemList" name="selItemList" th:value="${param.sSubject}"/>
+                    <input type="hidden" id="sSubject" name="sSubject" th:value="${param.sSubject}"/>
+                    <input type="hidden" id="sRegDt" name="sRegDt" th:value="${param.sRegDt}"/>
+                    <input type="hidden" id="eRegDt" name="eRegDt" th:value="${param.eRegDt}"/>
+                    <input type="hidden" id="bId" name="bId" th:value="${param.bId}"/>
+                    <div class="con-area">
+                        <table>
+                            <tr>
+                                <td><strong>제목</strong></td>
+                                <td colspan="3">
+                                    <input id="subject" name="subject" type="text" class="intxt" >
+                                    <input id="notiYnChk" name="notiYnChk" type="checkbox" class="intxt">
+                                    <input id="notiYn" name="notiYn" type="hidden" class="intxt" value="N">
+                                    <span id="hitTitle">조회 카운트 : <span id="hit">0</span></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>등록자</strong></td>
+                                <td>
+                                    <input id="regNm" name="regNm" type="text" class="intxt" readonly>
+                                    <input id="regId" name="regId" type="hidden" class="intxt">
+                                </td>
+                                <td><strong>등록일</strong></td>
+                                <td><input id="regDt" name="regDt" type="text" class="intxt" readonly></td>
+                            </tr>
+                            <tr>
+                                <td><strong>내용</strong></td>
+                                <td colspan="3"><input id="cont" name="cont" type="text" class="intxt"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </form>
+                <div class="from-btn">
+                    <input id="registBtn" type="button" value="등록" class="rfc-btn" style="cursor: pointer;" onclick="goRegist();">
+                    <input id="modifyBtn" type="button" value="수정" class="rfc-btn" style="cursor: pointer;" onclick="goModify();">
+                    <input id="deleteBtn" type="button" value="삭제" class="rfc-btn" style="cursor: pointer;" onclick="goDelete();">
+                    <input id="listBtn" type="button" value="목록" class="rfc-btn" style="cursor: pointer;" onclick="goList();">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/bethesda/board.js}" type="text/javascript"></script>
+    <script lang="javascript">
+        $(document).ready(function () {
+            if ( $("#bId").val() != "" ) {
+                goDataView();
+                $("#registBtn").hide();
+                $("#hitTitle").show();
+                $("#modifyBtn").show();
+                $("#deleteBtn").show();
+
+            }
+            else {
+                $("#registBtn").show();
+                $("#hitTitle").hide();
+                $("#modifyBtn").hide();
+                $("#deleteBtn").hide();
+            }
+
+            $("#notiYnChk").change(function() {
+                if(this.checked) {
+                    $("#notiYn").val("Y");
+                }
+                else {
+                    $("#notiYn").val("N");
+                }
+            });
+        });
+
+        function goDataView() {
+            let param = $("form[name=metadataFrm]").serialize();
+            $.ajax({
+                url: '[[@{/bbsApi/bbsDataView}]]',
+                type: 'post',
+                data: param,
+                success: function (data) {
+                    console.log(data.dataView);
+                    if (data.dataView == null || data.dataView == "" ) {
+                        alert("잘못된 접근 입니다.");
+                        goList();
+                    }
+                    else {
+                        $("#subject").val(data.dataView.subject);
+                        $("#cont").val(data.dataView.cont);
+                        $("#regId").val(data.dataView.regId);
+                        $("#regNm").val(data.dataView.regNm);
+                        $("#regDt").val(data.dataView.regDt);
+                        $("#hit").html(data.dataView.hit);
+                        if (data.dataView.notiYn == "Y") {
+                            $("#notiYnChk").prop('checked',true);
+                            $("#notiYn").val("Y");
+                        }
+                        else {
+                            $("#notiYn").val("N");
+                        }
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+
+        function goRegist() {
+            $("#regId").val("testid");
+            $("#regNm").val("테스트유저");
+            let param = $("form[name=metadataFrm]").serialize();
+            $.ajax({
+                url: '[[@{/bbsApi/bbsDataInsert}]]',
+                type: 'post',
+                data: param,
+                success: function (data) {
+                    console.log(data.resultCode);
+                    alert(data.resultMsg);
+
+                    $("#registBtn").hide();
+                    $("#hitTitle").show();
+                    $("#modifyBtn").show();
+                    $("#deleteBtn").show();
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+
+        function goModify() {
+            let param = $("form[name=metadataFrm]").serialize();
+            $.ajax({
+                url: '[[@{/bbsApi/bbsDataUpdate}]]',
+                type: 'post',
+                data: param,
+                success: function (data) {
+                    console.log(data.resultCode);
+                    alert(data.resultMsg);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+
+        function goDelete() {
+            let param = $("form[name=metadataFrm]").serialize();
+            $.ajax({
+                url: '[[@{/bbsApi/bbsDataDelete}]]',
+                type: 'post',
+                data: param,
+                success: function (data) {
+                    console.log(data.resultCode);
+                    alert(data.resultMsg);
+                    goList();
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+
+        function  goList() {
+            let f = document.metadataFrm;
+            f.action = "[[@{/memberSpace/sub03}]]";
+            f.submit();
+        }
+    </script>
+</th:block>
+</body>

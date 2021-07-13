@@ -15,28 +15,19 @@
         <div id="snb">
             <ul class="nav">
                 <li>
-                    <a href="#">메타데이터 소개</a>
+                    <a th:href="@{/metadata/sub01}">메타데이터 소개</a>
                 </li>
                 <li class="active">
-                    <a href="#">메타데이터 항목 검색</a>
+                    <a th:href="@{/metadata/sub02}">메타데이터 항목 검색</a>
                 </li>
                 <li>
-                    <a href="#">데이터셋별 메타데이터 목록</a>
+                    <a th:href="@{/metadata/sub03}">데이터셋별 메타데이터 목록</a>
                 </li>
             </ul>
         </div>
     </div>
     <div id="content">
         <div id="con">
-            <form id="metadataFrm" name="metadataFrm" method="post">
-                <input type="hidden" id="pageNum" name="pageNum" value="1" />
-                <input type="hidden" id="pageSize" name="pageSize" value="10" />
-                <input type="hidden" id="selItemList" name="selItemList" value="" />
-                <input type="hidden" id="mDomain" name="mDomain" />
-                <input type="hidden" id="mItemName" name="mItemName" />
-                <input type="hidden" id="mItemLabel" name="mItemLabel" />
-            </form>
-
             <div class="sub-tit">
                 <h3>메타데이터 항목 검색</h3>
                 <ul id="navigater">
@@ -45,6 +36,14 @@
                     <li class="m-now">메타데이터 항목 검색</li>
                 </ul>
             </div>
+            <form id="metadataFrm" name="metadataFrm" method="post">
+                <input type="hidden" id="pageNum" name="pageNum" value="1" />
+                <input type="hidden" id="pageSize" name="pageSize" value="10" />
+                <input type="hidden" id="selItemList" name="selItemList" value="" />
+                <input type="hidden" id="mDomain" name="mDomain" />
+                <input type="hidden" id="mItemName" name="mItemName" />
+                <input type="hidden" id="mItemLabel" name="mItemLabel" />
+            </form>
             <div class="con-area">
                 <div class="form-search">
                     <ul class="search-list-01">

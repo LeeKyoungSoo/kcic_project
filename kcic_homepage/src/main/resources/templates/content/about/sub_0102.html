@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+<div id="container">
+    <div id="spot">
+        <div class="img-box sub01">
+            <div class="tit-box">
+                <h2>About KCIC</h2>
+            </div>
+        </div>
+        <div id="snb">
+            <ul class="nav">
+                <li>
+                    <a th:href="@{/about/sub01}">인사말</a>
+                </li>
+                <li class="active">
+                    <a th:href="@{/about/sub02}">KCIC 소개</a>
+                </li>
+                <li>
+                    <a th:href="@{/about/sub03}">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div id="con">
+            <div class="sub-tit">
+                <h3>KCIC 소개</h3>
+                <ul id="navigater">
+                    <li class="home"></li>
+                    <li>About KCIC</li>
+                    <li class="m-now">KCIC 소개</li>
+                </ul>
+            </div>
+            <div class="con-area">
+                <div class="sub0102">
+                    <div class="text-wrap">
+                        <strong class="s-tit">KCIC 개요</strong>
+                        <p class="txt">
+                            한의약 임상연구 정보지원센터(Korean medicine Clinical research Information service Center, KCIC)는 한의약 임상연구에서 구축한 질환별 레지스트리 데이터를 확보, 관리 및 활용할 수 있는 정보지원체계를 구축·운영하는 역할을 담당하고 있습니다. 이에 따라 KCIC는 한의약 레지스트리 데이터를 통합하고 2차 활용이 가능하도록 정제하여 공유하기 위한 플랫폼인 KCIS (Korean medicine Clinical research Information service System)를 구축하였습니다.
+                        </p>
+                        <div class="summary-wrap pc">
+                            <ul class="tit-box">
+                                <li>
+                                    <p>한의약 레지스트리</p>
+                                </li>
+                                <li class="li02">
+                                    <img src="/images/sub/01/logo_w.png" alt="KCIC">
+                                    <p>한의약 임상연구 정보지원센터</p>
+                                </li>
+                                <li>
+                                    <p>데이터 기반 연구</p>
+                                </li>
+                            </ul>
+                            <div class="summary-step">
+                                <img src="/images/sub/01/summary_pc.jpg" alt="KCIC 개요">
+                            </div>
+                        </div>
+                        <div class="summary-wrap mo">
+                            <div class="summary-step">
+                                <img src="/images/sub/01/summary_mo.jpg" alt="KCIC 개요">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-wrap">
+                        <strong class="s-tit">KCIC 목표</strong>
+                        <div class="goal-wrap">
+                            <ul class="goal-step">
+                                <li class="li01">
+                                    <div>
+                                        <img src="/images/sub/01/logo_b.png" alt=""KCIC>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="/images/sub/01/i_03.png" alt="데이터 기반의 한의학 임상연구 활성화">
+                                        <p>
+                                            데이터 기반의 <br>
+                                            한의학 임상연구 <br>
+                                            활성화
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="/images/sub/01/i_04.png" alt="한의약 임상근거 수준 제고 및 정책반영 활용 지원">
+                                        <p>
+                                            한의약 임상근거 <br>
+                                            수준 제고 및 <br>
+                                            정책반영 활용 지원
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img src="/images/sub/01/i_05.png" alt="한의약 빅데이터 활용분야 기반마련">
+                                        <p>
+                                            한의약 빅데이터 <br>
+                                            활용분야 기반마련
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="text-wrap">
+                        <strong class="s-tit">운영조직</strong>
+
+                        <ul class="org-list">
+                            <li class="li01">
+                                <div class="tit-box">한의약 임상연구 정보지원센터</div>
+                            </li>
+                            <li class="li02">
+                                <ul>
+                                    <li>
+                                        <div class="tit-box">운영위원회</div>
+                                    </li>
+                                    <li>
+                                        <div class="tit-box">분양심의위원회</div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="li03">
+                                <ul>
+                                    <li>
+                                        <div class="list-wrap">
+                                            <div class="tit-box">데이터 구축ㆍ관리팀</div>
+                                            <ul>
+                                                <li class="txt">데이터 수집 및 고도화</li>
+                                                <li class="txt">데이터 질관리</li>
+                                                <li class="txt">정보수집 가이드라인 개정, 교육</li>
+                                                <li class="txt">데이터 보안 업무</li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="list-wrap">
+                                            <div class="tit-box">데이터 분석 지원팀</div>
+                                            <ul>
+                                                <li class="txt">데이터 분양 서비스</li>
+                                                <li class="txt">통계분석 자료 개발</li>
+                                                <li class="txt">정책적 의사결정 지원</li>
+                                                <li class="txt">수집ㆍ관리 소프트웨어 개발 및 배포</li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="list-wrap">
+                                            <div class="tit-box">행정ㆍ정책 지원팀</div>
+                                            <ul>
+                                                <li class="txt">행정업무 지원</li>
+                                                <li class="txt">제 계약 업무</li>
+                                                <li class="txt">제 규정 관리</li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="text-wrap">
+                        <strong class="s-tit">현황</strong>
+                        <div class="in-tit">
+                            <p>연도별, 성별, 연령에 따른 통계</p>
+                        </div>
+                        <ul class="statistics-box">
+                            <li class="li01">
+                                <img src="/images/sub/02/sub_02_01_02.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="/images/sub/02/sub_02_01_03.jpg" alt="">
+                            </li>
+                            <li>
+                                <img src="/images/sub/02/sub_02_01_04.jpg" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</th:block>
+
+</body>
+</html>

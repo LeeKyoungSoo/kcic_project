@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+<div id="container">
+    <div id="spot">
+        <div class="img-box sub03">
+            <div class="tit-box">
+                <h2>메타데이터</h2>
+            </div>
+        </div>
+        <div id="snb">
+            <ul class="nav">
+                <li class="active">
+                    <a th:href="@{/metadata/sub01}">메타데이터 소개</a>
+                </li>
+                <li>
+                    <a th:href="@{/metadata/sub02}">메타데이터 항목 검색</a>
+                </li>
+                <li>
+                    <a th:href="@{/metadata/sub03}">데이터셋별 메타데이터 목록</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div id="con">
+            <div class="sub-tit">
+                <h3>메타데이터 소개</h3>
+                <ul id="navigater">
+                    <li class="home"></li>
+                    <li>메타데이터</li>
+                    <li class="m-now">메타데이터 소개</li>
+                </ul>
+            </div>
+            <div class="con-area">
+                <div class="sub0301">
+                    <div class="img-box"></div>
+                    <div class="text-wrap">
+                        <strong class="s-tit">메타데이터란 ?</strong>
+                        <p class="txt">
+                            대량의 정보 가운데에서 찾고 있는 정보를 효율적으로 찾아내서 이용하기 위해 일정한 규칙에 따라 콘텐츠에 대하여 부여되는 데이터입니다. <br>
+                            KCIC 메타데이터 기능은 KCIC 에서 보유한 데이터의 항목 정보를 제공하고, 변수의 정의, 변수명, 변수 데이터 타입, 한의학 임상정보 레지스트리 수집 항목에 대한 정보를 확인하실 수 있습니다. <br>
+                            본 자료는 연구사업의 세부과제에서 수집하는 임상연구자료를 대상으로 하며, 총 4개의 class애서 12개의 Domain에 각각의 변수들이 포함됩니다. <br>
+                            Class는 Domain의 속성에 따라 범주화 했으며, Intervention, Events, Findings 등 관찰(Observaion)을 통해 정의되는 영역과 관찰 Domain 영역에 해당되지 않는 Special Purpose 로 분류합니다.
+                        </p>
+                    </div>
+
+
+                    <div class="list-wrap">
+                        <ul class="tit-list">
+                            <li>
+                                <div class="tit-box">Class</div>
+                                <ul>
+                                    <li class="li01">
+                                        <div class="tit-box">Domain</div>
+                                    </li>
+                                    <li class="li02">
+                                        <div class="tit-box">CRF</div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                        <ul class="list-01">
+                            <li>
+                                <ul class="list-02">
+                                    <li>
+                                        <div>
+                                            <div class="txt-box">Special Purpose</div>
+                                        </div>
+                                        <ul class="list-03">
+                                            <li>
+                                                <ul class="list-04">
+                                                    <li>
+                                                        <div class="txt-box">DM</div>
+                                                        <div class="txt-box-02">
+                                                            <p class="txt-en">Demographic</p>
+                                                            <p class="txt">성별, 연령, 흡연, 음주 등</p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="list-02">
+                                    <li>
+                                        <div>
+                                            <div class="txt-box">Intervention</div>
+                                        </div>
+                                        <ul class="list-03">
+                                            <li>
+                                                <ul class="list-04">
+                                                    <li>
+                                                        <div class="txt-box">CM</div>
+                                                        <div class="txt-box-02">
+                                                            <p class="txt-en">Concomitant Medications</p>
+                                                            <p class="txt">약물, 투여량, 투여횟수 등</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="txt-box">EX</div>
+                                                        <div class="txt-box-02">
+                                                            <p class="txt-en">Exposure</p>
+                                                            <p class="txt">중재(약물/처치), 처치량 등</p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="list-02">
+                                    <li>
+                                        <div>
+                                            <div class="txt-box">Events</div>
+                                        </div>
+                                        <ul class="list-03">
+                                            <li>
+                                                <ul class="list-04">
+                                                    <li>
+                                                        <div class="txt-box">AE</div>
+                                                        <div class="txt-box-02">
+                                                            <p class="txt-en">Adverse Events</p>
+                                                            <p class="txt">이상반응, 중증도 등</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="txt-box">CE</div>
+                                                        <div class="txt-box-02">
+                                                            <p class="txt-en">Clinical Events</p>
+                                                            <p class="txt">결과변수명, 발생일 등</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="txt-box">MH </div>
+                                                        <div class="txt-box-02">
+                                                            <p class="txt-en">Medical history</p>
+                                                            <p class="txt">질병력, 가족력 등</p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="list-02">
+                                    <li>
+                                        <div>
+                                            <div class="txt-box">Events</div>
+                                        </div>
+                                        <ul class="list-03">
+                                            <li>
+                                                <ul class="list-04">
+                                                    <li>
+                                                        <div class="txt-box">IE</div>
+                                                        <div class="txt-box-02">
+                                                            <p class="txt-en">Inclusion/Exclusion Criteria</p>
+                                                            <p class="txt">대상자 선정/제외 기준</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="txt-box">LB</div>
+                                                        <div class="txt-box-02">
+                                                            <p class="txt-en">Laboratory Test Results</p>
+                                                            <p class="txt">혈색소, 혈당 등 실험실검사</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="txt-box">PE</div>
+                                                        <div class="txt-box-02">
+                                                            <p class="txt-en">Physical Examination</p>
+                                                            <p class="txt">부위별 이학적검사 결과</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="txt-box">VS</div>
+                                                        <div class="txt-box-02">
+                                                            <p class="txt-en">Vital Signs</p>
+                                                            <p class="txt">신장, 체중 등 활력징후</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="txt-box">QS</div>
+                                                        <div class="txt-box-02">
+                                                            <p class="txt-en">Questionnaires</p>
+                                                            <p class="txt">설문조사</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="txt-box">EE</div>
+                                                        <div class="txt-box-02">
+                                                            <p class="txt-en">Economic Evaluation</p>
+                                                            <p class="txt">경제성평가</p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</th:block>
+
+</body>
+</html>

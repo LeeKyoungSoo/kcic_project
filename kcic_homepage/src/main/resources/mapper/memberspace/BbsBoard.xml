@@ -2,6 +2,85 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bethesda.kcic.memberspace.mapper.BbsBoard">
+
+    <resultMap id="BbsDataMap" type="com.bethesda.kcic.memberspace.domain.BoardVO">
+        <result property="bId" column="bId"/>
+        <collection property="fileList" column="{bId=bId}"
+                    ofType="com.bethesda.kcic.memberspace.domain.BoardFileVO"
+                    select="getFileList" />
+    </resultMap>
+
+    <insert id="insBbsData" parameterType="com.bethesda.kcic.memberspace.domain.BoardVO">
+        <![CDATA[
+        /* BbsBoard.insBbsData */
+        INSERT INTO tb_bbs_board
+        (
+             gubun
+            ,subject
+            ,cont
+            ,regid
+            ,regnm
+            ,notiyn
+        )
+        VALUES
+        (
+             #{gubun}
+            ,#{subject}
+            ,#{cont}
+            ,#{regId}
+            ,#{regNm}
+            ,#{notiYn}
+        )
+        ]]>
+    </insert>
+
+    <update id="uptBbsData" parameterType="com.bethesda.kcic.memberspace.domain.BoardVO">
+        <![CDATA[
+        /* BbsBoard.uptBbsData */
+        UPDATE tb_bbs_board
+        SET  subject = #{subject}
+            ,cont = #{cont}
+            ,notiyn = #{notiYn}
+            ,moddt = now()
+        WHERE bid = #{bId}
+        ]]>
+    </update>
+
+    <update id="uptBbsDataHitUp" parameterType="com.bethesda.kcic.memberspace.domain.BoardVO">
+        <![CDATA[
+        /* BbsBoard.uptBbsDataHitUp */
+        UPDATE tb_bbs_board
+        SET  hit = hit + 1
+        WHERE bid = #{bId}
+        ]]>
+    </update>
+
+    <delete id="delBbsData" parameterType="com.bethesda.kcic.memberspace.domain.BoardVO">
+        <![CDATA[
+        /* BbsBoard.delBbsData */
+        DELETE FROM tb_bbs_board
+        WHERE bid = #{bId}
+        ]]>
+    </delete>
+
+    <select id="getBbsDataView" parameterType="com.bethesda.kcic.memberspace.domain.BoardVO" resultMap="BbsDataMap">
+     <![CDATA[
+        /* BbsBoard.getBbsDataView */
+        SELECT
+             gubun
+            ,subject
+            ,cont
+            ,regid
+            ,regnm
+            ,notiyn
+            ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
+            ,hit
+            ,bid
+        FROM tb_bbs_board
+        WHERE bid = #{bId}
+        ]]>
+    </select>
+
     <select id="getBbsDataCnt" parameterType="com.bethesda.kcic.memberspace.domain.BoardVO" resultType="int">
         <![CDATA[
         /* BbsBoard.getBbsDataCnt */
@@ -12,22 +91,15 @@
         <if test='gubun != null and !gubun.equals("")'>
             AND gubun = #{gubun}
         </if>
-        <if test='subject != null and !subject.equals("")'>
-            AND subject LIKE CONCAT('%', #{subject}, '%')
+        <if test='sSubject != null and !sSubject.equals("")'>
+            AND subject LIKE CONCAT('%', #{sSubject}, '%')
         </if>
         <if test='(sRegDt != null and !sRegDt.equals("")) and (eRegDt != null and !eRegDt.equals(""))'>
             AND DATE_FORMAT(regDt, '%Y%m%d')
             BETWEEN DATE_FORMAT(IFNULL(NULLIF(#{sRegDt},''),'00000000'), '%Y%m%d')
-            AND DATE_FORMAT(IFNULL(NULLIF(#{eRegDt},''),'99991231'), '%Y%m%d')
+                AND DATE_FORMAT(IFNULL(NULLIF(#{eRegDt},''),'99991231'), '%Y%m%d')
         </if>
     </select>
-
-    <resultMap id="BbsDataMap" type="com.bethesda.kcic.memberspace.domain.BoardVO">
-        <result property="bId" column="bId"/>
-        <collection property="fileList" column="{bId=bId}"
-                    ofType="com.bethesda.kcic.memberspace.domain.BoardFileVO"
-                    select="getFileList" />
-    </resultMap>
 
     <select id="getBbsDataList" parameterType="com.bethesda.kcic.memberspace.domain.BoardVO" resultMap="BbsDataMap">
         <![CDATA[
@@ -36,7 +108,7 @@
             bId
             ,gubun
             ,subject
-            ,content
+            ,cont
             ,regId
             ,regNm
             ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
@@ -49,24 +121,66 @@
         <if test='gubun != null and !gubun.equals("")'>
             AND gubun = #{gubun}
         </if>
-        <if test='subject != null and !subject.equals("")'>
-            AND subject LIKE CONCAT('%', #{subject}, '%')
+        <if test='sSubject != null and !sSubject.equals("")'>
+            AND subject LIKE CONCAT('%', #{sSubject}, '%')
         </if>
         <if test='(sRegDt != null and !sRegDt.equals("")) and (eRegDt != null and !eRegDt.equals(""))'>
             AND DATE_FORMAT(regDt, '%Y%m%d')
                 BETWEEN DATE_FORMAT(IFNULL(NULLIF(#{sRegDt},''),'00000000'), '%Y%m%d')
-                AND DATE_FORMAT(IFNULL(NULLIF(#{eRegDt},''),'99991231'), '%Y%m%d')
+                    AND DATE_FORMAT(IFNULL(NULLIF(#{eRegDt},''),'99991231'), '%Y%m%d')
         </if>
-        ORDER BY bId DESC
+        ORDER BY notiYn DESC, bId DESC
         <if test='offSet > -1'>
             LIMIT #{offSet}, #{limit}
         </if>
     </select>
 
-    <select id="getFileList" parameterType="map" resultType="com.bethesda.kcic.memberspace.domain.BoardFileVO">
-        <!-- 참여자 AE Tree -->
+    <insert id="intFileData" parameterType="com.bethesda.kcic.memberspace.domain.BoardFileVO">
         <![CDATA[
-        /* AEMntmg.selectFavoriteCode */
+        /* BbsBoard.intFileData */
+        INSERT INTO tb_bbs_file
+        (
+             bId
+            ,fileOrgNm
+            ,fileSaveNm
+            ,fileSize
+        )
+        VALUES
+        (
+             #{bId}
+            ,#{fileOrgNm}
+            ,#{fileSaveNm}
+            ,#{fileSize}
+        )
+        ]]>
+    </insert>
+
+    <delete id="delFileData" parameterType="com.bethesda.kcic.memberspace.domain.BoardFileVO">
+         <![CDATA[
+        /* BbsBoard.delFileData */
+        DELETE FROM tb_bbs_file
+        WHERE fId = #{fId}
+        ]]>
+    </delete>
+
+    <select id="getFileData" parameterType="com.bethesda.kcic.memberspace.domain.BoardFileVO" resultType="com.bethesda.kcic.memberspace.domain.BoardFileVO">
+        <![CDATA[
+        /* BbsBoard.getFileList */
+        SELECT
+            fId
+             ,bId
+             ,fileOrgNm
+             ,fileSaveNm
+             ,fileSize
+             ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
+        FROM tb_bbs_file
+        WHERE fId = #{FId}
+        ]]>
+    </select>
+
+    <select id="getFileList" parameterType="map" resultType="com.bethesda.kcic.memberspace.domain.BoardFileVO">
+        <![CDATA[
+        /* BbsBoard.getFileList */
         SELECT
             fId
             ,bId
@@ -80,4 +194,19 @@
         ]]>
     </select>
 
+    <select id="getFileDataList" parameterType="com.bethesda.kcic.memberspace.domain.BoardFileVO" resultType="com.bethesda.kcic.memberspace.domain.BoardFileVO">
+        <![CDATA[
+        /* BbsBoard.getFileList */
+        SELECT
+            fId
+             ,bId
+             ,fileOrgNm
+             ,fileSaveNm
+             ,fileSize
+             ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
+        FROM tb_bbs_file
+        WHERE bId = #{bId}
+        ORDER BY fid DESC
+        ]]>
+    </select>
 </mapper>

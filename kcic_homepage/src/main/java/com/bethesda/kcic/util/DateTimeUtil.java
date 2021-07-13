@@ -19,14 +19,7 @@ public final class DateTimeUtil {
 
     public static String getNowDateTime() {
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyymmddhh24miss");
-        return sdf.format(cal.getTime());
-    }
-
-    public static String getNowDateTimeHb(String sep) {
-        if ( sep == null ) sep = "";
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy" + sep + "mm" + sep + "dd hh24:mi:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
         return sdf.format(cal.getTime());
     }
 }

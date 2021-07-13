@@ -22,14 +22,14 @@ public class AboutController {
     @RequestMapping(value = "/sub02")
     public ModelAndView goSub02(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/about/sub_0101.html");
+        mav.setViewName("content/about/sub_0102.html");
         return mav;
     }
 
     @RequestMapping(value = "/sub03")
     public ModelAndView goSub03(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/about/sub_0101.html");
+        mav.setViewName("content/about/sub_0103.html");
         return mav;
     }
 

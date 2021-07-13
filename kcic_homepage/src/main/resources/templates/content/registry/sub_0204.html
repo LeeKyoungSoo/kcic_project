@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+    <div id="container">
+        <div id="spot">
+            <div class="img-box sub02">
+                <div class="tit-box">
+                    <h2>레지스트리</h2>
+                </div>
+            </div>
+            <div id="snb">
+                <ul class="nav">
+                    <li>
+                        <a th:href="@{/registry/sub01}">한의암 레지스트리 연구</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/registry/sub02}">한의정신건강질환 레지스트리</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/registry/sub03}">한의비만 레지스트리</a>
+                    </li>
+                    <li class="active">
+                        <a th:href="@{/registry/sub04}">퇴행성 관절질환 레지스트리</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/registry/sub05}">의-한 정밀의료 중재 대사질환  레지스트리</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/registry/sub06}">뇌졸중  레지스트리</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            <div id="con">
+                <div class="sub-tit">
+                    <h3>퇴행성 관절질환 레지스트리</h3>
+                    <ul id="navigater">
+                        <li class="home"></li>
+                        <li>레지스트리</li>
+                        <li class="m-now">퇴행성 관절질환 레지스트리</li>
+                    </ul>
+                </div>
+                <div class="con-area">
+                    <div class="sub02">
+                        <div class="text-wrap">
+                            <strong class="s-tit">퇴행성 관절질환 한의레지스트리 소개</strong>
+                            <p class="txt">
+                                퇴행성 관절질환 한의 레지스트리는 퇴행성 관절질환에 대해 한의학 특성에 맞는 연구방법론에 기반한 장기간의 다면적 임상 연구를 수행하는 퇴행성 관절질환 한의중점 연구센터에서 수행하고 있으며, 퇴행성 관절질환의 전주기적 특성 및 한의 임상현장을 고려하여 구축될 것입니다. 확보된 임상 데이터를 활용하여 퇴행성 관절질환에 대한 예방, 진단, 치료, 관리 기술에 대한 효과를 검증할 것이며, 축적된 근거를 기반으로 한의 치료기술의 보장성 강화를 통해 국민건강 증진에 기여 하고자 합니다.
+                            </p>
+                        </div>
+                        <div class="text-wrap">
+                            <strong class="s-tit">목표</strong>
+                            <p class="b-tit">한의암 레지스트리의 목표는 한의암치료의 유효성과 안전성에 대해서 신뢰성과 대표성을 갖춘 국가 데이터를 제공하는데 있습니다. 이를 위해 다음과 같은 세부 목표를 수행하고 있습니다.</p>
+                            <ul class="dot-list">
+                                <li class="txt">다양한 분야와의 협업 연구가 진행될 수 있도록 레지스트리 구축을 위한 차트 주요 요소에 국제적으로 표준화된 진료기술 및 행위 분류체계를 적용할 것이며, 실제적인 한의 치료기술의 근거를 확보하기 위해 한의 임상현장의 특성을 반영한 한의 레지스트리를 구축할 예정입니다.</li>
+                                <li class="txt">이를 통해 한의 변증도구 개발 및 적용에 대한 검증 연구, 임상연구 수행에 어려움이 있는 한의 치료기술에 대한 유효성 및 안전성 연구, 한의 치료 후 질병 예방, 수술 후 관리, 재발 억제에 대한 효과 검증 연구, 질환에 따른 다양한 진료행태 (단독, 협진, 통합) 에 대한 한의 치료 기술에 대한 효과 연구를 수행할 예정입니다.</li>
+                            </ul>
+                        </div>
+                        <div class="text-wrap">
+                            <strong class="s-tit">연구진</strong>
+                            <div class="research-people">
+                                <div class="img-wrap">
+                                    <img src="/images/sub/02/sub_02_04_01.jpg" alt="백용현 교수 (강동경희대학교 한방병원)">
+                                </div>
+                                <div class="txt-wrap">
+                                    <ul class="people-info">
+                                        <li>
+                                            <strong>연구책임자</strong>
+                                            <p class="txt">백용현 교수 (강동경희대학교 한방병원)</p>
+                                        </li>
+                                        <li>
+                                            <strong>참여기관</strong>
+                                            <p class="txt">경희의료원 한방병원, 대구한의대학교 한방병원, 동국대학교 분당한방병원, 부산대학교 한방병원, 대한침구의학회, 한방척추관절학회</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-wrap">
+                            <strong class="s-tit">통계</strong>
+                            <ul class="statistics-box">
+                                <li class="li01">
+                                    <img src="/images/sub/02/sub_02_01_02.jpg" alt="">
+                                </li>
+                                <li>
+                                    <img src="/images/sub/02/sub_02_01_03.jpg" alt="">
+                                </li>
+                                <li>
+                                    <img src="/images/sub/02/sub_02_01_04.jpg" alt="">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</th:block>
+
+</body>
+</html>

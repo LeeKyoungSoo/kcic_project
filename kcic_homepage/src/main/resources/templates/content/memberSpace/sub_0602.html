@@ -15,35 +15,25 @@
         <div id="snb">
             <ul class="nav">
                 <li>
-                    <a href="#">DM&Monitoring</a>
+                    <a th:href="@{/memberSpace/sub01}">DM&Monitoring</a>
                 </li>
                 <li class="active">
-                    <a href="#">공지사항</a>
+                    <a th:href="@{/memberSpace/sub02}">공지사항</a>
                 </li>
                 <li>
-                    <a href="#">자료실</a>
+                    <a th:href="@{/memberSpace/sub03}">자료실</a>
                 </li>
                 <li>
-                    <a href="#">일정관리</a>
+                    <a th:href="@{/memberSpace/sub04}">일정관리</a>
                 </li>
                 <li>
-                    <a href="#">Q&A</a>
+                    <a th:href="@{/memberSpace/sub05}">Q&A</a>
                 </li>
             </ul>
         </div>
     </div>
     <div id="content">
         <div id="con">
-            <form id="metadataFrm" name="metadataFrm" method="post">
-                <input type="hidden" id="gubun" name="gubun" value="01" />
-                <input type="hidden" id="pageNum" name="pageNum" value="1" />
-                <input type="hidden" id="pageSize" name="pageSize" value="10" />
-                <input type="hidden" id="selItemList" name="selItemList" value="" />
-                <input type="hidden" id="subject" name="subject" />
-                <input type="hidden" id="sRegDt" name="sRegDt" />
-                <input type="hidden" id="eRegDt" name="eRegDt" />
-            </form>
-
             <div class="sub-tit">
                 <h3>공지사항</h3>
                 <ul id="navigater">
@@ -52,6 +42,16 @@
                     <li class="m-now">공지사항</li>
                 </ul>
             </div>
+            <form id="metadataFrm" name="metadataFrm" method="post">
+                <input type="hidden" id="gubun" name="gubun" value="01" />
+                <input type="hidden" id="pageNum" name="pageNum" value="1" />
+                <input type="hidden" id="pageSize" name="pageSize" value="10" />
+                <input type="hidden" id="selItemList" name="selItemList" value="" />
+                <input type="hidden" id="sSubject" name="sSubject" />
+                <input type="hidden" id="sRegDt" name="sRegDt" />
+                <input type="hidden" id="eRegDt" name="eRegDt" />
+                <input type="hidden" id="bId" name="bId"/>
+            </form>
             <div class="con-area">
                 <div class="form-search">
                     <ul class="search-list-01">
@@ -101,6 +101,7 @@
                         </li>
                     </ul>
                     <div class="from-btn">
+                        <input type="button" value="신규등록" class="rfc-btn" style="cursor: pointer;" onclick="goBbsDataview('');">
                         <input type="button" value="조회" class="rfc-btn" style="cursor: pointer;" onclick="goSearch();">
                     </div>
                 </div>
@@ -155,7 +156,7 @@
                                         + data.dataList[key].bid
                                         + '">'
                                         + '<label for="s_bId[' + data.dataList[key].bid + ']"><span></span></label></div></td>';
-                        strHtml += '<td><a href="#">' + data.dataList[key].subject + '</a></td>';
+                        strHtml += '<td><a href="javascript:goBbsDataview(\'' + data.dataList[key].bid  + '\');">' + data.dataList[key].subject + '</a></td>';
                         //console.log(data.dataList[key].fileList.length);
                         if ( data.dataList[key].fileList.length > 0 ) {
                             strHtml += '<td><img src="/images/sub/06/i_file.png" alt="첨부파일"></td>';
@@ -183,7 +184,7 @@
     }
 
     function goSearch() {
-        $("#subject").val($("#s_subject").val());
+        $("#sSubject").val($("#s_subject").val());
         $("#sRegDt").val($("#startDate").val());
         $("#eRegDt").val($("#endDate").val());
 
@@ -192,6 +193,14 @@
             if ($("#eRegDt").val() == "" ) $("#eRegDt").val("99991231");
         }
         goDataList(1);
+    }
+
+    function goBbsDataview(code) {
+        $("#bId").val(code);
+
+        let f = document.metadataFrm;
+        f.action = "[[@{/memberSpace/sub02View}]]";
+        f.submit();
     }
 </script>
 </th:block>

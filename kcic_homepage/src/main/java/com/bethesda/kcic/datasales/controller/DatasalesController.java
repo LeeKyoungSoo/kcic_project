@@ -15,7 +15,7 @@ public class DatasalesController {
     @RequestMapping(value = "/sub01")
     public ModelAndView goSub01(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/datasales/sub_0402.html");
+        mav.setViewName("content/datasales/sub_0401.html");
         return mav;
     }
 
@@ -37,27 +37,6 @@ public class DatasalesController {
     public ModelAndView goSub04(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("content/datasales/sub_0404.html");
-        return mav;
-    }
-
-    @RequestMapping(value = "/sub05")
-    public ModelAndView goSub05(HttpServletRequest request) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/datasales/sub_0402.html");
-        return mav;
-    }
-
-    @RequestMapping(value = "/sub06")
-    public ModelAndView goSub06(HttpServletRequest request) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/datasales/sub_0402.html");
-        return mav;
-    }
-
-    @RequestMapping(value = "/sub07")
-    public ModelAndView goSub07(HttpServletRequest request) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/datasales/sub_0402.html");
         return mav;
     }
 }

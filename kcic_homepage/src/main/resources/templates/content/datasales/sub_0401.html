@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+<div id="container">
+    <div id="spot">
+        <div class="img-box sub04">
+            <div class="tit-box">
+                <h2>데이터 분양</h2>
+            </div>
+        </div>
+        <div id="snb">
+            <ul class="nav">
+                <li class="active">
+                    <a th:href="@{/datasales/sub01}">분양 절차 안내 및 신청</a>
+                </li>
+                <li>
+                    <a th:href="@{/datasales/sub02}">분양 자료 항목 및 검색</a>
+                </li>
+                <li>
+                    <a th:href="@{/datasales/sub03}">분양 현황</a>
+                </li>
+                <li>
+                    <a th:href="@{/datasales/sub04}">연구성과</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div id="con">
+            <div class="sub-tit">
+                <h3>분양 절차 안내 및 신청</h3>
+                <ul id="navigater">
+                    <li class="home"></li>
+                    <li>데이터 분양</li>
+                    <li class="m-now">분양 절차 안내 및 신청</li>
+                </ul>
+            </div>
+            <div class="con-area">
+                <div class="sub0401">
+                    <strong class="s-tit">신청 절차</strong>
+                    <ul class="list-01">
+                        <li class="txt">1. 데이터 분양 및 활용 > 분양 자료 항목 및 검색에서 데이터를 검색 및 선택하고 분양하기를 클릭합니다.</li>
+                        <li class="txt">2. 데이터 분양 및 활용 > 분양 절차에 안내 된 제출 서식을 첨부하여야 합니다.</li>
+                        <li class="txt">3. KCIC 에서 데이터 이용이 승인되면 관리자가 데이터를 전달합니다.</li>
+                    </ul>
+
+                    <ul class="step-list">
+                        <li>
+                            <div class="step-con">
+                                <img src="/images/sub/04/i_01.png" alt="신청자">
+                                <p>신청자</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-con">
+                                <img src="/images/sub/04/i_02.png" alt="로그인">
+                                <p>로그인</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-con">
+                                <img src="/images/sub/04/i_03.png" alt="데이터 항목 검색">
+                                <p>데이터 <br>항목 검색</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-con">
+                                <img src="/images/sub/04/i_04.png" alt="신청서 작성">
+                                <p>신청서 작성</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-con">
+                                <img src="/images/sub/04/i_05.png" alt="제출">
+                                <p>제출</p>
+                                <span>담당자 e-mail</span>
+                            </div>
+                            <ul class="add-step">
+                                <li>
+                                    <ul>
+                                        <li>
+                                            <div class="txt-box">승인</div>
+                                        </li>
+                                        <li>
+                                            <div class="txt-box">데이터 전달</div>
+                                        </li>
+                                        <li>
+                                            <div class="txt-box">신청자</div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <ul>
+                                        <li>
+                                            <div class="txt-box">반려</div>
+                                        </li>
+                                        <li>
+                                            <div class="txt-box">사유통보</div>
+                                        </li>
+                                        <li>
+                                            <div class="txt-box">신청자</div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <strong class="s-tit">제출 서류 서식</strong>
+                    <div class="table-wrap">
+                        <table class="table-01">
+                            <tr>
+                                <th>절차구분</th>
+                                <th>필수서류</th>
+                                <th>비고</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    신청
+                                </td>
+                                <td class="ltxt">
+                                    <ul class="list-01">
+                                        <li>
+                                            <p class="txt">1. 자료이용 신청서</p>
+                                            <a href="#" class="down-btn" download="">다운로드</a>
+                                        </li>
+                                        <li>
+                                            <p class="txt">2. 연구계획서</p>
+                                        </li>
+                                        <li>
+                                            <p class="txt">3. 연구과제 요약서</p>
+                                            <a href="#" class="down-btn" download="">다운로드</a>
+                                        </li>
+                                        <li>
+                                            <p class="txt">4. 자료요청명세서</p>
+                                            <a href="#" class="down-btn" download="">다운로드</a>
+                                        </li>
+                                        <li>
+                                            <p class="txt">5. 개인정보수집, 이용동의서</p>
+                                            <a href="#" class="down-btn" download="">다운로드</a>
+                                        </li>
+                                        <li>
+                                            <p class="txt">6. 서약서</p>
+                                            <a href="#" class="down-btn" download="">다운로드</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="ltxt">
+                                    ※ 연구과제 검토 시 추가 보완 요청 가능
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>이용종료</td>
+                                <td class="ltxt">
+                                    <ul class="dot-list">
+                                        <li>연구종료 통보서</li>
+                                        <li>연구 결과물</li>
+                                    </ul>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="btn-wrap">
+                        <a href="#" class="dwon-btn" download="">KCIS 운영지침 다운로드</a>
+                        <a href="#" class="link-btn">분양신청 바로가기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</th:block>
+
+</body>
+</html>

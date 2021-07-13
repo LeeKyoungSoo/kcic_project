@@ -8,8 +8,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class BoardFileVO {
-    private String fId;
-    private String bId;
+    private int fId;
+    private int bId;
     private String fileOrgNm;
     private String fileSaveNm;
     private String fileSize;

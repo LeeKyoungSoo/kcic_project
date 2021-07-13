@@ -14,14 +14,14 @@ public class InfomationController {
     @RequestMapping(value = "/sub01")
     public ModelAndView goSub01(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/infomation/sub_0101.html");
+        mav.setViewName("content/infomation/sub_0501.html");
         return mav;
     }
 
     @RequestMapping(value = "/sub02")
     public ModelAndView goSub02(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/infomation/sub_0101.html");
+        mav.setViewName("content/infomation/sub_0502.html");
         return mav;
     }
 }
