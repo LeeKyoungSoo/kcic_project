@@ -23,4 +23,18 @@ jQuery(document).ready(function ($) {
         }
     });
 
+    $('#file').on('change',function(){
+        var fileName = $('#file').val();
+        $('.file-box .file-name').val(fileName);
+    });
+
+    $("#check-all").click(function() {
+        if($("#check-all").prop("checked")) {
+            $("input[type=checkbox]").prop("checked",true); 
+        } else { 
+            $("input[type=checkbox]").prop("checked",false); 
+        }
+    });
+
 });
+

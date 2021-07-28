@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bethesda.kcic.datasales.mapper.StudyAchieve">
+    <insert id="insData" parameterType="com.bethesda.kcic.datasales.domain.StudyAchieveVO">
+        <![CDATA[
+        /* StudyAchieve.insData */
+        INSERT INTO tb_study_achieve
+        (
+             bid
+            ,gubun
+            ,subject
+            ,cont
+            ,summary
+            ,regdt
+        )
+        VALUES
+        (
+             #{bId}
+            ,#{gubun}
+            ,#{subject}
+            ,#{cont}
+            ,#{summary}
+            ,now()
+        )
+        ]]>
+    </insert>
+
+    <update id="uptData" parameterType="com.bethesda.kcic.datasales.domain.StudyAchieveVO">
+        <![CDATA[
+        /* StudyAchieve.uptData */
+        UPDATE tb_study_achieve
+        SET
+           gubun = #{gubun}
+          ,subject = #{subject}
+          ,cont = #{cont}
+          ,summary = #{summary}
+          ,moddt = #{modDt}
+        WHERE bid = #{bId}
+        ]]>
+    </update>
+
+    <delete id="delData" parameterType="com.bethesda.kcic.datasales.domain.StudyAchieveVO">
+        <![CDATA[
+        /* StudyAchieve.delData */
+        DELETE FROM tb_study_achieve
+        WHERE bid = #{bId}
+        ]]>
+    </delete>
+
+    <select id="getDataView" parameterType="com.bethesda.kcic.datasales.domain.StudyAchieveVO" resultType="com.bethesda.kcic.datasales.domain.StudyAchieveVO">
+     <![CDATA[
+        /* StudyAchieve.getDataView */
+        SELECT
+              bid
+             ,gubun
+             ,subject
+             ,cont
+             ,summary
+             ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
+        FROM tb_study_achieve
+        WHERE bid = #{bId}
+        ]]>
+    </select>
+
+    <select id="getDataCnt" parameterType="com.bethesda.kcic.datasales.domain.StudyAchieveVO" resultType="int">
+        <![CDATA[
+        /* StudyAchieve.getDataCnt */
+        SELECT count(*) as cnt
+        FROM tb_study_achieve
+        WHERE 1 = 1
+        ]]>
+        <if test='sSubject != null and !sSubject.equals("")'>
+        AND (
+                subject LIKE CONCAT('%', #{sSubject}, '%')
+                OR
+                cont LIKE CONCAT('%', #{sSubject}, '%')
+            )
+        </if>
+        <if test='(sRegDt != null and !sRegDt.equals("")) and (eRegDt != null and !eRegDt.equals(""))'>
+            AND DATE_FORMAT(regDt, '%Y%m%d')
+            BETWEEN DATE_FORMAT(IFNULL(NULLIF(#{sRegDt},''),'00000000'), '%Y%m%d')
+            AND DATE_FORMAT(IFNULL(NULLIF(#{eRegDt},''),'99991231'), '%Y%m%d')
+        </if>
+    </select>
+
+    <select id="getDataList" parameterType="com.bethesda.kcic.datasales.domain.StudyAchieveVO" resultType="com.bethesda.kcic.datasales.domain.StudyAchieveVO">
+        <![CDATA[
+        /* StudyAchieve.getDataList */
+        SELECT
+              bid
+             ,gubun
+             ,subject
+             ,cont
+             ,summary
+             ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
+        FROM tb_study_achieve
+        WHERE 1 = 1
+        ]]>
+        <if test='sSubject != null and !sSubject.equals("")'>
+        AND (
+                subject LIKE CONCAT('%', #{sSubject}, '%')
+                OR
+                cont LIKE CONCAT('%', #{sSubject}, '%')
+            )
+        </if>
+        <if test='(sRegDt != null and !sRegDt.equals("")) and (eRegDt != null and !eRegDt.equals(""))'>
+            AND DATE_FORMAT(regDt, '%Y%m%d')
+            BETWEEN DATE_FORMAT(IFNULL(NULLIF(#{sRegDt},''),'00000000'), '%Y%m%d')
+            AND DATE_FORMAT(IFNULL(NULLIF(#{eRegDt},''),'99991231'), '%Y%m%d')
+        </if>
+        ORDER BY regDt DESC
+        <if test='offSet > -1'>
+            LIMIT #{offSet}, #{limit}
+        </if>
+    </select>
+
+</mapper>

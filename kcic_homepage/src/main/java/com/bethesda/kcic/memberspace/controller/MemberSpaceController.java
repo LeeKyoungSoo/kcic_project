@@ -26,6 +26,12 @@ public class MemberSpaceController {
     @Autowired
     BbsBoardService bbsBoardService;
 
+    /**
+     *  DM & Monitoring
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/sub01")
     public ModelAndView goSub01(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
@@ -33,6 +39,13 @@ public class MemberSpaceController {
         return mav;
     }
 
+
+    /**
+     * 공지사항 목록
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/sub02")
     public ModelAndView goSub02(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
@@ -40,6 +53,12 @@ public class MemberSpaceController {
         return mav;
     }
 
+    /**
+     * 공지사항 상세보기
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/sub02View")
     public ModelAndView goSub02View(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
@@ -49,6 +68,27 @@ public class MemberSpaceController {
         return mav;
     }
 
+    /**
+     * 공지사항 등록,수정
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/sub02Edit")
+    public ModelAndView goSub02Edit(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("param", request);
+        mav.setViewName("content/memberSpace/sub_0602_edit.html");
+        return mav;
+    }
+
+    /**
+     * 자료실 목록
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/sub03")
     public ModelAndView goSub03(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
@@ -56,6 +96,12 @@ public class MemberSpaceController {
         return mav;
     }
 
+    /**
+     * 자료실 상세보기
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/sub03View")
     public ModelAndView goSub03View(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
@@ -63,10 +109,59 @@ public class MemberSpaceController {
         return mav;
     }
 
+    /**
+     * 자료실 등록,수정
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/sub03Edit")
+    public ModelAndView goSub03Edit(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("param", request);
+        mav.setViewName("content/memberSpace/sub_0603_edit.html");
+        return mav;
+    }
+
+    /**
+     * 일정관리 목록
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/sub04")
     public ModelAndView goSub04(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("content/memberSpace/sub_0604.html");
+        return mav;
+    }
+
+    /**
+     * 일정관리 상세보기
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/sub04View")
+    public ModelAndView goSub04View(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("content/memberSpace/sub_0604_view.html");
+        return mav;
+    }
+
+    /**
+     * 일정관리 등록,수정
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/sub04Edit")
+    public ModelAndView goSub04Edit(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("param", request);
+        mav.setViewName("content/memberSpace/sub_0604_edit.html");
         return mav;
     }
 

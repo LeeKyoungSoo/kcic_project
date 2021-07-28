@@ -39,4 +39,22 @@ public class DatasalesController {
         mav.setViewName("content/datasales/sub_0404.html");
         return mav;
     }
+
+    @RequestMapping(value = "/sub04View")
+    public ModelAndView goSub04View(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("param", request);
+        mav.setViewName("content/datasales/sub_0404_view.html");
+        return mav;
+    }
+
+    @RequestMapping(value = "/sub04Edit")
+    public ModelAndView goSub04Edit(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("param", request);
+        mav.setViewName("content/datasales/sub_0404_edit.html");
+        return mav;
+    }
 }

@@ -43,10 +43,10 @@
              ,code_cmnt
              ,m_data_type
              ,m_item_length
-             ,m_significant_digits
+             ,ifnull(m_significant_digits, '') AS m_significant_digits
              ,m_input_type
              ,m_item_codelist
-             ,m_measurement_unit
+             ,ifnull(m_measurement_unit, '') AS m_measurement_unit
              ,m_cmnt
         FROM tb_meta_data
         WHERE 1 = 1
@@ -77,10 +77,10 @@
              ,code_cmnt
              ,m_data_type
              ,m_item_length
-             ,m_significant_digits
+              ,ifnull(m_significant_digits, '') AS m_significant_digits
              ,m_input_type
              ,m_item_codelist
-             ,m_measurement_unit
+             ,ifnull(m_measurement_unit, '') AS m_measurement_unit
              ,m_cmnt
         FROM tb_meta_data
         WHERE 1 = 1

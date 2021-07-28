@@ -4,8 +4,8 @@ import com.bethesda.kcic.common.mapper.FileVO;
 import com.bethesda.kcic.memberspace.domain.BoardFileVO;
 import com.bethesda.kcic.memberspace.domain.BoardVO;
 import com.bethesda.kcic.memberspace.service.BbsBoardService;
-import com.bethesda.kcic.metadata.domain.MetaDataVO;
 import com.bethesda.kcic.util.BaseMap;
+import com.bethesda.kcic.util.DateTimeUtil;
 import com.bethesda.kcic.util.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,9 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -29,7 +26,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 @RestController
-@RequestMapping("/bbsApi/")
+@RequestMapping("/bbsApi")
 public class BbsBoardRestfulController {
     private static String OS = System.getProperty("os.name").toLowerCase();
     private static final String TAG_USER = "METADATA";
@@ -43,7 +40,7 @@ public class BbsBoardRestfulController {
     @Autowired
     BbsBoardService bbsBoardService;
 
-    @PostMapping("bbsFileDelete")
+    @PostMapping("/bbsFileDelete")
     public HashMap goBbsFileDelete(BoardFileVO boardFileVO) throws Exception {
         HashMap resultMap = new HashMap<>();
         String fileDownPath = OS.contains("win") ? fileDownPathWin : fileDownPathLinux;
@@ -59,7 +56,7 @@ public class BbsBoardRestfulController {
         return  resultMap;
     }
 
-    @GetMapping("bbsFileDownload/{fileId}")
+    @GetMapping("/bbsFileDownload/{fileId}")
     public ResponseEntity<Resource> goBbsFileDownload(@PathVariable("fileId") int fid) throws Exception {
         String fileDownPath = OS.contains("win") ? fileDownPathWin : fileDownPathLinux;
 
@@ -77,14 +74,14 @@ public class BbsBoardRestfulController {
                 .body(resource);
     }
 
-    @GetMapping("bbsFileDownload/All")
+    @GetMapping("/bbsFileDownload/All")
     public ResponseEntity<Resource> goBbsFileDownload(@RequestParam(value="f_fidList") String fidArr) throws Exception {
         String fileDownPath = OS.contains("win") ? fileDownPathWin : fileDownPathLinux;
         String subDir = "BBS";
         String fileDownPathSub = fileDownPath + File.separator + subDir;
 
         ZipOutputStream zout = null;
-        String zipName = "CompressionFile.zip";
+        String zipName = "BBS_DonloadFile_" + DateTimeUtil.getNowDate() + ".zip";
         zout = new ZipOutputStream(new FileOutputStream(fileDownPathSub  + File.separator + zipName));
         byte[] buffer = new byte[1024];
         FileInputStream in = null;
@@ -125,7 +122,7 @@ public class BbsBoardRestfulController {
         }
     }
 
-    @PostMapping("bbsFileUpload")
+    @PostMapping("/bbsFileUpload")
     public HashMap goBbsFileUpload(final MultipartHttpServletRequest multiRequest) throws Exception {
         HashMap resultMap = new HashMap<>();
         String fileDownPath = OS.contains("win") ? fileDownPathWin : fileDownPathLinux;
@@ -140,14 +137,14 @@ public class BbsBoardRestfulController {
                     boardFileVO.setFileOrgNm(fileVo.getOrignlFileNm());
                     boardFileVO.setFileSaveNm(fileVo.getStreFileNm());
                     boardFileVO.setFileSize(fileVo.getFileMg());
-                    boardFileVO.setBId(Integer.parseInt(map.get("bId").toString()));
+                    boardFileVO.setBId(map.get("bId").toString());
                     resultCode += bbsBoardService.intFileData(boardFileVO);
                 }
             }
         }
 
         BoardFileVO fileDataListVO = new BoardFileVO();
-        fileDataListVO.setBId(Integer.parseInt(map.get("bId").toString()));
+        fileDataListVO.setBId(map.get("bId").toString());
         resultMap.put("fileList", bbsBoardService.getFileDataList(fileDataListVO));
         resultMap.put("resultCode", resultCode);
         resultMap.put("resultMsg", "등록되었습니다.");

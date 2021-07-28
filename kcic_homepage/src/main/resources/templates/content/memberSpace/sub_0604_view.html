@@ -17,13 +17,13 @@
                 <li>
                     <a th:href="@{/memberSpace/sub01}">DM&Monitoring</a>
                 </li>
-                <li class="active">
+                <li>
                     <a th:href="@{/memberSpace/sub02}">공지사항</a>
                 </li>
                 <li>
                     <a th:href="@{/memberSpace/sub03}">자료실</a>
                 </li>
-                <li>
+                <li class="active">
                     <a th:href="@{/memberSpace/sub04}">일정관리</a>
                 </li>
                 <li>
@@ -35,11 +35,11 @@
     <div id="content">
         <div id="con">
             <div class="sub-tit">
-                <h3>공지사항</h3>
+                <h3>일정관리</h3>
                 <ul id="navigater">
                     <li class="home"></li>
                     <li>회원공간</li>
-                    <li class="m-now">공지사항</li>
+                    <li class="m-now">일정관리</li>
                 </ul>
             </div>
             <form id="metadataFrm" name="metadataFrm" method="post">
@@ -63,6 +63,16 @@
                                 <li><span id="regNm" name="regNm"></span></li>
                                 <li><span id="regDt" name="regDt"></span></li>
                                 <li><span id="hit">0</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="view-info">
+                                <li>장소 : </li>
+                                <li><span id="placeNm" name="placeNm"></span></li>
+                                <li>시작일 : </li>
+                                <li><span id="toDt" name="toDt"></span></li>
+                                <li>종료일 : </li>
+                                <li><span id="fromDt" name="fromDt"></span></li>
                             </ul>
                         </li>
                     </ul>
@@ -90,7 +100,7 @@
                         </li>
                     </ul>
                     <div class="board-btn">
-                        <input id="modifyBtn" class="bod-btn" type="button" value="수정" onclick="goBbsDataEdit();">
+                        <input id="modifyBtn" class="bod-btn" type="button" value="수정" onclick="godataEdit();">
                         <input id="deleteBtn" class="bod-btn" type="button" value="삭제" onclick="goDelete();">
                         <input id="listBtn"   class="bod-btn" type="button" value="목록" onclick="goList();">
                     </div>
@@ -136,7 +146,7 @@
     function goDataView() {
         let param = $("form[name=metadataFrm]").serialize();
         $.ajax({
-            url: '[[@{/bbsApi/bbsDataView}]]',
+            url: '[[@{/studyAcApi/dataView}]]',
             type: 'post',
             data: param,
             success: function (data) {
@@ -151,6 +161,9 @@
                     $("#regId").html(data.dataView.regId);
                     $("#regNm").html(data.dataView.regNm);
                     $("#regDt").html(data.dataView.regDt);
+                    $("#toDt").html(data.dataView.toDt);
+                    $("#fromDt").html(data.dataView.fromDt);
+                    $("#placeNm").html(data.dataView.placeNm);
                     $("#hit").html(data.dataView.hit);
 
                     if ( data.dataView.fileList.length > 0 ) {
@@ -182,7 +195,7 @@
         $("#f_fidList").val(fidArr);
         const f = document.zipDown;
         f.method = "GET";
-        f.action = "[[@{/bbsApi/bbsFileDownload/All}]]";
+        f.action = "[[@{/studyAcApi/bbsFileDownload/All}]]";
 
         console.log($("#f_fidList").val());
         f.submit();
@@ -199,7 +212,7 @@
                 strHtml = strHtml + "<li>";
                 strHtml = strHtml + "   <div class='check-box'><input type='checkbox' id='file-" + i + "' name='fidList' value='" +  retObj.fid + "' /><label for='file-" + i + "'><span></span>";
                 strHtml = strHtml + " " + retObj.fileOrgNm + "   </label></div>";
-                strHtml = strHtml + "<a href='[[@{/bbsApi/bbsFileDownload}]]/" + retObj.fid + "' class='btn' download='" + retObj.fileOrgNm + "'>다운로드</a>";
+                strHtml = strHtml + "<a href='[[@{/studyAcApi/bbsFileDownload}]]/" + retObj.fid + "' class='btn' download='" + retObj.fileOrgNm + "'>다운로드</a>";
                 strHtml = strHtml + "</li>";
             }
         }
@@ -210,7 +223,7 @@
     function goDelete() {
         let param = $("form[name=metadataFrm]").serialize();
         $.ajax({
-            url: '[[@{/bbsApi/bbsDataDelete}]]',
+            url: '[[@{/studyAcApi/dataDelete}]]',
             type: 'post',
             data: param,
             success: function (data) {
@@ -226,13 +239,13 @@
 
     function  goList() {
         let f = document.metadataFrm;
-        f.action = "[[@{/memberSpace/sub02}]]";
+        f.action = "[[@{/memberSpace/sub04}]]";
         f.submit();
     }
 
-    function goBbsDataEdit() {
+    function godataEdit() {
         let f = document.metadataFrm;
-        f.action = "[[@{/memberSpace/sub02Edit}]]";
+        f.action = "[[@{/memberSpace/sub04Edit}]]";
         f.submit();
     }
 </script>

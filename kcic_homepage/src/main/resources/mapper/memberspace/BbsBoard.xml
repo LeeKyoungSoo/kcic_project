@@ -15,21 +15,29 @@
         /* BbsBoard.insBbsData */
         INSERT INTO tb_bbs_board
         (
-             gubun
+             bid
+            ,gubun
             ,subject
             ,cont
             ,regid
             ,regnm
             ,notiyn
+            ,todt
+            ,fromdt
+            ,placenm
         )
         VALUES
         (
-             #{gubun}
+             #{bId}
+            ,#{gubun}
             ,#{subject}
             ,#{cont}
             ,#{regId}
             ,#{regNm}
             ,#{notiYn}
+            ,#{toDt}
+            ,#{fromDt}
+            ,#{placeNm}
         )
         ]]>
     </insert>
@@ -42,6 +50,9 @@
             ,cont = #{cont}
             ,notiyn = #{notiYn}
             ,moddt = now()
+            ,todt = #{toDt}
+            ,fromdt = #{fromDt}
+            ,placenm = #{placeNm}
         WHERE bid = #{bId}
         ]]>
     </update>
@@ -76,6 +87,9 @@
             ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
             ,hit
             ,bid
+            ,todt
+            ,fromdt
+            ,placenm
         FROM tb_bbs_board
         WHERE bid = #{bId}
         ]]>
@@ -115,6 +129,9 @@
             ,modDt
             ,hit
             ,notiYn
+            ,todt
+            ,fromdt
+            ,placenm
         FROM tb_bbs_board
         WHERE 1 = 1
         ]]>
@@ -129,7 +146,7 @@
                 BETWEEN DATE_FORMAT(IFNULL(NULLIF(#{sRegDt},''),'00000000'), '%Y%m%d')
                     AND DATE_FORMAT(IFNULL(NULLIF(#{eRegDt},''),'99991231'), '%Y%m%d')
         </if>
-        ORDER BY notiYn DESC, bId DESC
+        ORDER BY notiYn DESC, regDt DESC
         <if test='offSet > -1'>
             LIMIT #{offSet}, #{limit}
         </if>

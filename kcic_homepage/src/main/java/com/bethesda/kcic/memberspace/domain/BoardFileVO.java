@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class BoardFileVO {
     private int fId;
-    private int bId;
+    private String bId;
     private String fileOrgNm;
     private String fileSaveNm;
     private String fileSize;

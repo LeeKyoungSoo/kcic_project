@@ -27,7 +27,7 @@
                     <a th:href="@{/memberSpace/sub04}">일정관리</a>
                 </li>
                 <li>
-                    <a th:href="@{/memberSpace/sub05}">Q&A</a>
+                    <a th:href="@{/memberSpace/sub05}">FAQ</a>
                 </li>
             </ul>
         </div>
@@ -43,7 +43,7 @@
                 </ul>
             </div>
             <form id="metadataFrm" name="metadataFrm" method="post">
-                <input type="hidden" id="gubun" name="gubun" value="01" />
+                <input type="hidden" id="gubun" name="gubun" value="001" />
                 <input type="hidden" id="pageNum" name="pageNum" value="1" />
                 <input type="hidden" id="pageSize" name="pageSize" value="10" />
                 <input type="hidden" id="selItemList" name="selItemList" value="" />
@@ -101,7 +101,7 @@
                         </li>
                     </ul>
                     <div class="from-btn">
-                        <input type="button" value="신규등록" class="rfc-btn" style="cursor: pointer;" onclick="goBbsDataview('');">
+                        <input type="button" value="신규등록" class="rfc-btn" style="cursor: pointer;" onclick="goBbsNewData('');">
                         <input type="button" value="조회" class="rfc-btn" style="cursor: pointer;" onclick="goSearch();">
                     </div>
                 </div>
@@ -156,7 +156,12 @@
                                         + data.dataList[key].bid
                                         + '">'
                                         + '<label for="s_bId[' + data.dataList[key].bid + ']"><span></span></label></div></td>';
-                        strHtml += '<td><a href="javascript:goBbsDataview(\'' + data.dataList[key].bid  + '\');">' + data.dataList[key].subject + '</a></td>';
+                        if ( data.dataList[key].notiYn == "Y") {
+                            strHtml += '<td><a href="javascript:goBbsDataview(\'' + data.dataList[key].bid  + '\');"><span>[공지]</span>' + data.dataList[key].subject + '</a></td>';
+                        }
+                        else {
+                            strHtml += '<td><a href="javascript:goBbsDataview(\'' + data.dataList[key].bid  + '\');">' + data.dataList[key].subject + '</a></td>';
+                        }
                         //console.log(data.dataList[key].fileList.length);
                         if ( data.dataList[key].fileList.length > 0 ) {
                             strHtml += '<td><img src="/images/sub/06/i_file.png" alt="첨부파일"></td>';
@@ -200,6 +205,14 @@
 
         let f = document.metadataFrm;
         f.action = "[[@{/memberSpace/sub02View}]]";
+        f.submit();
+    }
+
+    function goBbsNewData(code) {
+        $("#bId").val(code);
+
+        let f = document.metadataFrm;
+        f.action = "[[@{/memberSpace/sub02Edit}]]";
         f.submit();
     }
 </script>
