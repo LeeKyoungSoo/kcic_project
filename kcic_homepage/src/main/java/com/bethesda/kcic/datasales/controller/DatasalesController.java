@@ -1,6 +1,8 @@
 package com.bethesda.kcic.datasales.controller;
 
+import com.bethesda.kcic.metadata.service.StudyMetaDataService;
 import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/datasales")
 public class DatasalesController {
 
+    @Autowired
+    private StudyMetaDataService studyMetaDataService;
+
     @RequestMapping(value = "/sub01")
     public ModelAndView goSub01(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
@@ -22,7 +27,16 @@ public class DatasalesController {
     @RequestMapping(value = "/sub02")
     public ModelAndView goSub02(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
+        mav.addObject("metaDataDomainList", studyMetaDataService.getStudyMetaDataDomainList());
         mav.setViewName("content/datasales/sub_0402.html");
+        return mav;
+    }
+
+    @RequestMapping(value = "/sub02Sale")
+    public ModelAndView goSub02Sale(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("param", request);
+        mav.setViewName("content/datasales/sub_0402_sale.html");
         return mav;
     }
 

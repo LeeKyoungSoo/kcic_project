@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bethesda.kcic.user.mapper.Users">
+    <insert id="insData" parameterType="com.bethesda.kcic.user.domain.UsersVO">
+        <![CDATA[
+        /* Users.insData */
+        INSERT INTO tb_members
+        (
+             uid
+            ,userid
+            ,userpw
+            ,usernm
+            ,sosuk
+            ,jobnm
+            ,email
+            ,regdt
+        )
+        VALUES
+        (
+             #{uid}
+            ,#{userid}
+            ,#{userpw}
+            ,#{usernm}
+            ,#{sosuk}
+            ,#{jobnm}
+            ,#{email}
+            ,now()
+        )
+        ]]>
+    </insert>
+
+    <update id="uptData" parameterType="com.bethesda.kcic.user.domain.UsersVO">
+        <![CDATA[
+        /* Users.uptData */
+        UPDATE tb_members
+        SET
+             usernm	= #{usernm}
+            ,sosuk	= #{sosuk}
+            ,jobnm	= #{jobnm}
+            ,email	= #{email}
+            ,userlv	= #{userlv}
+            ,useyn	= #{useyn}
+        WHERE uid = #{uid}
+        ]]>
+    </update>
+
+    <update id="uptDataSp" parameterType="com.bethesda.kcic.user.domain.UsersVO">
+        <![CDATA[
+        /* Users.uptData */
+        UPDATE tb_members
+        SET
+             userpw	= #{userpw}
+            ,useyn	= #{useyn}
+        WHERE uid = #{uid}
+        ]]>
+    </update>
+
+    <delete id="delData" parameterType="com.bethesda.kcic.user.domain.UsersVO">
+        <![CDATA[
+        /* Users.delData */
+        DELETE FROM tb_members
+        WHERE uid = #{uid}
+        ]]>
+    </delete>
+
+    <select id="getDataView" parameterType="com.bethesda.kcic.user.domain.UsersVO" resultType="com.bethesda.kcic.user.domain.UsersVO">
+     <![CDATA[
+        /* Users.getDataView */
+        SELECT
+             uid
+            ,userid
+            ,userpw
+            ,usernm
+            ,sosuk
+            ,jobnm
+            ,email
+            ,userlv
+            ,useyn
+            ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
+        FROM tb_members
+        WHERE uid = #{uid}
+        ]]>
+    </select>
+
+    <select id="getDataCnt" parameterType="com.bethesda.kcic.user.domain.UsersVO" resultType="int">
+        <![CDATA[
+        /* Users.getDataCnt */
+        SELECT count(*) as cnt
+        FROM tb_members
+        WHERE 1 = 1
+        ]]>
+        <if test='sUsernm != null and !sUsernm.equals("")'>
+            AND usernm LIKE CONCAT('%', #{sUsernm}, '%')
+        </if>
+        <if test='(sRegDt != null and !sRegDt.equals("")) and (eRegDt != null and !eRegDt.equals(""))'>
+            AND DATE_FORMAT(regDt, '%Y%m%d')
+            BETWEEN DATE_FORMAT(IFNULL(NULLIF(#{sRegDt},''),'00000000'), '%Y%m%d')
+            AND DATE_FORMAT(IFNULL(NULLIF(#{eRegDt},''),'99991231'), '%Y%m%d')
+        </if>
+    </select>
+
+    <select id="getDataList" parameterType="com.bethesda.kcic.user.domain.UsersVO" resultType="com.bethesda.kcic.user.domain.UsersVO">
+        <![CDATA[
+        /* Users.getDataList */
+        SELECT
+             uid
+            ,userid
+            ,userpw
+            ,usernm
+            ,sosuk
+            ,jobnm
+            ,email
+            ,userlv
+            ,useyn
+            ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
+        FROM tb_members
+        WHERE 1 = 1
+        ]]>
+        <if test='sUsernm != null and !sUsernm.equals("")'>
+            AND usernm LIKE CONCAT('%', #{sUsernm}, '%')
+        </if>
+        <if test='(sRegDt != null and !sRegDt.equals("")) and (eRegDt != null and !eRegDt.equals(""))'>
+            AND DATE_FORMAT(regDt, '%Y%m%d')
+            BETWEEN DATE_FORMAT(IFNULL(NULLIF(#{sRegDt},''),'00000000'), '%Y%m%d')
+            AND DATE_FORMAT(IFNULL(NULLIF(#{eRegDt},''),'99991231'), '%Y%m%d')
+        </if>
+        ORDER BY regDt DESC
+        <if test='offSet > -1'>
+            LIMIT #{offSet}, #{limit}
+        </if>
+    </select>
+
+</mapper>

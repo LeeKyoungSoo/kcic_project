@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+<script th:src="@{/js/ckeditor/ckeditor.js}" type="text/javascript"></script>
+<div id="container">
+    <div id="spot">
+        <div class="img-box sub04">
+            <div class="tit-box">
+                <h2>마이페이지</h2>
+            </div>
+        </div>
+        <div id="snb">
+            <ul class="nav">
+                <li>
+                    <a th:href="@{/users/login}">로그인</a>
+                </li>
+                <li>
+                    <a th:href="@{/users/logout}">로그아웃</a>
+                </li>
+                <li class="active">
+                    <a th:href="@{/users/registmember}">회원등록</a>
+                </li>
+                <li>
+                    <a th:href="@{/users/mypage}">마이페이지</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div id="con">
+            <div class="sub-tit">
+                <h3>회원등록</h3>
+                <ul id="navigater">
+                    <li class="home"></li>
+                    <li>마이페이지</li>
+                    <li class="m-now">회원등록</li>
+                </ul>
+            </div>
+            <form id="metadataFrm" name="metadataFrm" method="post">
+            <div class="con-area">
+                <div class="board-form">
+                    <ul class="write-form">
+                       <li>
+                           내용.....
+                           <input type="checkbox" id="agree" name="agree" value="Y">위의 '개인정보 수집 및 이용에 대한 안내'에 동의 합니다.
+                        </li>
+                        <li>
+                            <strong class="tit">아이디</strong>
+                            <div class="input-con">
+                                <input id="userid" name="userid" type="text" class="intxt" />
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">비밀번호</strong>
+                            <div class="input-con">
+                                <input id="userpw" name="userpw" type="password" class="intxt" />
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">비밀번호확인</strong>
+                            <div class="input-con">
+                                <input id="userpwchk" name="userpwchk" type="password" class="intxt" />
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">이름</strong>
+                            <div class="input-con">
+                                <input id="usernm" name="usernm" type="text" class="intxt" />
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">소속</strong>
+                            <div class="input-con">
+                                <input id="sosuk" name="sosuk" type="text" class="intxt" />
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">직접</strong>
+                            <div class="input-con">
+                                <input id="jobnm" name="jobnm" type="text" class="intxt" />
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">이메일</strong>
+                            <div class="input-con">
+                                <input id="email" name="email" type="text" class="intxt" />
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="board-btn">
+                        <input type="button" class="bod-btn" id="registBtn" value="저장" onclick="goRegist();">
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/bethesda/board.js}" type="text/javascript"></script>
+<script th:src="@{/js/custom.js}" type="text/javascript"></script>
+<script lang="javascript">
+    $(document).ready(function () {
+    });
+
+    function goRegist() {
+        //validation 처리...
+
+
+        let param = $("form[name=metadataFrm]").serialize();
+        $.ajax({
+            url: '[[@{/usersApi/dataInsert}]]',
+            type: 'post',
+            data: param,
+            success: function (data) {
+                console.log(data.resultCode);
+                alert(data.resultMsg);
+                // 신청 후 처리 ......
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    }
+</script>
+</th:block>
+</body>
+</html>

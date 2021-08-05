@@ -2,6 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bethesda.kcic.datasales.mapper.StudyAchieve">
+    <insert id="insDataSale" parameterType="com.bethesda.kcic.datasales.domain.DataSaleVO">
+        <![CDATA[
+        /* StudyAchieve.insDataSale */
+        INSERT INTO tb_datasales
+        (
+             sid
+            ,studynm
+            ,sosuk
+            ,readuser
+            ,partuser
+            ,sdt
+            ,edt
+            ,purpose
+            ,cont
+            ,regid
+            ,regdt
+            ,itemseqlist
+        )
+        VALUES
+        (
+             #{sid}
+            ,#{studynm}
+            ,#{sosuk}
+            ,#{readuser}
+            ,#{partuser}
+            ,#{sdt}
+            ,#{edt}
+            ,#{purpose}
+            ,#{cont}
+            ,#{regid}
+            ,now()
+            ,#{itemseqlist}
+        )
+        ]]>
+    </insert>
+
     <insert id="insData" parameterType="com.bethesda.kcic.datasales.domain.StudyAchieveVO">
         <![CDATA[
         /* StudyAchieve.insData */

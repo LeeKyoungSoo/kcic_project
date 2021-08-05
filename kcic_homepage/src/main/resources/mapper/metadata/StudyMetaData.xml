@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bethesda.kcic.metadata.mapper.StudyMetaData">
+    <select id="getStudyMetaDataDomainList" resultType="com.bethesda.kcic.util.BaseMap">
+        <![CDATA[
+        /* MetaData.getMetaDataDomainList */
+        SELECT
+            m_domain
+        FROM tb_study_metadata
+        WHERE 1 = 1
+        group by m_domain
+        order BY m_domain
+        ]]>
+    </select>
+
+    <select id="getMetaDataDomainList" resultType="com.bethesda.kcic.util.BaseMap">
+        <![CDATA[
+        /* MetaData.getMetaDataDomainList */
+        SELECT
+             study_seq
+            ,study_name
+        FROM tb_study_def
+        WHERE 1 = 1
+        ]]>
+    </select>
+
+    <select id="getMetaDataCnt" parameterType="com.bethesda.kcic.metadata.domain.MetaDataVO" resultType="int">
+        <![CDATA[
+        /* MetaData.getMetaDataCnt */
+        SELECT count(*) as cnt
+        FROM tb_study_metadata
+        WHERE 1 = 1
+        ]]>
+        <if test='studySeq != null and !studySeq.equals("")'>
+            AND study_seq = #{studySeq}
+        </if>
+        <if test='mDomain != null and !mDomain.equals("")'>
+            AND m_domain = #{mDomain}
+        </if>
+        <if test='mItemName != null and !mItemName.equals("")'>
+            AND m_item_name LIKE CONCAT('%', #{mItemName}, '%')
+        </if>
+        <if test='mItemLabel != null and !mItemLabel.equals("")'>
+            AND m_item_label LIKE CONCAT('%', #{mItemLabel}, '%')
+        </if>
+        <if test="mDomainList != null and mDomainList.size > 0">
+            AND m_domain IN
+            <foreach collection="mDomainList" item="domainName"  open="(" close=")" separator=",">
+                #{domainName}
+            </foreach>
+        </if>
+        <if test="mDomainList != null and mDomainList.size > 0">
+            AND m_domain IN
+            <foreach collection="mDomainList" item="domainName"  open="(" close=")" separator=",">
+                #{domainName}
+            </foreach>
+        </if>
+        <if test="itemSeqList != null and itemSeqList.size > 0">
+            AND item_seq IN
+            <foreach collection="itemSeqList" item="itemSeq"  open="(" close=")" separator=",">
+                #{itemSeq}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="getMetaDataList" parameterType="com.bethesda.kcic.metadata.domain.MetaDataVO" resultType="com.bethesda.kcic.util.BaseMap">
+        <![CDATA[
+        /* MetaData.getMetaDataList */
+        SELECT
+              item_seq
+             ,study_seq
+             ,study_name
+             ,m_domain
+             ,m_item_name
+             ,m_item_label
+             ,code_cmnt
+             ,m_data_type
+             ,m_item_length
+             ,ifnull(m_significant_digits, '') AS m_significant_digits
+             ,m_input_type
+             ,m_item_codelist
+             ,ifnull(m_measurement_unit, '') AS m_measurement_unit
+             ,m_cmnt
+        FROM tb_study_metadata
+        WHERE 1 = 1
+        ]]>
+        <if test='studySeq != null and !studySeq.equals("")'>
+            AND study_seq = #{studySeq}
+        </if>
+        <if test='mDomain != null and !mDomain.equals("")'>
+            AND m_domain = #{mDomain}
+        </if>
+        <if test='mItemName != null and !mItemName.equals("")'>
+            AND m_item_name LIKE CONCAT('%', #{mItemName}, '%')
+        </if>
+        <if test='mItemLabel != null and !mItemLabel.equals("")'>
+            AND m_item_label LIKE CONCAT('%', #{mItemLabel}, '%')
+        </if>
+        <if test="mDomainList != null and mDomainList.size > 0">
+            AND m_domain IN
+            <foreach collection="mDomainList" item="domainName"  open="(" close=")" separator=",">
+                #{domainName}
+            </foreach>
+        </if>
+        <if test="itemSeqList != null and itemSeqList.size > 0">
+            AND item_seq IN
+            <foreach collection="itemSeqList" item="itemSeq"  open="(" close=")" separator=",">
+                #{itemSeq}
+            </foreach>
+        </if>
+        ORDER BY item_seq
+        <if test='offSet > -1'>
+            LIMIT #{offSet}, #{limit}
+        </if>
+    </select>
+
+    <select id="getMetaDataExcelList" parameterType="com.bethesda.kcic.metadata.domain.MetaDataVO" resultType="com.bethesda.kcic.util.BaseMap">
+        <![CDATA[
+        /* MetaData.getMetaDataExcelList */
+        SELECT
+              item_seq
+             ,study_seq
+             ,study_name
+             ,m_domain
+             ,m_item_name
+             ,m_item_label
+             ,code_cmnt
+             ,m_data_type
+             ,m_item_length
+              ,ifnull(m_significant_digits, '') AS m_significant_digits
+             ,m_input_type
+             ,m_item_codelist
+             ,ifnull(m_measurement_unit, '') AS m_measurement_unit
+             ,m_cmnt
+        FROM tb_study_metadata
+        WHERE 1 = 1
+        ]]>
+        <if test='studySeq != null and !studySeq.equals("")'>
+            AND study_seq = #{studySeq}
+        </if>
+        <if test='mDomain != null and !mDomain.equals("")'>
+            AND m_domain = #{mDomain}
+        </if>
+        <if test='mItemName != null and !mItemName.equals("")'>
+            AND m_item_name LIKE CONCAT('%', #{mItemName}, '%')
+        </if>
+        <if test='mItemLabel != null and !mItemLabel.equals("")'>
+            AND m_item_label LIKE CONCAT('%', #{mItemLabel}, '%')
+        </if>
+        ORDER BY item_seq
+    </select>
+
+</mapper>

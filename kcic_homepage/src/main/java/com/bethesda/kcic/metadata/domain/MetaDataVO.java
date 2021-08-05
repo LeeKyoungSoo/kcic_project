@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,4 +26,11 @@ public class MetaDataVO extends CommonVO implements Serializable{
     private String mItemCodelist;
     private String mMeasurementUnit;
     private String mCmnt;
+
+    private String studySeq;
+    private String studyName;
+
+    private List<String> mDomainList;
+    private List<String> itemSeqList;
 }
+

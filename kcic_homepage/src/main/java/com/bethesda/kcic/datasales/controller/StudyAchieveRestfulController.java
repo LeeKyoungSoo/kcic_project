@@ -1,5 +1,6 @@
 package com.bethesda.kcic.datasales.controller;
 
+import com.bethesda.kcic.datasales.domain.DataSaleVO;
 import com.bethesda.kcic.datasales.domain.StudyAchieveVO;
 import com.bethesda.kcic.datasales.service.StudyAchieveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,19 @@ public class StudyAchieveRestfulController {
 
     @Autowired
     StudyAchieveService studyAchieveService;
+
+    @PostMapping("/datasaleInsert")
+    public HashMap getDatasaleInsert(DataSaleVO vo) throws  Exception {
+        HashMap resultMap = new HashMap<>();
+
+        vo.setRegid("tester");
+        int nResultCode = studyAchieveService.insDataSale(vo);
+        String resultMsg = (nResultCode > 0) ?  "신청이 완료되었습니다.":"신청이 완료되지 않았습니다. 신청약식을 다시 확인해 주십시오";
+
+        resultMap.put("resultCode", nResultCode);
+        resultMap.put("resultMsg", resultMsg);
+        return resultMap;
+    }
 
     @PostMapping("/dataList")
     public HashMap goDataList(StudyAchieveVO vo) throws Exception {
