@@ -109,7 +109,7 @@
                     <a th:href="@{/memberSpace/sub01}">회원공간</a>
                     <ul class="menu-02">
                         <li>
-                            <a th:href="@{/memberSpace/sub01}">DM & Monitoring</a>
+                            <a th:href="@{/memberSpace/sub01}">나의 스터디</a>
                         </li>
                         <li>
                             <a th:href="@{/memberSpace/sub02}">공지사항</a>
@@ -128,8 +128,11 @@
             </ul>
         </nav>
         <ul class="r-menu">
-            <li class="login">
-                <a href="#">로그인</a>
+            <li class="login" th:if="${session['userNm']} == null">
+                <a href="javascript:goLogin();">로그인</a>
+            </li>
+            <li class="login" th:if="${session['userNm']} != null">
+                <a href="javascript:goLogOut();"><span th:text="${session['userNm']}" /></span></a>
             </li>
             <li class="sitemap-btn">
                 <a href="#">사이트맵</a>
@@ -233,7 +236,7 @@
                     <strong>회원공간</strong>
                     <ul class="menu-02">
                         <li>
-                            <a th:href="@{/memberSpace/sub01}">DM & Monitoring</a>
+                            <a th:href="@{/memberSpace/sub01}">나의 스터디</a>
                         </li>
                         <li>
                             <a th:href="@{/memberSpace/sub02}">공지사항</a>
@@ -344,7 +347,7 @@
                     <a th:href="@{/memberSpace/sub01}">회원공간</a>
                     <ul class="menu-02">
                         <li>
-                            <a th:href="@{/memberSpace/sub01}">DM & Monitoring</a>
+                            <a th:href="@{/memberSpace/sub01}">나의 스터디</a>
                         </li>
                         <li>
                             <a th:href="@{/memberSpace/sub02}">공지사항</a>

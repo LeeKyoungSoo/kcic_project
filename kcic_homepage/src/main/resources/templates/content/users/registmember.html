@@ -16,16 +16,13 @@
         <div id="snb">
             <ul class="nav">
                 <li>
-                    <a th:href="@{/users/login}">로그인</a>
-                </li>
-                <li>
-                    <a th:href="@{/users/logout}">로그아웃</a>
+                    <a th:href="@{/accounts/login}">로그인</a>
                 </li>
                 <li class="active">
                     <a th:href="@{/users/registmember}">회원등록</a>
                 </li>
                 <li>
-                    <a th:href="@{/users/mypage}">마이페이지</a>
+                    <a th:href="@{/users/mypage}">회원정보수정</a>
                 </li>
             </ul>
         </div>
@@ -33,67 +30,130 @@
     <div id="content">
         <div id="con">
             <div class="sub-tit">
-                <h3>회원등록</h3>
+                <h3>마이페이지</h3>
                 <ul id="navigater">
                     <li class="home"></li>
                     <li>마이페이지</li>
-                    <li class="m-now">회원등록</li>
+                    <li class="m-now">회원가입</li>
                 </ul>
             </div>
             <form id="metadataFrm" name="metadataFrm" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <div class="con-area">
-                <div class="board-form">
-                    <ul class="write-form">
-                       <li>
-                           내용.....
-                           <input type="checkbox" id="agree" name="agree" value="Y">위의 '개인정보 수집 및 이용에 대한 안내'에 동의 합니다.
-                        </li>
-                        <li>
-                            <strong class="tit">아이디</strong>
-                            <div class="input-con">
-                                <input id="userid" name="userid" type="text" class="intxt" />
-                            </div>
-                        </li>
-                        <li>
-                            <strong class="tit">비밀번호</strong>
-                            <div class="input-con">
-                                <input id="userpw" name="userpw" type="password" class="intxt" />
-                            </div>
-                        </li>
-                        <li>
-                            <strong class="tit">비밀번호확인</strong>
-                            <div class="input-con">
-                                <input id="userpwchk" name="userpwchk" type="password" class="intxt" />
-                            </div>
-                        </li>
-                        <li>
-                            <strong class="tit">이름</strong>
-                            <div class="input-con">
-                                <input id="usernm" name="usernm" type="text" class="intxt" />
-                            </div>
-                        </li>
-                        <li>
-                            <strong class="tit">소속</strong>
-                            <div class="input-con">
-                                <input id="sosuk" name="sosuk" type="text" class="intxt" />
-                            </div>
-                        </li>
-                        <li>
-                            <strong class="tit">직접</strong>
-                            <div class="input-con">
-                                <input id="jobnm" name="jobnm" type="text" class="intxt" />
-                            </div>
-                        </li>
-                        <li>
-                            <strong class="tit">이메일</strong>
-                            <div class="input-con">
-                                <input id="email" name="email" type="text" class="intxt" />
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="board-btn">
-                        <input type="button" class="bod-btn" id="registBtn" value="저장" onclick="goRegist();">
+                <div class="privacy-box">
+                    <div class="privacy-con">
+                        <strong>수집하는 개인정보의 항목</strong>
+                        <ul class="basic-list bmar_40">
+                            <li>
+                                가. 질병관리청은 임상연구관리시스템의 원활한 운영 및 관리를 위해 최초 사용자가입 당시 아래와 같은 개인정보를 수집하고 있습니다.
+                                <ul class="line-list tmar_5">
+                                    <li>필수항목 : 성명, 소속기관명, 이메일, 휴대전화번호</li>
+                                    <li>선택항목 : 소속기관부서, 연락처</li>
+                                </ul>
+                            </li>
+                            <li>
+                                나. 서비스 이용과정에서 아래와 같은 정보들이 자동으로 생성되어 수집될 수 있습니다.
+                                <ul class="line-list tmar_5">
+                                    <li>IP Address, 방문일시, 웹브라우저 종류, OS 종류</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <strong>개인정보의 수집 및 이용 목적</strong>
+                        <ul class="basic-list bmar_40">
+                            <li> 가. 임상연구관리시스템 서비스 이용 권한 승인</li>
+                            <li> 나. 임상연구 및 임상시험 데이터 관리</li>
+                            <li> 다. 업무 활용(설문 조사 등)</li>
+                        </ul>
+                        <strong>개인정보의 보유 및 이용기간</strong>
+                        <ul class="basic-list">
+                            <li>
+                                등록된 개인정보는 원칙적으로 개인정보의 수집 및 이용목적이 달성되면 지체 없이 파기합니다.  단, 다음의 정보에 대해서는 아래의 이유로 명시한 기간 동안 보존합니다.
+                                <ul class="line-list tmar_5">
+                                    <li>사용자 승인 반려 및 승인기간 종료 시 보존 개인정</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
+                    <div class="privacy-check">
+                        <div class="check-box">
+                            <input type="checkbox" id="privacy-agree">
+                            <label for="privacy-agree">
+                                <span></span>위의 '개인정보 수집 및 이용에 대한 안내'에 동의 합니다.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="table-02 bmar_20">
+                    <li>
+                        <div class="tit-wrap">
+                            <strong>아이디</strong>
+                        </div>
+                        <div class="con-wrap">
+                            <div class="overlap-box w_50s">
+                                <div class="l-box">
+                                    <input type="hidden" id="userchk" name="userchk" />
+                                    <input type="text" id="userid" name="userid" class="intxt w_100s"/>
+                                </div>
+                                <div class="r-box">
+                                    <a href="javascript:goUserCheck();" class="rfc-btn">중복체크</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tit-wrap">
+                            <strong>비밀번호</strong>
+                        </div>
+                        <div class="con-wrap">
+                            <input id="userpw" name="userpw" type="password" class="intxt w_40s" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tit-wrap">
+                            <strong>비밀번호확인</strong>
+                        </div>
+                        <div class="con-wrap">
+                            <input id="userpwchk" name="userpwchk" type="password" class="intxt w_40s" />
+                            <span style="color:red">* 비밀번호는 8자리 이상입니다</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tit-wrap">
+                            <strong>이름</strong>
+                        </div>
+                        <div class="con-wrap">
+                            <input id="usernm" name="usernm" type="text" class="intxt w_40s" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tit-wrap">
+                            <strong>소속</strong>
+                        </div>
+                        <div class="con-wrap">
+                            <input id="sosuk" name="sosuk" type="text" class="intxt w_40s" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tit-wrap">
+                            <strong>직업</strong>
+                        </div>
+                        <div class="con-wrap">
+                            <input id="jobnm" name="jobnm" type="text" class="intxt w_40s" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tit-wrap">
+                            <strong>이메일</strong>
+                        </div>
+                        <div class="con-wrap">
+                            <input id="email" name="email" type="text" class="intxt w_40s" />
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="from-btn">
+                    <a class="confirm-btn" href="javascript:goRegist();">회원가입</a>
                 </div>
             </div>
             </form>
@@ -107,9 +167,90 @@
     $(document).ready(function () {
     });
 
+    function goUserCheck() {
+        if ( $("#userid").val() == "" ) {
+            alert("아이디를 입력 후 중복체크를 진행해 주십시오.");
+            return;
+        }
+        else {
+            let userid = $("#userid").val();
+            $.ajax({
+                url: '[[@{/usersApi/getUserCheck}]]',
+                type: 'post',
+                data: {
+                    sUserid : userid,
+                    [[${_csrf.parameterName}]]: '[[${_csrf.token}]]'
+                },
+                success: function (data) {
+                    console.log(data.resultCode);
+                    if ( data.resultCode == "N" ) {
+                        alert("사용가능한 아이디 입니다.");
+                        $("#userchk").val("Y");
+                    }
+                    else {
+                        alert("중복된 아이디가 있습니다.");
+                        $("#userchk").val("");
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+
+        }
+    }
+
     function goRegist() {
         //validation 처리...
+        if ( $("#privacy-agree").is(":checked") == false ) {
+            alert("'개인정보 수집 및 이용에 대한 안내'에 동의 해 주십시오.");
+            return;
+        }
 
+        if ( $("#userchk").val() == "" ) {
+            alert("아이디를 입력 후 중복체크를 진행해 주십시오.");
+            return;
+        }
+
+        if ( $("#userpw").val() == "" ) {
+            alert("비밀번호를 입력해 주십시오.");
+            return;
+        }
+
+        if ( $("#userpw").val().length < 8 ) {
+            alert("비밀번호는 8자리 이상입니다.");
+            return;
+        }
+
+        if ( $("#userpwchk").val() == "" ) {
+            alert("비밀번호확인 입력해 주십시오.");
+            return;
+        }
+
+        if ( $("#userpw").val() != $("#userpwchk").val() ) {
+            alert("비밀번호와 비밀번호 확인 값이 일치 하지 않습니다.");
+            return;
+        }
+
+        if ( $("#usernm").val() == "" ) {
+            alert("이름을 입력해 주십시오");
+            return;
+        }
+
+        if ( $("#sosuk").val() == "" ) {
+            alert("소속을 입력해 주십시오.");
+            return;
+        }
+
+        if ( $("#jobnm").val() == "" ) {
+            alert("직업을 입력해 주십시오.");
+            return;
+        }
+
+        if ( $("#email").val() == "" ) {
+            alert("이메일을 입력해 주십시오.");
+            return;
+        }
 
         let param = $("form[name=metadataFrm]").serialize();
         $.ajax({
@@ -118,7 +259,13 @@
             data: param,
             success: function (data) {
                 console.log(data.resultCode);
-                alert(data.resultMsg);
+                if (data.resultCode == "1" ) {
+                    alert(data.resultMsg);
+                    $(location).attr('href', '[[@{/accounts/login}]]');
+                }
+                else {
+
+                }
                 // 신청 후 처리 ......
             },
             error: function (data) {

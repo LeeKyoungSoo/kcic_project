@@ -32,14 +32,6 @@ public class DatasalesController {
         return mav;
     }
 
-    @RequestMapping(value = "/sub02Sale")
-    public ModelAndView goSub02Sale(HttpServletRequest request) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("param", request);
-        mav.setViewName("content/datasales/sub_0402_sale.html");
-        return mav;
-    }
-
     @RequestMapping(value = "/sub03")
     public ModelAndView goSub03(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();

@@ -1,5 +1,6 @@
 package com.bethesda.kcic.datasales.domain;
 
+import com.bethesda.kcic.common.mapper.CommonVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,7 +8,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class DataSaleVO {
+public class DataSaleVO extends CommonVO {
     private String sid;
     private String studynm;
     private String sosuk;
@@ -23,4 +24,7 @@ public class DataSaleVO {
     private String itemseqlist;
     private String state;
     private String reason;
+
+    private String sSubject;
+    private String sState;
 }

@@ -40,4 +40,12 @@ public class StudyAchieveService {
     public int insDataSale(DataSaleVO vo) throws Exception {
         return studyAchieve.insDataSale(vo);
     }
+
+    public int getDataSaleCnt(DataSaleVO vo) throws Exception {
+        return studyAchieve.getDataSaleCnt(vo);
+    }
+
+    public List<DataSaleVO> getDataSaleList(DataSaleVO vo) throws Exception {
+        return studyAchieve.getDataSaleList(vo);
+    }
 }

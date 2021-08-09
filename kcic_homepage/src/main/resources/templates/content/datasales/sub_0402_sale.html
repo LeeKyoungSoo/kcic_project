@@ -41,58 +41,89 @@
             </div>
 
             <form id="metadataFrm" name="metadataFrm" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 <input type="hidden" id="sid" name="sid" />
                 <input type="hidden" id="gubun" name="gubun"/>
                 <input type="hidden" id="itemSeqList" name="itemSeqList" th:value="${param.itemSeqList}"/>
             <div class="con-area">
                 <strong class="s-tit">분양신청</strong>
-                <div class="check-search">
-                    <ul class="write-form">
+
+
+                    <ul class="table-02 bmar_50">
                         <li>
-                            <strong class="tit">연구과제명</strong>
-                            <div class="input-con">
-                                <input id="studynm" name="studynm" type="text" class="intxt" />
+                            <div class="tit-wrap">
+                                <strong>연구과제명</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <input type="text" id="studynm" name="studynm" class="intxt w_70s"/>
                             </div>
                         </li>
                         <li>
-                            <strong class="tit">소속</strong>
-                            <div class="input-con">
-                                <input id="sosuk" name="sosuk" type="text" class="intxt" />
+                            <div class="tit-wrap">
+                                <strong>소속</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <input type="text" id="sosuk" name="sosuk" class="intxt w_40s"/>
                             </div>
                         </li>
                         <li>
-                            <strong class="tit">책임연구자</strong>
-                            <div class="input-con">
-                                <input id="readuser" name="readuser" type="text" class="intxt" />
+                            <div class="tit-wrap">
+                                <strong>책임연구자</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <input type="text" id="readuser" name="readuser" class="intxt w_40s"/>
                             </div>
                         </li>
                         <li>
-                            <strong class="tit">공동저자</strong>
-                            <div class="input-con">
-                                <input id="partuser" name="partuser" type="text" class="intxt" />
+                            <div class="tit-wrap">
+                                <strong>공동저자</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <input type="text" id="partuser" name="partuser" class="intxt w_40s"/>
                             </div>
                         </li>
                         <li>
-                            <strong class="tit">데이터사용기간</strong>
-                            <div class="input-con">
-                                시작일 : <input id="sdt" name="sdt" type="date" class="date-intxt" />
-                                종료일 : <input id="edt" name="edt" type="date" class="date-intxt" />
+                            <div class="tit-wrap">
+                                <strong>데이터 사용기간</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <ul class="date-list">
+                                    <li>
+                                        <div class="date-box">
+                                            <input type="date" id="sdt" name="sdt" class="date-intxt">
+
+                                        </div>
+                                    </li>
+                                    <li class="txt">
+                                        ~
+                                    </li>
+                                    <li>
+                                        <div class="date-box">
+                                            <input type="date" id="edt" name="edt" class="date-intxt">
+
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </li>
                         <li>
-                            <strong class="tit">요청목적</strong>
-                            <div class="input-con">
-                                <input id="purpose" name="purpose" type="text" class="intxt" />
+                            <div class="tit-wrap">
+                                <strong>요청목적</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <input type="text" id="purpose" name="purpose" class="intxt w_80s"/>
                             </div>
                         </li>
                         <li>
-                            <strong class="tit">요청내용</strong>
-                            <div class="input-con">
-                                <input id="cont" name="cont" type="text" class="intxt" />
+                            <div class="tit-wrap">
+                                <strong>요청내용</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <textarea class="intext w_80s" id="cont" name="cont" ></textarea>
                             </div>
                         </li>
                     </ul>
-                </div>
+
                 <div class="table-wrap">
                     <table class="table-01" id="dataGride" name="dataGride">
                         <tbody></tbody>
@@ -156,6 +187,40 @@
 
         function goRegist() {
             //validation 처리...
+            if ( $("#studynm").val() == "" ) {
+                alert("연구과제명을 입력해 주십시오.");
+                return;
+            }
+
+            if ( $("#sosuk").val() == "" ) {
+                alert("소속을 입력해 주십시오.");
+                return;
+            }
+
+            if ( $("#readuser").val() == "" ) {
+                alert("책임연구자명을 입력해 주십시오.");
+                return;
+            }
+
+            if ( $("#sdt").val() == "" ) {
+                alert("데이터사용기간을 입력해 주십시오");
+                return;
+            }
+
+            if ( $("#edt").val() == "" ) {
+                alert("데이터사용기간을 입력해 주십시오");
+                return;
+            }
+
+            if ( $("#purpose").val() == "" ) {
+                alert("요청목적을 입력해 주십시오.");
+                return;
+            }
+
+            if ( $("#cont").val() == "" ) {
+                alert("요청내용을 입력해 주십시오.");
+                return;
+            }
 
             $("#sid").val($("#gubun").val() + getToday());
             $("#itemSeqList").val($("#itemSeqList").val().replace("[", "").replace("]", ""));
@@ -168,6 +233,7 @@
                     console.log(data.resultCode);
                     alert(data.resultMsg);
                     // 신청 후 처리 ......
+                    $(location).attr('href', '[[@{/datasales/sub02}]]');
                 },
                 error: function (data) {
                     console.log(data);

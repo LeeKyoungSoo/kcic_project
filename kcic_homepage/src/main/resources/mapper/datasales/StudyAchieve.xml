@@ -2,6 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bethesda.kcic.datasales.mapper.StudyAchieve">
+    <select id="getDataSaleList" parameterType="com.bethesda.kcic.datasales.domain.DataSaleVO" resultType="com.bethesda.kcic.datasales.domain.DataSaleVO">
+        <![CDATA[
+        /* StudyAchieve.getDataList */
+        SELECT
+              sid
+             ,studynm
+             ,sosuk
+             ,DATE_FORMAT(sdt, '%Y-%m-%d') AS sdt
+             ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
+        FROM tb_datasales
+        WHERE 1 = 1
+        ]]>
+        <if test='sSubject != null and !sSubject.equals("")'>
+            AND (
+            studynm LIKE CONCAT('%', #{sSubject}, '%')
+            OR
+            purpose LIKE CONCAT('%', #{sSubject}, '%')
+            OR
+            cont LIKE CONCAT('%', #{sSubject}, '%')
+            )
+        </if>
+        <if test='sState != null and !sState.equals("")'>
+            AND state = #{sState}
+        </if>
+        ORDER BY regDt DESC
+        <if test='offSet > -1'>
+            LIMIT #{offSet}, #{limit}
+        </if>
+    </select>
+
+    <select id="getDataSaleCnt" parameterType="com.bethesda.kcic.datasales.domain.DataSaleVO" resultType="int">
+        <![CDATA[
+        /* StudyAchieve.getDataSaleCnt */
+        SELECT count(*) as cnt
+        FROM tb_datasales
+        WHERE 1 = 1
+        ]]>
+        <if test='sSubject != null and !sSubject.equals("")'>
+            AND (
+            studynm LIKE CONCAT('%', #{sSubject}, '%')
+            OR
+            purpose LIKE CONCAT('%', #{sSubject}, '%')
+            OR
+            cont LIKE CONCAT('%', #{sSubject}, '%')
+            )
+        </if>
+        <if test='sState != null and !sState.equals("")'>
+            AND state = #{sState}
+        </if>
+    </select>
+
     <insert id="insDataSale" parameterType="com.bethesda.kcic.datasales.domain.DataSaleVO">
         <![CDATA[
         /* StudyAchieve.insDataSale */

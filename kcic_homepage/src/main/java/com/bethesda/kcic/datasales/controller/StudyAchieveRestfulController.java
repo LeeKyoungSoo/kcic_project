@@ -18,6 +18,32 @@ public class StudyAchieveRestfulController {
     @Autowired
     StudyAchieveService studyAchieveService;
 
+    @PostMapping("/dataSaleList")
+    public HashMap goDataSaleList(DataSaleVO vo) throws Exception {
+        HashMap resultMap = new HashMap<>();
+
+        if ( (vo.getPageNum() == null) || vo.getPageNum().equals("") ) {
+            vo.setOffSet(-1);
+        }
+        else {
+            int nLimit = 10;
+            if ( vo.getPageSize() != null && !vo.getPageSize().equals("") ) {
+                nLimit = Integer.parseInt(vo.getPageSize());
+            }
+            int nOffSet = (Integer.parseInt(vo.getPageNum()) - 1) * nLimit;
+            vo.setLimit(nLimit);
+            vo.setOffSet(nOffSet);
+        }
+
+        int totalCnt = studyAchieveService.getDataSaleCnt(vo);
+        List<DataSaleVO> dataList = studyAchieveService.getDataSaleList(vo);
+
+        resultMap.put("totalCnt", totalCnt);
+        resultMap.put("dataList", dataList);
+
+        return resultMap;
+    }
+
     @PostMapping("/datasaleInsert")
     public HashMap getDatasaleInsert(DataSaleVO vo) throws  Exception {
         HashMap resultMap = new HashMap<>();

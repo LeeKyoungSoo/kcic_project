@@ -45,6 +45,19 @@ public class UsersRestfulController {
         return resultMap;
     }
 
+    @PostMapping("/getUserCheck")
+    public HashMap getUserCheck(UsersVO vo) throws Exception {
+        HashMap resultMap = new HashMap<>();
+        String returnVal = "N";
+        UsersVO dataView = usersService.getUserCheck(vo);
+        if ( dataView != null ) {
+            returnVal = "Y";
+        }
+        resultMap.put("resultCode", returnVal);
+        resultMap.put("resultMsg", returnVal);
+        return resultMap;
+    }
+
     @PostMapping("/dataView")
     public HashMap goDataView(UsersVO vo) throws Exception {
         HashMap resultMap = new HashMap<>();
@@ -62,7 +75,7 @@ public class UsersRestfulController {
         vo.setUserpw(CustomEncrypt.encryptPassword(vo.getUserpw(), vo.getUserid()));
 
         int nResultCode = usersService.insData(vo);
-        String resultMsg = (nResultCode > 0) ?  "사용자정보가 등록 되었습니다.":"등록 실패 입니다.";
+        String resultMsg = (nResultCode > 0) ?  "사용자정보가 등록 되었습니다. 로그인창으로 이동합니다.":"등록 실패 입니다.";
 
         resultMap.put("resultCode", nResultCode);
         resultMap.put("resultMsg", resultMsg);

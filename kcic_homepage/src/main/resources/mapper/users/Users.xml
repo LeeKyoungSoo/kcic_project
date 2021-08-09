@@ -64,6 +64,26 @@
         ]]>
     </delete>
 
+    <select id="getUserCheck" parameterType="com.bethesda.kcic.user.domain.UsersVO" resultType="com.bethesda.kcic.user.domain.UsersVO">
+     <![CDATA[
+        /* Users.getDataView */
+        SELECT
+            uid
+             ,userid
+             ,userpw
+             ,usernm
+             ,sosuk
+             ,jobnm
+             ,email
+             ,userlv
+             ,useyn
+             ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
+        FROM tb_members
+        WHERE userid = #{sUserid}
+            AND useyn = 'Y'
+        ]]>
+    </select>
+
     <select id="getDataView" parameterType="com.bethesda.kcic.user.domain.UsersVO" resultType="com.bethesda.kcic.user.domain.UsersVO">
      <![CDATA[
         /* Users.getDataView */

@@ -15,6 +15,9 @@ import javax.sql.DataSource;
 @Log
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    DataSource dataSource;
+    ZerockUserService zerockUserService;
 
     /*
     @Override
@@ -39,18 +42,50 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         log.info("security config........");
 
         http.authorizeRequests()
-                .antMatchers("/**")
+                .antMatchers("/accounts/**"
+                        , "/about/**", "/registry/**", "/metadata/**"
+                        , "/users/**", "/datasales/**", "/infomation/**"
+                        , "/studyAcApi/**", "/bbsApi/**", "/metadataApi/**", "/usersApi/**")
                 .permitAll();
 
-        http.cors().and();
-        http.csrf().disable();
+        http.authorizeRequests()
+                .antMatchers("/memberSpace/**")
+                .hasRole("M");
+
+        http.authorizeRequests()
+                .and()
+                .formLogin()
+                .loginPage("/accounts/login")
+                .defaultSuccessUrl("/memberSpace/sub01");
+
+        http.authorizeRequests()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/accounts/accessDenied");
+
+        http.authorizeRequests()
+                .and()
+                .logout()
+                .logoutUrl("/accounts/logout")
+                .logoutSuccessUrl("/memberSpace/sub01")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID", "SOME", "OTHER", "COOKIES");
+
+        http.rememberMe()
+                .key("zerock")
+                .userDetailsService(zerockUserService)
+                .tokenRepository(getTokenSeries())
+                .tokenValiditySeconds(60*60*24);
+
+        //http.cors().and();
+        //http.csrf().disable();
     }
 
-    /*private PersistentTokenRepository getTokenSeries() {
+    private PersistentTokenRepository getTokenSeries() {
         JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
         repo.setDataSource(dataSource);
         return repo;
-    }*/
+    }
 
     /*
     @Autowired

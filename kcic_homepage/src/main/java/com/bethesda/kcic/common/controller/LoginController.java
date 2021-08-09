@@ -9,14 +9,26 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @Log
-@RequestMapping("/")
+@RequestMapping("/accounts")
 public class LoginController {
-
-    @RequestMapping(value = {"/","/main"})
-    public ModelAndView goMain(HttpServletRequest request) throws Exception {
+    @RequestMapping(value = "/login")
+    public ModelAndView goLogin(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/main.html");
+        mav.setViewName("content/users/login.html");
         return mav;
     }
 
+    @RequestMapping(value = "/accessDenied")
+    public ModelAndView goAccessDenied(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("content/users/accessDenied.html");
+        return mav;
+    }
+
+    @RequestMapping(value = "/logout")
+    public ModelAndView goLogout(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("content/users/login.html");
+        return mav;
+    }
 }

@@ -11,6 +11,7 @@ import java.util.List;
 public interface Users {
     int getDataCnt(UsersVO vo) throws Exception;
     List<UsersVO> getDataList(UsersVO vo) throws Exception;
+    UsersVO getUserCheck(UsersVO vo) throws Exception;
     UsersVO getDataView(UsersVO vo) throws Exception;
     int insData(UsersVO vo) throws Exception;
     int uptData(UsersVO vo) throws Exception;

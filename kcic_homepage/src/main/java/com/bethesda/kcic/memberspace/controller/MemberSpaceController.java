@@ -26,8 +26,17 @@ public class MemberSpaceController {
     @Autowired
     BbsBoardService bbsBoardService;
 
+
+    @RequestMapping(value = "/sub02Sale")
+    public ModelAndView goSub02Sale(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("param", request);
+        mav.setViewName("content/datasales/sub_0402_sale.html");
+        return mav;
+    }
+
     /**
-     *  DM & Monitoring
+     *  나의 스터디
      * @param request
      * @return
      * @throws Exception

@@ -20,6 +20,10 @@ public class UsersService {
         return users.getDataList(vo);
     }
 
+    public UsersVO getUserCheck(UsersVO vo) throws Exception {
+        return users.getUserCheck(vo);
+    }
+
     public UsersVO getDataView(UsersVO vo) throws Exception {
         return users.getDataView(vo);
     }

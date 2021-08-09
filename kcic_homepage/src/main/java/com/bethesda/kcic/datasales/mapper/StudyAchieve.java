@@ -19,4 +19,6 @@ public interface StudyAchieve {
     StudyAchieveVO getDataView(StudyAchieveVO vo) throws  Exception;
 
     int insDataSale(DataSaleVO vo) throws Exception;
+    int getDataSaleCnt(DataSaleVO vo) throws Exception;
+    List<DataSaleVO> getDataSaleList(DataSaleVO vo) throws Exception;
 }

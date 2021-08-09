@@ -19,7 +19,7 @@ public class SiteErrorController implements ErrorController {
     */
 
     @RequestMapping(value = "/error")
-    public ModelAndView goLogout(HttpServletRequest request) throws Exception {
+    public ModelAndView goError(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("content/error/404.html");
         return mav;
