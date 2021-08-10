@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import javax.sql.DataSource;
 
@@ -18,6 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
     ZerockUserService zerockUserService;
+
 
     /*
     @Override
@@ -41,12 +43,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected  void configure(HttpSecurity http) throws  Exception {
         log.info("security config........");
 
+        http.csrf();
+
         http.authorizeRequests()
                 .antMatchers("/accounts/**"
                         , "/about/**", "/registry/**", "/metadata/**"
                         , "/users/**", "/datasales/**", "/infomation/**"
                         , "/studyAcApi/**", "/bbsApi/**", "/metadataApi/**", "/usersApi/**")
                 .permitAll();
+
 
         http.authorizeRequests()
                 .antMatchers("/memberSpace/**")

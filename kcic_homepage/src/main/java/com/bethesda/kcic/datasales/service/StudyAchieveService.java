@@ -48,4 +48,8 @@ public class StudyAchieveService {
     public List<DataSaleVO> getDataSaleList(DataSaleVO vo) throws Exception {
         return studyAchieve.getDataSaleList(vo);
     }
+
+    public DataSaleVO getStudyDataView(DataSaleVO vo) throws Exception {
+        return studyAchieve.getStudyDataView(vo);
+    }
 }

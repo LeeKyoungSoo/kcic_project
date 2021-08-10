@@ -2,6 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bethesda.kcic.datasales.mapper.StudyAchieve">
+    <select id="getStudyDataView" parameterType="com.bethesda.kcic.datasales.domain.DataSaleVO" resultType="com.bethesda.kcic.datasales.domain.DataSaleVO">
+     <![CDATA[
+        /* StudyAchieve.getDataView */
+        SELECT
+            sid
+             ,studynm
+             ,sosuk
+             ,readuser
+             ,partuser
+             ,purpose
+             ,cont
+             ,DATE_FORMAT(sdt, '%Y-%m-%d') AS sdt
+             ,DATE_FORMAT(edt, '%Y-%m-%d') AS edt
+             ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
+             ,CASE
+                  WHEN state = '2' THEN '접수'
+                  WHEN state = '3' THEN '승인'
+                  WHEN state = '4' THEN '반려'
+                  ELSE '신청'
+            END AS state
+        FROM tb_datasales
+        WHERE sid = #{sid}
+        ]]>
+    </select>
+
     <select id="getDataSaleList" parameterType="com.bethesda.kcic.datasales.domain.DataSaleVO" resultType="com.bethesda.kcic.datasales.domain.DataSaleVO">
         <![CDATA[
         /* StudyAchieve.getDataList */
@@ -9,8 +34,15 @@
               sid
              ,studynm
              ,sosuk
+             ,readuser
              ,DATE_FORMAT(sdt, '%Y-%m-%d') AS sdt
              ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
+             ,CASE
+                WHEN state = '2' THEN '접수'
+                WHEN state = '3' THEN '승인'
+                WHEN state = '4' THEN '반려'
+                ELSE '신청'
+              END AS state
         FROM tb_datasales
         WHERE 1 = 1
         ]]>
@@ -22,6 +54,9 @@
             OR
             cont LIKE CONCAT('%', #{sSubject}, '%')
             )
+        </if>
+        <if test='regid != null and !regid.equals("")'>
+            AND regid = #{regid}
         </if>
         <if test='sState != null and !sState.equals("")'>
             AND state = #{sState}
@@ -47,6 +82,9 @@
             OR
             cont LIKE CONCAT('%', #{sSubject}, '%')
             )
+        </if>
+        <if test='regid != null and !regid.equals("")'>
+            AND regid = #{regid}
         </if>
         <if test='sState != null and !sState.equals("")'>
             AND state = #{sState}

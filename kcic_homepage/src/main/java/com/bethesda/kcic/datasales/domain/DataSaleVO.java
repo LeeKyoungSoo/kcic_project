@@ -27,4 +27,5 @@ public class DataSaleVO extends CommonVO {
 
     private String sSubject;
     private String sState;
+    private String gubun;
 }

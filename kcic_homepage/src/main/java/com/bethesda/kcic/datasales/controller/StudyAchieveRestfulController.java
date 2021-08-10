@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,9 +21,20 @@ public class StudyAchieveRestfulController {
     @Autowired
     StudyAchieveService studyAchieveService;
 
-    @PostMapping("/dataSaleList")
-    public HashMap goDataSaleList(DataSaleVO vo) throws Exception {
+    @PostMapping("/goStudyDataview")
+    public HashMap goStudyDataview(DataSaleVO vo) throws Exception {
         HashMap resultMap = new HashMap<>();
+
+        DataSaleVO dataView = studyAchieveService.getStudyDataView(vo);
+        resultMap.put("dataView", dataView);
+        return resultMap;
+    }
+
+    @PostMapping("/dataSaleList")
+    public HashMap goDataSaleList(DataSaleVO vo, HttpServletRequest request) throws Exception {
+        HashMap resultMap = new HashMap<>();
+
+        HttpSession session = request.getSession();
 
         if ( (vo.getPageNum() == null) || vo.getPageNum().equals("") ) {
             vo.setOffSet(-1);
@@ -33,6 +47,10 @@ public class StudyAchieveRestfulController {
             int nOffSet = (Integer.parseInt(vo.getPageNum()) - 1) * nLimit;
             vo.setLimit(nLimit);
             vo.setOffSet(nOffSet);
+        }
+
+        if ( vo.getGubun().equals("study")) {
+            vo.setRegid(session.getAttribute("userId").toString());
         }
 
         int totalCnt = studyAchieveService.getDataSaleCnt(vo);
