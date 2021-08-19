@@ -5,11 +5,14 @@ import com.bethesda.kcic.security.CustomEncrypt;
 import com.bethesda.kcic.user.domain.UsersVO;
 import com.bethesda.kcic.user.service.UsersService;
 import com.bethesda.kcic.util.DateTimeUtil;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 
@@ -59,8 +62,13 @@ public class UsersRestfulController {
     }
 
     @PostMapping("/dataView")
-    public HashMap goDataView(UsersVO vo) throws Exception {
+    public HashMap goDataView(UsersVO vo, HttpServletRequest request) throws Exception {
         HashMap resultMap = new HashMap<>();
+
+        if (vo.getUid() == null || vo.getUid().equals("") ) {
+            HttpSession session = request.getSession();
+            vo.setUid(session.getAttribute("userKey").toString());
+        }
 
         UsersVO dataView = usersService.getDataView(vo);
         resultMap.put("dataView", dataView);
@@ -83,8 +91,22 @@ public class UsersRestfulController {
     }
 
     @PostMapping("/dataUpdate")
-    public HashMap goDataUpdate(UsersVO vo) throws Exception {
+    public HashMap goDataUpdate(UsersVO vo, HttpServletRequest request) throws Exception {
         HashMap resultMap = new HashMap<>();
+
+        if (vo.getUid() == null || vo.getUid().equals("") ) {
+            HttpSession session = request.getSession();
+            vo.setUid(session.getAttribute("userKey").toString());
+        }
+
+        if (vo.getUserlv() == null || vo.getUserlv().equals("") ) {
+            HttpSession session = request.getSession();
+            vo.setUserlv(session.getAttribute("userLv").toString());
+        }
+
+        if (vo.getUseyn() == null || vo.getUseyn().equals("") ) {
+            vo.setUseyn("Y");
+        }
 
         int nResultCode = usersService.uptData(vo);
         String resultMsg = (nResultCode > 0) ?  "사용자정보가 수정 되었습니다.":"수정 실패 입니다.";
@@ -95,15 +117,44 @@ public class UsersRestfulController {
     }
 
     @PostMapping("/dataUpdateSp")
-    public HashMap goDataUpdateSp(UsersVO vo) throws Exception {
+    public HashMap goDataUpdateSp(UsersVO vo, HttpServletRequest request) throws Exception {
         HashMap resultMap = new HashMap<>();
+        HttpSession session = request.getSession();
+        String enpassword = null;
+        try {
+            enpassword = CustomEncrypt.encryptPassword(vo.getBeforUserpw() ,session.getAttribute("userId").toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        int nResultCode = usersService.uptDataSp(vo);
-        String resultMsg = (nResultCode > 0) ?  "사용자정보가 수정 되었습니다.":"수정 실패 입니다.";
+        if (vo.getUid() == null || vo.getUid().equals("") ) {
+            vo.setUid(session.getAttribute("userKey").toString());
+        }
 
-        resultMap.put("resultCode", nResultCode);
-        resultMap.put("resultMsg", resultMsg);
-        return resultMap;
+        UsersVO loginVoIn = new UsersVO();
+        loginVoIn.setSUserid(session.getAttribute("userId").toString());
+        UsersVO user = usersService.getUserCheck(loginVoIn);
+
+        if (!enpassword.equals(user.getUserpw())) {
+            resultMap.put("resultCode", "200");
+            resultMap.put("resultMsg", "현재 비밀번호가 일치 하지 않습니다.");
+            return resultMap;
+        }
+        else {
+            try {
+                enpassword = CustomEncrypt.encryptPassword(vo.getUserpw() ,session.getAttribute("userId").toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            vo.setUserpw(enpassword);
+            int nResultCode = usersService.uptDataSp(vo);
+            String resultMsg = (nResultCode > 0) ?  "비밀번호가 수정 되었습니다.":"정보 변경이 실패 했습니다.";
+
+            resultMap.put("resultCode", nResultCode);
+            resultMap.put("resultMsg", resultMsg);
+            return resultMap;
+        }
     }
 
     @PostMapping("/dataDelete")

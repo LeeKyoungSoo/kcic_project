@@ -23,6 +23,7 @@ public class DataSaleVO extends CommonVO {
     private String moddt;
     private String itemseqlist;
     private String state;
+    private String statecode;
     private String reason;
 
     private String sSubject;

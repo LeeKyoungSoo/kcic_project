@@ -33,5 +33,6 @@ public class UsersVO extends CommonVO implements Serializable {
     private String sRegDt;
     private String eRegDt;
 
+    private String beforUserpw;
     private List<MemberRole> roleList;
 }

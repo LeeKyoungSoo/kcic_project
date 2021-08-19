@@ -14,20 +14,39 @@
         </div>
         <div id="snb">
             <ul class="nav">
+                <th:block th:if="${session['userLv']} == '9'" >
+                    <li>
+                        <a th:href="@{/memberSpace/sub07}">마이페이지</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/memberSpace/sub08}">분양신청관리</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/memberSpace/sub09}">회원관리</a>
+                    </li>
+                </th:block>
+                <th:block th:if="${session['userLv']} == '1'" >
+                    <li>
+                        <a th:href="@{/memberSpace/sub07}">마이페이지</a>
+                    </li>
+                </th:block>
                 <li>
                     <a th:href="@{/memberSpace/sub01}">나의 스터디</a>
                 </li>
                 <li>
-                    <a th:href="@{/memberSpace/sub02}">공지사항</a>
+                    <a th:href="@{/noticeSpace/sub02}">공지사항</a>
                 </li>
                 <li>
-                    <a th:href="@{/memberSpace/sub03}">자료실</a>
+                    <a th:href="@{/noticeSpace/sub03}">자료실</a>
+                </li>
+                <li>
+                    <a th:href="@{/noticeSpace/sub06}">보도자료</a>
                 </li>
                 <li class="active">
-                    <a th:href="@{/memberSpace/sub04}">일정관리</a>
+                    <a th:href="@{/noticeSpace/sub04}">일정관리</a>
                 </li>
                 <li>
-                    <a th:href="@{/memberSpace/sub05}">FAQ</a>
+                    <a th:href="@{/noticeSpace/sub05}">FAQ</a>
                 </li>
             </ul>
         </div>
@@ -150,7 +169,7 @@
     function goDataView() {
         let param = $("form[name=metadataFrm]").serialize();
         $.ajax({
-            url: '[[@{/studyAcApi/dataView}]]',
+            url: '[[@{/bbsApi/bbsDataView}]]',
             type: 'post',
             data: param,
             success: function (data) {
@@ -199,7 +218,7 @@
         $("#f_fidList").val(fidArr);
         const f = document.zipDown;
         f.method = "GET";
-        f.action = "[[@{/studyAcApi/bbsFileDownload/All}]]";
+        f.action = "[[@{/bbsApi/bbsFileDownload/All}]]";
 
         console.log($("#f_fidList").val());
         f.submit();
@@ -227,7 +246,7 @@
     function goDelete() {
         let param = $("form[name=metadataFrm]").serialize();
         $.ajax({
-            url: '[[@{/studyAcApi/dataDelete}]]',
+            url: '[[@{/bbsApi/dataDelete}]]',
             type: 'post',
             data: param,
             success: function (data) {
@@ -243,13 +262,13 @@
 
     function  goList() {
         let f = document.metadataFrm;
-        f.action = "[[@{/memberSpace/sub04}]]";
+        f.action = "[[@{/noticeSpace/sub04}]]";
         f.submit();
     }
 
     function godataEdit() {
         let f = document.metadataFrm;
-        f.action = "[[@{/memberSpace/sub04Edit}]]";
+        f.action = "[[@{/noticeSpace/sub04Edit}]]";
         f.submit();
     }
 </script>

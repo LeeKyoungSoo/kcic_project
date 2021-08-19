@@ -10,7 +10,7 @@
     <div id="spot">
         <div class="img-box sub04">
             <div class="tit-box">
-                <h2>마이페이지</h2>
+                <h2>로그인/회원가입</h2>
             </div>
         </div>
         <div id="snb">
@@ -21,19 +21,16 @@
                 <li class="active">
                     <a th:href="@{/users/registmember}">회원등록</a>
                 </li>
-                <li>
-                    <a th:href="@{/users/mypage}">회원정보수정</a>
-                </li>
             </ul>
         </div>
     </div>
     <div id="content">
         <div id="con">
             <div class="sub-tit">
-                <h3>마이페이지</h3>
+                <h3>회원가입</h3>
                 <ul id="navigater">
                     <li class="home"></li>
-                    <li>마이페이지</li>
+                    <li>로그인/회원가입</li>
                     <li class="m-now">회원가입</li>
                 </ul>
             </div>
@@ -107,6 +104,7 @@
                         </div>
                         <div class="con-wrap">
                             <input id="userpw" name="userpw" type="password" class="intxt w_40s" />
+                            <span style="color:red">* 비밀번호는 8자리 이상입니다</span>
                         </div>
                     </li>
                     <li>
@@ -115,7 +113,6 @@
                         </div>
                         <div class="con-wrap">
                             <input id="userpwchk" name="userpwchk" type="password" class="intxt w_40s" />
-                            <span style="color:red">* 비밀번호는 8자리 이상입니다</span>
                         </div>
                     </li>
                     <li>

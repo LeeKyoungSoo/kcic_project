@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+    <div id="container">
+        <div id="spot">
+            <div class="img-box sub02">
+                <div class="tit-box">
+                    <h2>회원공간</h2>
+                </div>
+            </div>
+            <div id="snb">
+                <ul class="nav">
+                    <th:block th:if="${session['userLv']} == '9'" >
+                        <li class="active">
+                            <a th:href="@{/memberSpace/sub07}">마이페이지</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/memberSpace/sub08}">분양신청관리</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/memberSpace/sub09}">회원관리</a>
+                        </li>
+                    </th:block>
+                    <th:block th:if="${session['userLv']} == '1'" >
+                        <li class="active">
+                            <a th:href="@{/memberSpace/sub07}">마이페이지</a>
+                        </li>
+                    </th:block>
+                    <li>
+                        <a th:href="@{/memberSpace/sub01}">나의 스터디</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/noticeSpace/sub02}">공지사항</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/noticeSpace/sub03}">자료실</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/noticeSpace/sub06}">보도자료</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/noticeSpace/sub04}">일정관리</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/noticeSpace/sub05}">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            <div id="con">
+                <div class="sub-tit">
+                    <h3>마이페이지</h3>
+                    <ul id="navigater">
+                        <li class="home"></li>
+                        <li>회원공간</li>
+                        <li class="m-now">마이페이지</li>
+                    </ul>
+                </div>
+
+                <form id="metadataFrm" name="metadataFrm" method="post">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <div class="con-area">
+                    <ul class="table-02 bmar_20">
+                        <li>
+                            <div class="tit-wrap">
+                                <strong>아이디</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <input type="text" id="userid" name="userid" class="intxt w_40s" value="admin" readonly />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tit-wrap">
+                                <strong>이름</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <input type="text" id="usernm" name="usernm" class="intxt w_40s" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tit-wrap">
+                                <strong>소속</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <input type="text" id="sosuk" name="sosuk" class="intxt w_40s" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tit-wrap">
+                                <strong>직업</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <input type="text" id="jobnm" name="jobnm" class="intxt w_40s" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tit-wrap">
+                                <strong>이메일</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <input type="text" id="email" name="email" class="intxt w_40s" />
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="from-btn">
+                        <a href="javascript:goMemberEdit()" class="confirm-btn">개인정보수정</a>
+                    </div>
+                </div>
+
+                <div class="con-area">
+                    <ul class="table-02 bmar_20">
+                        <li>
+                            <div class="tit-wrap">
+                                <strong>현재비밀번호</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <input type="password" id="beforUserpw" name="beforUserpw" class="intxt w_40s" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tit-wrap">
+                                <strong>신규비밀번호</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <input type="password" id="userpw" name="userpw" class="intxt w_40s" />
+                                <span style="color:red">* 비밀번호는 8자리 이상입니다</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tit-wrap">
+                                <strong>비밀번호확인</strong>
+                            </div>
+                            <div class="con-wrap">
+                                <input type="password" id="userpwchk" name="userpwchk" class="intxt w_40s" />
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="from-btn">
+                        <a href="javascript:goMemberPwChange();" class="confirm-btn">비밀번호변경</a>
+                    </div>
+                </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/bethesda/board.js}" type="text/javascript"></script>
+    <script lang="javascript">
+        $(document).ready(function () {
+            goUserData();
+        });
+
+        function goUserData() {
+            let param = $("form[name=metadataFrm]").serialize();
+            $.ajax({
+                url: '[[@{/usersApi/dataView}]]',
+                type: 'post',
+                data: param,
+                success: function (data) {
+                    let userData = data.dataView;
+                    $("#userid").val(userData.userid);
+                    $("#usernm").val(userData.usernm);
+                    $("#sosuk").val(userData.sosuk);
+                    $("#jobnm").val(userData.jobnm);
+                    $("#email").val(userData.email);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+
+        function goMemberEdit() {
+            if ( $("#usernm").val() == "" ) {
+                alert("이름을 입력해 주십시오");
+                return;
+            }
+
+            if ( $("#sosuk").val() == "" ) {
+                alert("소속을 입력해 주십시오.");
+                return;
+            }
+
+            if ( $("#jobnm").val() == "" ) {
+                alert("직업을 입력해 주십시오.");
+                return;
+            }
+
+            if ( $("#email").val() == "" ) {
+                alert("이메일을 입력해 주십시오.");
+                return;
+            }
+
+            let param = $("form[name=metadataFrm]").serialize();
+            $.ajax({
+                url: '[[@{/usersApi/dataUpdate}]]',
+                type: 'post',
+                data: param,
+                success: function (data) {
+                    console.log(data.resultCode);
+                    alert(data.resultMsg);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+
+        function goMemberPwChange() {
+            if ( $("#beforUserpw").val() == "" ) {
+                alert("현재 비밀번호를 입력해 주십시오.");
+                return;
+            }
+
+            if ( $("#userpw").val() == "" ) {
+                alert("신규비밀번호를 입력해 주십시오.");
+                return;
+            }
+
+            if ( $("#userpw").val().length < 8 ) {
+                alert("비밀번호는 8자리 이상입니다.");
+                return;
+            }
+
+            if ( $("#userpwchk").val() == "" ) {
+                alert("비밀번호확인 입력해 주십시오.");
+                return;
+            }
+
+            if ( $("#userpw").val() != $("#userpwchk").val() ) {
+                alert("비밀번호와 비밀번호 확인 값이 일치 하지 않습니다.");
+                return;
+            }
+
+            let param = $("form[name=metadataFrm]").serialize();
+            $.ajax({
+                url: '[[@{/usersApi/dataUpdateSp}]]',
+                type: 'post',
+                data: param,
+                success: function (data) {
+                    console.log(data.resultCode);
+                    alert(data.resultMsg);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+    </script>
+</th:block>
+
+</body>
+</html>

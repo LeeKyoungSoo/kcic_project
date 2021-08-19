@@ -14,20 +14,39 @@
             </div>
             <div id="snb">
                 <ul class="nav">
+                    <th:block th:if="${session['userLv']} == '9'" >
+                        <li>
+                            <a th:href="@{/memberSpace/sub07}">마이페이지</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/memberSpace/sub08}">분양신청관리</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/memberSpace/sub09}">회원관리</a>
+                        </li>
+                    </th:block>
+                    <th:block th:if="${session['userLv']} == '1'" >
+                        <li>
+                            <a th:href="@{/memberSpace/sub07}">마이페이지</a>
+                        </li>
+                    </th:block>
                     <li class="active">
                         <a th:href="@{/memberSpace/sub01}">나의 스터디</a>
                     </li>
                     <li>
-                        <a th:href="@{/memberSpace/sub02}">공지사항</a>
+                        <a th:href="@{/noticeSpace/sub02}">공지사항</a>
                     </li>
                     <li>
-                        <a th:href="@{/memberSpace/sub03}">자료실</a>
+                        <a th:href="@{/noticeSpace/sub03}">자료실</a>
                     </li>
                     <li>
-                        <a th:href="@{/memberSpace/sub04}">일정관리</a>
+                        <a th:href="@{/noticeSpace/sub06}">보도자료</a>
                     </li>
                     <li>
-                        <a th:href="@{/memberSpace/sub05}">FAQ</a>
+                        <a th:href="@{/noticeSpace/sub04}">일정관리</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/noticeSpace/sub05}">FAQ</a>
                     </li>
                 </ul>
             </div>
@@ -49,6 +68,29 @@
                     <input type="hidden" id="pageSize" name="pageSize" value="10" />
                     <input type="hidden" id="gubun" name="gubun" value="study" />
                 <div class="con-area">
+                    <div class="search-wrap">
+                        <ul>
+                            <li>
+                                <div class="search-int">
+                                    <div class="int-wrap select-box" style="width: 80px;">
+                                        <select id="sState" name="sState">
+                                            <option value="">전체</option>
+                                            <option value="1">신청</option>
+                                            <option value="2">접수</option>
+                                            <option value="3">승인</option>
+                                            <option value="4">반려</option>
+                                        </select>
+                                    </div>
+                                    <div class="int-wrap" style="width: 120px;">
+                                        <input type="text" id="sSubject" name="sSubject" class="intxt" />
+                                    </div>
+                                    <div class="btn-wrap">
+                                        <input type="button" value="검색" class="srh-btn" onclick="goSearch();" style="cursor:pointer">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="table-wrap bmar_50">
                         <p class="all-material">총 <span id="totalCount">16건</span>의 자료가 있습니다.</p>
 
@@ -130,38 +172,31 @@
                         </li>
                     </ul>
 
-                    <div class="table-03">
+                    <div id="stateView" class="table-03">
+                        <div class="l-box">
+                            <strong>상태</strong>
+                        </div>
+                        <div class="r-box">
+                            <span id="state"></span>
+                        </div>
+                    </div>
+
+                    <div id="cancelView" class="table-03">
+                        <div class="l-box">
+                            <strong>반려사유</strong>
+                        </div>
+                        <div class="r-box">
+                            <span id="reason"></span>
+                        </div>
+                    </div>
+
+                    <div id="fileView" class="table-03">
                         <div class="l-box">
                             <strong>분양데이터</strong>
                         </div>
                         <div class="r-box">
                             <p class="txt">분양데이터_20210101.xlxs</p>
                             <a href="#" class="apply-btn">다운로드</a>
-                        </div>
-                    </div>
-
-                    <div class="table-03">
-                        <div class="l-box">
-                            <strong>반려사유</strong>
-                        </div>
-                        <div class="r-box">
-                            <p class="txt">상태가 반려인 경우에 반려사유가 나타남</p>
-                        </div>
-                    </div>
-
-                    <div class="table-03">
-                        <div class="l-box">
-                            <strong>상태</strong>
-                        </div>
-                        <div class="r-box">
-                            <div class="select-box">
-                                <span id="d_state"></span>
-                                <!--
-                                <select>
-                                    <option value="">접수</option>
-                                </select>
-                                -->
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -174,9 +209,16 @@
     <script lang="javascript">
         $(document).ready(function () {
             $(".table-02").hide();
-            $(".table-03").hide();
+            $("#stateView").hide();
+            $("#cancelView").hide();
+            $("#fileView").hide();
+            $(".from-btn").hide();
             goDataList(1);
         });
+
+        function goSearch() {
+            goDataList(1);
+        }
 
         function goDataList(currentPage) {
             $("#pageNum").val(currentPage);
@@ -218,6 +260,10 @@
         }
 
         function goStudyDataview(sid) {
+            $("#stateView").hide();
+            $("#cancelView").hide();
+            $("#fileView").hide();
+            $(".from-btn").hide();
             $.ajax({
                 url: '[[@{/studyAcApi/goStudyDataview}]]',
                 type: 'post',
@@ -229,6 +275,7 @@
                     console.log(data);
                     let rowData = data.dataView;
                     $(".table-02").show();
+                    $("#sid").val(sid);
                     $("#d_studynm").html(rowData.studynm);
                     $("#d_sosuk").html(rowData.sosuk);
                     $("#d_readuser").html(rowData.readuser);
@@ -237,7 +284,18 @@
                     $("#d_cont").html(rowData.cont);
                     $("#d_sdt").html(rowData.sdt);
                     $("#d_edt").html(rowData.edt);
-                    $("#d_state").html(rowData.sState);
+
+                    $("#stateView").show();
+                    $("#state").html(rowData.state);
+
+                    if ( rowData.statecode == 4 ) {
+                        $("#cancelView").show();
+                        $("#reason").html(rowData.reason);
+                    }
+
+                    if ( rowData.statecode == 3 ) {
+                        $("#fileView").show();
+                    }
                 },
                 error: function (data) {
                     console.log(data);

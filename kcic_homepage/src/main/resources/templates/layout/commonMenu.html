@@ -50,13 +50,13 @@
                             <a th:href="@{/registry/sub02}">한의정신건강질환 레지스트리</a>
                         </li>
                         <li>
-                            <a th:href="@{/registry/sub03}">한의비만 레지스트리</a>
+                            <a th:href="@{/registry/sub03}">체중 감량을 위한 한약 레지스트리</a>
                         </li>
                         <li>
                             <a th:href="@{/registry/sub04}">퇴행성 관절질환 레지스트리</a>
                         </li>
                         <li>
-                            <a th:href="@{/registry/sub05}">의-한 정밀의료 중재 대사질환  레지스트리</a>
+                            <a th:href="@{/registry/sub05}">한의 비만 레지스트리</a>
                         </li>
                         <li>
                             <a th:href="@{/registry/sub06}">뇌졸중  레지스트리</a>
@@ -108,20 +108,39 @@
                 <li>
                     <a th:href="@{/memberSpace/sub01}">회원공간</a>
                     <ul class="menu-02">
+                        <th:block th:if="${session['userLv']} != null and ${session['userLv']} == '9'" >
+                            <li>
+                                <a th:href="@{/memberSpace/sub07}">마이페이지</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/memberSpace/sub08}">분양신청관리</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/memberSpace/sub09}">회원관리</a>
+                            </li>
+                        </th:block>
+                        <th:block th:if="${session['userLv']} != null and ${session['userLv']} == '1'" >
+                            <li>
+                                <a th:href="@{/memberSpace/sub07}">마이페이지</a>
+                            </li>
+                        </th:block>
                         <li>
                             <a th:href="@{/memberSpace/sub01}">나의 스터디</a>
                         </li>
                         <li>
-                            <a th:href="@{/memberSpace/sub02}">공지사항</a>
+                            <a th:href="@{/noticeSpace/sub02}">공지사항</a>
                         </li>
                         <li>
-                            <a th:href="@{/memberSpace/sub03}">자료실</a>
+                            <a th:href="@{/noticeSpace/sub03}">자료실</a>
                         </li>
                         <li>
-                            <a th:href="@{/memberSpace/sub04}">일정 관리</a>
+                            <a th:href="@{/noticeSpace/sub06}">보도자료</a>
                         </li>
                         <li>
-                            <a th:href="@{/memberSpace/sub05}">FAQ</a>
+                            <a th:href="@{/noticeSpace/sub04}">일정 관리</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/noticeSpace/sub05}">FAQ</a>
                         </li>
                     </ul>
                 </li>
@@ -177,13 +196,13 @@
                             <a th:href="@{/registry/sub02}">한의정신건강질환 레지스트리</a>
                         </li>
                         <li>
-                            <a th:href="@{/registry/sub03}">한의비만 레지스트리</a>
+                            <a th:href="@{/registry/sub03}">체중 감량을 위한 한약 레지스트리</a>
                         </li>
                         <li>
                             <a th:href="@{/registry/sub04}">퇴행성 관절질환 레지스트리</a>
                         </li>
                         <li>
-                            <a th:href="@{/registry/sub05}">의-한 정밀의료 중재 대사질환  레지스트리</a>
+                            <a th:href="@{/registry/sub05}">한의 비만 레지스트리</a>
                         </li>
                         <li>
                             <a th:href="@{/registry/sub06}">뇌졸중  레지스트리</a>
@@ -235,20 +254,39 @@
                 <li>
                     <strong>회원공간</strong>
                     <ul class="menu-02">
+                        <th:block th:if="${session['userLv']} != null and ${session['userLv']} == '9'" >
+                            <li>
+                                <a th:href="@{/memberSpace/sub07}">마이페이지</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/memberSpace/sub08}">분양신청관리</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/memberSpace/sub09}">회원관리</a>
+                            </li>
+                        </th:block>
+                        <th:block th:if="${session['userLv']} != null and ${session['userLv']} == '1'" >
+                            <li>
+                                <a th:href="@{/memberSpace/sub07}">마이페이지</a>
+                            </li>
+                        </th:block>
                         <li>
                             <a th:href="@{/memberSpace/sub01}">나의 스터디</a>
                         </li>
                         <li>
-                            <a th:href="@{/memberSpace/sub02}">공지사항</a>
+                            <a th:href="@{/noticeSpace/sub02}">공지사항</a>
                         </li>
                         <li>
-                            <a th:href="@{/memberSpace/sub03}">자료실</a>
+                            <a th:href="@{/noticeSpace/sub03}">자료실</a>
                         </li>
                         <li>
-                            <a th:href="@{/memberSpace/sub04}">일정 관리</a>
+                            <a th:href="@{/noticeSpace/sub06}">보도자료</a>
                         </li>
                         <li>
-                            <a th:href="@{/memberSpace/sub05}">FAQ</a>
+                            <a th:href="@{/noticeSpace/sub04}">일정 관리</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/noticeSpace/sub05}">FAQ</a>
                         </li>
                     </ul>
                 </li>
@@ -288,13 +326,13 @@
                             <a th:href="@{/registry/sub02}">한의정신건강질환 레지스트리</a>
                         </li>
                         <li>
-                            <a th:href="@{/registry/sub03}">한의비만 레지스트리</a>
+                            <a th:href="@{/registry/sub03}">체중 감량을 위한 한약 레지스트리</a>
                         </li>
                         <li>
                             <a th:href="@{/registry/sub04}">퇴행성 관절질환 레지스트리</a>
                         </li>
                         <li>
-                            <a th:href="@{/registry/sub05}">의-한 정밀의료 중재 대사질환  레지스트리</a>
+                            <a th:href="@{/registry/sub05}">한의 비만 레지스트리</a>
                         </li>
                         <li>
                             <a th:href="@{/registry/sub06}">뇌졸중  레지스트리</a>
@@ -346,20 +384,39 @@
                 <li>
                     <a th:href="@{/memberSpace/sub01}">회원공간</a>
                     <ul class="menu-02">
+                        <th:block th:if="${session['userLv']} != null and ${session['userLv']} == '9'" >
+                            <li>
+                                <a th:href="@{/memberSpace/sub07}">마이페이지</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/memberSpace/sub08}">분양신청관리</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/memberSpace/sub09}">회원관리</a>
+                            </li>
+                        </th:block>
+                        <th:block th:if="${session['userLv']} != null and ${session['userLv']} == '1'" >
+                            <li>
+                                <a th:href="@{/memberSpace/sub07}">마이페이지</a>
+                            </li>
+                        </th:block>
                         <li>
                             <a th:href="@{/memberSpace/sub01}">나의 스터디</a>
                         </li>
                         <li>
-                            <a th:href="@{/memberSpace/sub02}">공지사항</a>
+                            <a th:href="@{/noticeSpace/sub02}">공지사항</a>
                         </li>
                         <li>
-                            <a th:href="@{/memberSpace/sub03}">자료실</a>
+                            <a th:href="@{/noticeSpace/sub03}">자료실</a>
                         </li>
                         <li>
-                            <a th:href="@{/memberSpace/sub04}">일정 관리</a>
+                            <a th:href="@{/noticeSpace/sub06}">보도자료</a>
                         </li>
                         <li>
-                            <a th:href="@{/memberSpace/sub05}">FAQ</a>
+                            <a th:href="@{/noticeSpace/sub04}">일정 관리</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/noticeSpace/sub05}">FAQ</a>
                         </li>
                     </ul>
                 </li>

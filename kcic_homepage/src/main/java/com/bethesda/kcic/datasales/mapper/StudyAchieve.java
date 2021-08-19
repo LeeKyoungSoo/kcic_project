@@ -3,6 +3,7 @@ package com.bethesda.kcic.datasales.mapper;
 import com.bethesda.kcic.datasales.domain.DataSaleVO;
 import com.bethesda.kcic.datasales.domain.StudyAchieveVO;
 import com.bethesda.kcic.memberspace.domain.BoardVO;
+import com.bethesda.kcic.util.BaseMap;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +19,8 @@ public interface StudyAchieve {
     int delData(StudyAchieveVO vo) throws Exception;
     StudyAchieveVO getDataView(StudyAchieveVO vo) throws  Exception;
 
+    List<BaseMap> getStudyYearChartData() throws Exception;
+    int uptManagerState(DataSaleVO vo) throws Exception;
     int insDataSale(DataSaleVO vo) throws Exception;
     int getDataSaleCnt(DataSaleVO vo) throws Exception;
     List<DataSaleVO> getDataSaleList(DataSaleVO vo) throws Exception;

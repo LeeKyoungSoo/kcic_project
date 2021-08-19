@@ -77,8 +77,14 @@
                 <div style="width: 100%">
                     <div id="paging" class="paging" style="margin: 30px 0px 0px 0px;float:left;width:500px;text-align:left;" >
                     </div>
-                    <div class="from-btn tmar_20" style="float:right;width:200px">
-                        <a href="javascript:goDataSale();" class="apply-btn">분양신청</a>
+                    <div class="from-btn tmar_20" style="float:right;width:400px;color:blue">
+                        <th:block th:if="${session['userLv']} == null">
+                            * 로그인(회원가입) 후 이용 가능합니다.
+                            <a href="javascript:alert('로그인 후 이용해 주십시오.');" class="apply-btn">분양신청</a>
+                        </th:block>
+                        <th:block th:if="${session['userLv']} != null">
+                            <a href="javascript:goDataSale();" class="apply-btn">분양신청</a>
+                        </th:block>
                     </div>
                 </div>
             </div>

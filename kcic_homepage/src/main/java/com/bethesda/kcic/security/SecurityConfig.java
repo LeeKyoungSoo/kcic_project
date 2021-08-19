@@ -43,12 +43,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected  void configure(HttpSecurity http) throws  Exception {
         log.info("security config........");
 
-        http.csrf();
+        http.csrf()
+             .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
         http.authorizeRequests()
                 .antMatchers("/accounts/**"
                         , "/about/**", "/registry/**", "/metadata/**"
-                        , "/users/**", "/datasales/**", "/infomation/**"
+                        , "/users/**", "/datasales/**", "/infomation/**", "/noticeSpace/**"
                         , "/studyAcApi/**", "/bbsApi/**", "/metadataApi/**", "/usersApi/**")
                 .permitAll();
 

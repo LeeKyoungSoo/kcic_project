@@ -34,8 +34,12 @@
     }
 
     function goLogOut() {
-        let form = document.logoutFrm;
-        form.action = "[[@{/accounts/logout}]]";
-        form.submit();
+        if (!confirm("로그인 상태 입니다. 로그아웃 하시겠습니까?")) {
+            // 취소(아니오) 버튼 클릭 시 이벤트
+        } else {
+            let form = document.logoutFrm;
+            form.action = "[[@{/accounts/logout}]]";
+            form.submit();
+        }
     }
 </script>

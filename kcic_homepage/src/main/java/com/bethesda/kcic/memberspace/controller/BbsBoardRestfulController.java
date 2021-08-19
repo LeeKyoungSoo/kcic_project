@@ -74,6 +74,21 @@ public class BbsBoardRestfulController {
                 .body(resource);
     }
 
+    @GetMapping("/fileDownload/{fileName}")
+    public ResponseEntity<Resource> fileDownload(@PathVariable("fileName") String fNm) throws Exception {
+        String fileDownPath = OS.contains("win") ? fileDownPathWin : fileDownPathLinux;
+
+        fileDownPath += File.separator + "files" + File.separator + fNm;
+        Path path = Paths.get(fileDownPath);
+        Resource resource = new InputStreamResource(Files.newInputStream(path));
+        String fileNameOrg = new String(fNm.getBytes("UTF-8"), "ISO-8859-1");
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileNameOrg + "\"")
+                .body(resource);
+    }
+
     @GetMapping("/bbsFileDownload/All")
     public ResponseEntity<Resource> goBbsFileDownload(@RequestParam(value="f_fidList") String fidArr) throws Exception {
         String fileDownPath = OS.contains("win") ? fileDownPathWin : fileDownPathLinux;

@@ -3,6 +3,7 @@ package com.bethesda.kcic.datasales.service;
 import com.bethesda.kcic.datasales.domain.DataSaleVO;
 import com.bethesda.kcic.datasales.domain.StudyAchieveVO;
 import com.bethesda.kcic.datasales.mapper.StudyAchieve;
+import com.bethesda.kcic.util.BaseMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +52,13 @@ public class StudyAchieveService {
 
     public DataSaleVO getStudyDataView(DataSaleVO vo) throws Exception {
         return studyAchieve.getStudyDataView(vo);
+    }
+
+    public int uptManagerState(DataSaleVO vo) throws Exception {
+        return studyAchieve.uptManagerState(vo);
+    }
+
+    public List<BaseMap> getStudyYearChartData() throws Exception {
+        return studyAchieve.getStudyYearChartData();
     }
 }

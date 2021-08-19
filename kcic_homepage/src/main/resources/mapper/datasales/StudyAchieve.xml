@@ -2,9 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bethesda.kcic.datasales.mapper.StudyAchieve">
+    <select id="getStudyYearChartData"  resultType="com.bethesda.kcic.util.BaseMap">
+        <![CDATA[
+        /* StudyAchieve.uptData */
+        SELECT years, count(sid) AS cnt
+        FROM (
+            SELECT DATE_FORMAT(sdt, '%Y') AS years, sid
+            FROM tb_datasales) A
+        GROUP BY years
+        ORDER BY years
+        ]]>
+    </select>
+
+    <update id="uptManagerState" parameterType="com.bethesda.kcic.datasales.domain.DataSaleVO">
+        <![CDATA[
+        /* StudyAchieve.uptData */
+        UPDATE tb_datasales
+        SET
+            state = #{state}
+          ,reason = #{reason}
+        WHERE sid = #{sid}
+        ]]>
+    </update>
+
     <select id="getStudyDataView" parameterType="com.bethesda.kcic.datasales.domain.DataSaleVO" resultType="com.bethesda.kcic.datasales.domain.DataSaleVO">
      <![CDATA[
-        /* StudyAchieve.getDataView */
+        /* StudyAchieve.getStudyDataView */
         SELECT
             sid
              ,studynm
@@ -22,6 +45,8 @@
                   WHEN state = '4' THEN '반려'
                   ELSE '신청'
             END AS state
+            ,state as statecode
+            ,reason
         FROM tb_datasales
         WHERE sid = #{sid}
         ]]>
@@ -29,7 +54,7 @@
 
     <select id="getDataSaleList" parameterType="com.bethesda.kcic.datasales.domain.DataSaleVO" resultType="com.bethesda.kcic.datasales.domain.DataSaleVO">
         <![CDATA[
-        /* StudyAchieve.getDataList */
+        /* StudyAchieve.getDataSaleList */
         SELECT
               sid
              ,studynm
@@ -160,7 +185,7 @@
           ,subject = #{subject}
           ,cont = #{cont}
           ,summary = #{summary}
-          ,moddt = #{modDt}
+          ,moddt = now()
         WHERE bid = #{bId}
         ]]>
     </update>

@@ -47,11 +47,10 @@
 
     <update id="uptDataSp" parameterType="com.bethesda.kcic.user.domain.UsersVO">
         <![CDATA[
-        /* Users.uptData */
+        /* Users.uptDataSp */
         UPDATE tb_members
         SET
              userpw	= #{userpw}
-            ,useyn	= #{useyn}
         WHERE uid = #{uid}
         ]]>
     </update>

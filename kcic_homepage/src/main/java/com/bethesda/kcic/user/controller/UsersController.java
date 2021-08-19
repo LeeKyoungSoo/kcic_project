@@ -11,13 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 @Log
 @RequestMapping("/users")
 public class UsersController {
-    @RequestMapping(value = "/mypage")
-    public ModelAndView goMypage(HttpServletRequest request) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("content/users/mypage.html");
-        return mav;
-    }
-
     @RequestMapping(value = "/registmember")
     public ModelAndView goReistMenger(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();

@@ -3,6 +3,7 @@ package com.bethesda.kcic.datasales.controller;
 import com.bethesda.kcic.datasales.domain.DataSaleVO;
 import com.bethesda.kcic.datasales.domain.StudyAchieveVO;
 import com.bethesda.kcic.datasales.service.StudyAchieveService;
+import com.bethesda.kcic.util.BaseMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/studyAcApi")
@@ -20,6 +23,36 @@ public class StudyAchieveRestfulController {
 
     @Autowired
     StudyAchieveService studyAchieveService;
+
+    @PostMapping("/goStudyYearChartData")
+    public HashMap goStudyYearChartData(DataSaleVO vo) throws Exception {
+        HashMap resultMap = new HashMap<>();
+
+        List<Integer> chartYear = new ArrayList<>();
+        List<Integer> chartData = new ArrayList<>();
+        List<BaseMap> dataView = studyAchieveService.getStudyYearChartData();
+        for (BaseMap oneData : dataView ) {
+            chartYear.add(Integer.parseInt(oneData.get("years").toString()));
+            chartData.add(Integer.parseInt(oneData.get("cnt").toString()));
+        }
+        resultMap.put("chartYear", chartYear);
+        resultMap.put("chartData", chartData);
+
+        return resultMap;
+    }
+
+    @PostMapping("/goManagerState")
+    public HashMap goManagerState(DataSaleVO vo) throws Exception {
+        HashMap resultMap = new HashMap<>();
+
+        int nResultCode = studyAchieveService.uptManagerState(vo);
+        String resultMsg = (nResultCode > 0) ?  "상태를 변경하였습니다..":"정상적으로 처리되지 않았습니다.";
+
+        resultMap.put("resultCode", nResultCode);
+        resultMap.put("resultMsg", resultMsg);
+
+        return resultMap;
+    }
 
     @PostMapping("/goStudyDataview")
     public HashMap goStudyDataview(DataSaleVO vo) throws Exception {
@@ -49,7 +82,7 @@ public class StudyAchieveRestfulController {
             vo.setOffSet(nOffSet);
         }
 
-        if ( vo.getGubun().equals("study")) {
+        if ( vo.getGubun() != null && vo.getGubun().equals("study")) {
             vo.setRegid(session.getAttribute("userId").toString());
         }
 
@@ -63,10 +96,12 @@ public class StudyAchieveRestfulController {
     }
 
     @PostMapping("/datasaleInsert")
-    public HashMap getDatasaleInsert(DataSaleVO vo) throws  Exception {
+    public HashMap getDatasaleInsert(DataSaleVO vo, HttpServletRequest request) throws  Exception {
         HashMap resultMap = new HashMap<>();
 
-        vo.setRegid("tester");
+        HttpSession session = request.getSession();
+        vo.setRegid(session.getAttribute("userId").toString());
+
         int nResultCode = studyAchieveService.insDataSale(vo);
         String resultMsg = (nResultCode > 0) ?  "신청이 완료되었습니다.":"신청이 완료되지 않았습니다. 신청약식을 다시 확인해 주십시오";
 

@@ -34,13 +34,13 @@
                 <li>
                     <a th:href="@{/memberSpace/sub01}">나의 스터디</a>
                 </li>
-                <li class="active">
+                <li>
                     <a th:href="@{/noticeSpace/sub02}">공지사항</a>
                 </li>
                 <li>
                     <a th:href="@{/noticeSpace/sub03}">자료실</a>
                 </li>
-                <li>
+                <li class="active">
                     <a th:href="@{/noticeSpace/sub06}">보도자료</a>
                 </li>
                 <li>
@@ -55,11 +55,11 @@
     <div id="content">
         <div id="con">
             <div class="sub-tit">
-                <h3>공지사항</h3>
+                <h3>보도자료</h3>
                 <ul id="navigater">
                     <li class="home"></li>
                     <li>회원공간</li>
-                    <li class="m-now">공지사항</li>
+                    <li class="m-now">보도자료</li>
                 </ul>
             </div>
             <form id="metadataFrm" name="metadataFrm" method="post">
@@ -76,19 +76,6 @@
             <div class="con-area">
                 <div class="board-form">
                     <ul class="write-form">
-                        <li>
-                            <strong class="tit">공지글</strong>
-                            <div class="input-con">
-                                <div class="input-con" style="padding:0px">
-                                    <div class="check-box bmar_10">
-                                        <input type="checkbox" id="notiYnChk" name="notiYnChk">
-                                        <label for="notiYnChk">
-                                            <span></span> 공지여부
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
                         <li>
                             <strong class="tit">제목</strong>
                             <div class="input-con">
@@ -370,7 +357,7 @@
 
     function  goList() {
         let f = document.metadataFrm;
-        f.action = "[[@{/noticeSpace/sub02}]]";
+        f.action = "[[@{/noticeSpace/sub06}]]";
         f.submit();
     }
 </script>

@@ -43,9 +43,13 @@
 
                 <strong class="s-tit">연도별 분양 현황</strong>
 
+                <!--
                 <div class="chart-img">
                     <img src="/images/sub/04/chart.jpg" alt="연도별 분양 현황">
                 </div>
+                -->
+
+                <div id="chartBox" class="chart-img"></div>
 
                 <strong class="s-tit">자료분양 내역</strong>
 
@@ -92,11 +96,130 @@
     </div>
 </div>
 
+    <script th:src="@{/js/code/highcharts.js}"></script>
+    <script th:src="@{/js/code/modules/exporting.js}"></script>
+    <script th:src="@{/js/code/modules/export-data.js}"></script>
+    <script th:src="@{/js/code/modules/accessibility.js}"></script>
+
     <script th:src="@{/js/bethesda/board.js}" type="text/javascript"></script>
     <script lang="javascript">
         $(document).ready(function () {
             goDataList(1);
+            chartData();
         });
+
+        function chartData() {
+            $.ajax({
+                url: '[[@{/studyAcApi/goStudyYearChartData}]]',
+                type: 'post',
+                data: {
+                    [[${_csrf.parameterName}]]: '[[${_csrf.token}]]'
+                },
+                success: function (data) {
+                    console.log(data.chartYear);
+                    console.log(data.chartData);
+                    chartCreate(data);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+
+            /*
+            const data = {
+                chartYear : [
+                    2001,
+                    2002,
+                    2003,
+                    2004
+                ],
+                chartData : [
+                    5,
+                    2,
+                    3,
+                    7
+                ]
+            };
+            chartCreate(data);
+            */
+        }
+
+        function chartCreate(data) {
+            let myChart = Highcharts.chart('chartBox', {
+
+                /* 바 색상 */
+                colors: ['#2375C9','#51B7E8'],
+
+                /* 차트종류 */
+                chart: { type: 'column' },
+
+                /* 제목 */
+                title: { text: '' },
+
+                /* 부제목 */
+                subtitle: { text: ''},
+
+                /* X축 / Y 축 */
+                xAxis: {
+                    categories: data.chartYear,
+                    labels: {
+                        y: 20,
+                        style: {
+                            color:'#444',
+                            fontSize: '16px'
+                        }
+                    }
+                },
+                yAxis: {
+                    title: { text: '분양 횟수' },
+                    labels: {
+                        enabled: false,  //label 미사용 시 false로 지정.
+                    },
+                    stackLabels: {//스택 바에 사용하는 label 설정.(stacked bar 필수 설정 옵션)
+                        enabled: true,
+                        verticalAlign:"bottom", // y축 값 위치
+                        style: { //바 안의 y축 값 스타일
+                            textOutline:0,// label 수치의 outline 제거 0으로 지정.
+                            fontSize: '18px',
+                            fontWeight: '1000',
+                            color:'#ffffff'
+                        }
+                    }
+                },
+
+                /* 범례 */
+                legend: {enabled: false},
+
+                /* 툴팁 */
+                tooltip: {valueSuffix: '개'},
+
+                /*하이차트 레이블 삭제*/
+                credits: {enabled: false},
+
+                plotOptions: {
+                    column: {// 컬럼 차트 전체 옵션 지정
+                        stacking: 'normal'//stacked bar 필수 설정 옵션(default undefined)
+                    }, //y축 값 => x축 쪽으로 내리기 위한 코드
+                },
+
+                /* 표 데이터 */
+                series: [
+                    {
+                        name: '',
+                        colorByPoint : true, // 여러가지 바 색상을 지정 시 true
+                        data: data.chartData,
+                        dataLabels: {//바 상단의 수치값 개별 지정.
+                            enabled: true,
+                            format: '{y}',//수치 표현 포맷
+                            color: '#ffffff',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                ]
+            });
+        }
+
 
         function goDataList(currentPage) {
             $("#pageNum").val(currentPage);
@@ -147,6 +270,11 @@
         }
 
     </script>
+
+
+
+
+
 
 </th:block>
 
