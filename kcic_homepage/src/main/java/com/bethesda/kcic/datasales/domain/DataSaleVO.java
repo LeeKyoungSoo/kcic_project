@@ -1,6 +1,7 @@
 package com.bethesda.kcic.datasales.domain;
 
 import com.bethesda.kcic.common.mapper.CommonVO;
+import com.bethesda.kcic.memberspace.domain.BoardFileVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -32,4 +33,6 @@ public class DataSaleVO extends CommonVO {
     private String sSubject;
     private String sState;
     private String gubun;
+
+    private List<BoardFileVO> fileList;
 }

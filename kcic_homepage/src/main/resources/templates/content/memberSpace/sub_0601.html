@@ -208,8 +208,17 @@
                             <strong>분양데이터</strong>
                         </div>
                         <div class="r-box">
-                            <p class="txt">분양데이터_20210101.xlxs</p>
-                            <a href="#" class="apply-btn">다운로드</a>
+                            <div class="input-con" style="padding: 4px;">
+                                <div class="check-box bmar_10">
+                                    <input type="checkbox" id="check-all">
+                                    <label for="check-all">
+                                        <span></span> 전체선택
+                                    </label>
+                                </div>
+                                <a href="javascript:goFileAllDownload();" class="apply-btn" download="">전체 다운로드</a>
+                                <ul id="file_list" class="down-list">
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -217,8 +226,11 @@
             </div>
         </div>
     </div>
-
+    <form id="zipDown" name="zipDown">
+        <input type="hidden" id="f_fidList" name="f_fidList" />
+    </form>
     <script th:src="@{/js/bethesda/board.js}" type="text/javascript"></script>
+    <script th:src="@{/js/custom.js}" type="text/javascript"></script>
     <script lang="javascript">
         $(document).ready(function () {
             $(".table-02").hide();
@@ -315,6 +327,10 @@
                     if ( data.metaView != null) {
                         metadata(data.metaView);
                     }
+
+                    if ( rowData.fileList.length > 0 ) {
+                        FileListTable(rowData.fileList);
+                    }
                 },
                 error: function (data) {
                     console.log(data);
@@ -345,6 +361,49 @@
                 strHtml += '<tr><td colspan="9">신청 데이터가 없습니다.</td></tr>';
             }
             $("#dataGride2 tbody").html(strHtml);
+        }
+
+        let FileListTable = function(data) {
+            $("#file_list").empty();
+            $("#fileUp").val("");
+            let strHtml = "";
+            let resultList = data ;
+            if(resultList && resultList.length > 0) {
+                for(let i=0; i<resultList.length; i++) {
+                    let retObj = resultList[i];
+                    strHtml = strHtml + "<li style='margin-top: 4px;'>";
+                    strHtml = strHtml + "   <div class='check-box'><input type='checkbox' id='file-" + i + "' name='fidList' value='" +  retObj.fid + "' /><label for='file-" + i + "'><span></span>";
+                    strHtml = strHtml + " " + retObj.fileOrgNm + "   </label></div>";
+                    strHtml = strHtml + "<a href='[[@{/bbsApi/bbsFileDownload}]]/" + retObj.fid + "' class='apply-btn' style='margin-left: 12px;' download='" + retObj.fileOrgNm + "'>다운로드</a>";
+                    strHtml = strHtml + "</li>";
+                }
+            }
+
+            $("#file_list").html(strHtml);
+        };
+
+        function goFileAllDownload() {
+            let fidList = $("input[name=fidList]");
+
+            let fidArr = new Array();
+            let j = 0;
+            for(let i=0; i < fidList.length; i++) {
+                if (fidList.eq(i).is(":checked") == true) {
+                    fidArr[j++] = fidList.eq(i).val();
+                }
+            }
+
+            if ( fidArr == null || fidArr.length < 1 ) {
+                return;
+            }
+
+            $("#f_fidList").val(fidArr);
+            const f = document.zipDown;
+            f.method = "GET";
+            f.action = "[[@{/bbsApi/bbsFileDownload/All}]]";
+
+            console.log($("#f_fidList").val());
+            f.submit();
         }
     </script>
 </th:block>

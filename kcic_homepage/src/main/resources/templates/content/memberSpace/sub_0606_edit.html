@@ -241,7 +241,8 @@
                 fId : fId,
                 gubun : $("#f_gubun").val(),
                 bId : $("#f_bId").val(),
-                fileSaveNm : savaFileName
+                fileSaveNm : savaFileName,
+                [[${_csrf.parameterName}]]: '[[${_csrf.token}]]'
             },
             success:function(data){
                 FileListTable(data.fileList);
