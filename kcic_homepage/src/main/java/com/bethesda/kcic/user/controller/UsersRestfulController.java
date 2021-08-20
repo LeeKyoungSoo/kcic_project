@@ -168,4 +168,16 @@ public class UsersRestfulController {
         resultMap.put("resultMsg", resultMsg);
         return resultMap;
     }
+
+    @PostMapping("/dataState")
+    public HashMap dataState(UsersVO vo) throws Exception {
+        HashMap resultMap = new HashMap<>();
+
+        int nResultCode = usersService.uptState(vo);
+        String resultMsg = (nResultCode > 0) ?  "사용자정보가 수정 되었습니다.":"수정 실패 입니다.";
+
+        resultMap.put("resultCode", nResultCode);
+        resultMap.put("resultMsg", resultMsg);
+        return resultMap;
+    }
 }

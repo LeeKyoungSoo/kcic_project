@@ -44,6 +44,7 @@
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 <input type="hidden" id="sid" name="sid" />
                 <input type="hidden" id="gubun" name="gubun"/>
+                <input type="hidden" id="itemlist" name="itemlist"/>
                 <input type="hidden" id="itemSeqList" name="itemSeqList" th:value="${param.itemSeqList}"/>
             <div class="con-area">
                 <strong class="s-tit">분양신청</strong>
@@ -223,7 +224,8 @@
             }
 
             $("#sid").val($("#gubun").val() + getToday());
-            $("#itemSeqList").val($("#itemSeqList").val().replace("[", "").replace("]", ""));
+
+            $("#itemlist").val($("#itemSeqList").val().replace("[", "").replace("]", ""));
             let param = $("form[name=metadataFrm]").serialize();
             $.ajax({
                 url: '[[@{/studyAcApi/datasaleInsert}]]',

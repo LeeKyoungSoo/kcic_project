@@ -30,6 +30,7 @@ public class UsersVO extends CommonVO implements Serializable {
 
     private String sUsernm;
     private String sUserid;
+    private String sSubject;
     private String sRegDt;
     private String eRegDt;
 

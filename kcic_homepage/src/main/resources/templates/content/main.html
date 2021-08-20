@@ -13,10 +13,10 @@
 
                 <div class="search-box">
                     <div class="intwrap">
-                        <input type="text" class="intxt" placeholder="찾고싶으신 데이터를 입력하세요."/>
+                        <input id="itemLabel" type="text" class="intxt" maxlength="8" placeholder="찾고싶으신 데이터를 입력하세요."/>
                     </div>
                     <div class="btnwrap">
-                        <input type="button" class="s-btn" value="검색" />
+                        <input id="metadataSearch" type="button" class="s-btn" value="검색"/>
                     </div>
                 </div>
                 <p>
@@ -247,7 +247,7 @@
             <div id="section03" class="section">
                 <ul class="menu-banner">
                     <li>
-                        <a href="#">
+                        <a th:href="@{/users/registmember}">
                             <div class="menu-bg"></div>
                             <div class="img-box">
                                 <img src="/images/main/i_01.png" alt="회원가입">
@@ -260,7 +260,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a th:href="@{/metadata/sub02}">
                             <div class="menu-bg"></div>
                             <div class="img-box">
                                 <img src="/images/main/i_02.png" alt="데이터 검색">
@@ -273,7 +273,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a th:href="@{/datasales/sub02}">
                             <div class="menu-bg"></div>
                             <div class="img-box">
                                 <img src="/images/main/i_03.png" alt="데이터 신청">
@@ -286,7 +286,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a th:href="@{/noticeSpace/sub05}">
                             <div class="menu-bg"></div>
                             <div class="img-box">
                                 <img src="/images/main/i_04.png" alt="FAQ">
@@ -324,7 +324,7 @@
                                             <span>공지</span>
                                             사항
                                         </strong>
-                                        <a href="#" class="more-btn"></a>
+                                        <a th:href="@{/noticeSpace/sub02}" class="more-btn"></a>
                                     </div>
                                     <div class="board-wrap">
                                         <a href="#" class="top-write">
@@ -360,7 +360,7 @@
                                             <span>보도</span>
                                             자료
                                         </strong>
-                                        <a href="#" class="more-btn"></a>
+                                        <a th:href="@{/noticeSpace/sub06}" class="more-btn"></a>
                                     </div>
                                     <div class="board-wrap">
                                         <a href="#" class="top-write">
@@ -401,7 +401,7 @@
                         </div>
                         <ul class="qiuck-menu">
                             <li>
-                                <a href="#">
+                                <a th:href="@{/datasales/sub02}">
                                     <div class="mask-wrap">
                                         <div class="circle-01"></div>
                                         <div class="circle-02"></div>
@@ -411,7 +411,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="http://mytrial.nckm.or.kr/service/Login">
                                     <div class="mask-wrap">
                                         <div class="circle-01"></div>
                                         <div class="circle-02"></div>
@@ -487,6 +487,24 @@
         </div>
 
     </div>
+
+    <script>
+        $(function(){
+            $("#metadataSearch").click(function(){
+                if ( $("#itemLabel").val() == "" ) {
+                    alert("검색어를 입력해 주십시오");
+                    return;
+                }
+
+                if ( $("#itemLabel").val().length < 2 ) {
+                    alert("2자 이상 입력해 주십시오.");
+                    return;
+                }
+
+                location.href = '[[@{/metadata/sub02}]]?itemLabel=' + $("#itemLabel").val();
+            });
+        });
+    </script>
 </th:block>
 
 </body>

@@ -3,6 +3,8 @@ package com.bethesda.kcic.datasales.controller;
 import com.bethesda.kcic.datasales.domain.DataSaleVO;
 import com.bethesda.kcic.datasales.domain.StudyAchieveVO;
 import com.bethesda.kcic.datasales.service.StudyAchieveService;
+import com.bethesda.kcic.metadata.domain.MetaDataVO;
+import com.bethesda.kcic.metadata.service.StudyMetaDataService;
 import com.bethesda.kcic.util.BaseMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +25,10 @@ public class StudyAchieveRestfulController {
 
     @Autowired
     StudyAchieveService studyAchieveService;
+
+    @Autowired
+    StudyMetaDataService studyMetaDataService;
+
 
     @PostMapping("/goStudyYearChartData")
     public HashMap goStudyYearChartData(DataSaleVO vo) throws Exception {
@@ -59,7 +65,20 @@ public class StudyAchieveRestfulController {
         HashMap resultMap = new HashMap<>();
 
         DataSaleVO dataView = studyAchieveService.getStudyDataView(vo);
+
+        List<String> itemSeqList = new ArrayList<>();
+        if ( dataView.getItemlist() != null && !dataView.getItemlist().equals("")) {
+            String[] temp = dataView.getItemlist().split(",");
+            for (String tempVal : temp) {
+                itemSeqList.add(tempVal);
+            }
+            MetaDataVO metaDataVO = new MetaDataVO();
+            metaDataVO.setItemSeqList(itemSeqList);
+            metaDataVO.setOffSet(-1);
+            resultMap.put("metaView", studyMetaDataService.getMetaDataList(metaDataVO));
+        }
         resultMap.put("dataView", dataView);
+
         return resultMap;
     }
 

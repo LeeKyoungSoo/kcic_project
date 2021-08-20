@@ -47,6 +47,7 @@
             END AS state
             ,state as statecode
             ,reason
+            ,itemlist
         FROM tb_datasales
         WHERE sid = #{sid}
         ]]>
@@ -132,7 +133,7 @@
             ,cont
             ,regid
             ,regdt
-            ,itemseqlist
+            ,itemlist
         )
         VALUES
         (
@@ -147,7 +148,7 @@
             ,#{cont}
             ,#{regid}
             ,now()
-            ,#{itemseqlist}
+            ,#{itemlist}
         )
         ]]>
     </insert>

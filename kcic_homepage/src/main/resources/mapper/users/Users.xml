@@ -30,6 +30,17 @@
         ]]>
     </insert>
 
+    <update id="uptState" parameterType="com.bethesda.kcic.user.domain.UsersVO">
+        <![CDATA[
+        /* Users.uptData */
+        UPDATE tb_members
+        SET
+           userlv	= #{userlv}
+          ,useyn	= #{useyn}
+        WHERE uid = #{uid}
+        ]]>
+    </update>
+
     <update id="uptData" parameterType="com.bethesda.kcic.user.domain.UsersVO">
         <![CDATA[
         /* Users.uptData */
@@ -109,8 +120,12 @@
         FROM tb_members
         WHERE 1 = 1
         ]]>
-        <if test='sUsernm != null and !sUsernm.equals("")'>
-            AND usernm LIKE CONCAT('%', #{sUsernm}, '%')
+        <if test='sSubject != null and !sSubject.equals("")'>
+            AND (
+                   usernm LIKE CONCAT('%', #{sSubject}, '%')
+                OR userid LIKE CONCAT('%', #{sSubject}, '%')
+                OR sosuk LIKE CONCAT('%', #{sSubject}, '%')
+            )
         </if>
         <if test='(sRegDt != null and !sRegDt.equals("")) and (eRegDt != null and !eRegDt.equals(""))'>
             AND DATE_FORMAT(regDt, '%Y%m%d')
@@ -136,8 +151,12 @@
         FROM tb_members
         WHERE 1 = 1
         ]]>
-        <if test='sUsernm != null and !sUsernm.equals("")'>
-            AND usernm LIKE CONCAT('%', #{sUsernm}, '%')
+        <if test='sSubject != null and !sSubject.equals("")'>
+            AND (
+                   usernm LIKE CONCAT('%', #{sSubject}, '%')
+                OR userid LIKE CONCAT('%', #{sSubject}, '%')
+                OR sosuk LIKE CONCAT('%', #{sSubject}, '%')
+            )
         </if>
         <if test='(sRegDt != null and !sRegDt.equals("")) and (eRegDt != null and !eRegDt.equals(""))'>
             AND DATE_FORMAT(regDt, '%Y%m%d')

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -21,11 +23,12 @@ public class DataSaleVO extends CommonVO {
     private String regid;
     private String regdt;
     private String moddt;
-    private String itemseqlist;
+    private String itemlist;
     private String state;
     private String statecode;
     private String reason;
 
+    private List<String> itemSeqList;
     private String sSubject;
     private String sState;
     private String gubun;

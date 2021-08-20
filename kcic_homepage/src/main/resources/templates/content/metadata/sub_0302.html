@@ -42,7 +42,7 @@
                 <input type="hidden" id="pageSize" name="pageSize" value="10" />
                 <input type="hidden" id="selItemList" name="selItemList" value="" />
                 <input type="hidden" id="mDomain" name="mDomain" />
-                <input type="hidden" id="mItemName" name="mItemName" />
+                <input type="hidden" id="mItemName" name="mItemName" th:value="${mItemLabel}"/>
                 <input type="hidden" id="mItemLabel" name="mItemLabel" />
             </form>
             <div class="con-area">
@@ -81,7 +81,7 @@
                                     <strong>항목명</strong>
                                 </div>
                                 <div class="int-wrap">
-                                    <input id="s_mItemLabel" type="text" class="intxt"/>
+                                    <input id="s_mItemLabel" type="text" class="intxt" th:value="${mItemLabel}"/>
                                 </div>
                             </div>
                         </li>

@@ -172,6 +172,19 @@
                         </li>
                     </ul>
 
+                    <div id="metaView" class="table-03">
+                        <div class="l-box">
+                            <strong>분양요청</strong>
+                        </div>
+                        <div class="r-box">
+                            <div class="table-wrap">
+                                <table class="table-01" id="dataGride2" name="dataGride2">
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                     <div id="stateView" class="table-03">
                         <div class="l-box">
                             <strong>상태</strong>
@@ -209,6 +222,7 @@
     <script lang="javascript">
         $(document).ready(function () {
             $(".table-02").hide();
+            $("#metaView").hide();
             $("#stateView").hide();
             $("#cancelView").hide();
             $("#fileView").hide();
@@ -262,6 +276,7 @@
         function goStudyDataview(sid) {
             $("#stateView").hide();
             $("#cancelView").hide();
+            $("#metaView").hide();
             $("#fileView").hide();
             $(".from-btn").hide();
             $.ajax({
@@ -296,11 +311,40 @@
                     if ( rowData.statecode == 3 ) {
                         $("#fileView").show();
                     }
+
+                    if ( data.metaView != null) {
+                        metadata(data.metaView);
+                    }
                 },
                 error: function (data) {
                     console.log(data);
                 }
             });
+        }
+
+        function metadata(data) {
+            $("#metaView").show();
+            $("#dataGride2 tbody").empty();
+            $("#totalCount").empty();
+            let strHtml = '<tr><th>도메인</th><th>변수명</th><th>항목명</th><th>데이터유형</th><th>데이터타입</th><th>코드 설명</th><th>길이</th><th>단위</th></tr>';
+            if (data.length > 0 ) {
+                $.each(data, function (key) {
+                    strHtml += '<tr>';
+                    strHtml += '<td>' + data[key].m_domain + '</td>';
+                    strHtml += '<td>' + data[key].m_item_name + '</td>';
+                    strHtml += '<td>' + data[key].m_item_label + '</td>';
+                    strHtml += '<td>' + data[key].m_data_type + '</td>';
+                    strHtml += '<td>' + data[key].m_input_type + '</td>';
+                    strHtml += '<td>' + data[key].m_item_codelist + '</td>';
+                    strHtml += '<td>' + data[key].m_item_length + '</td>';
+                    strHtml += '<td>' + data[key].m_measurement_unit + '</td>';
+                    strHtml += '</tr>';
+                });
+            }
+            else {
+                strHtml += '<tr><td colspan="9">신청 데이터가 없습니다.</td></tr>';
+            }
+            $("#dataGride2 tbody").html(strHtml);
         }
     </script>
 </th:block>

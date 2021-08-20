@@ -17,4 +17,5 @@ public interface Users {
     int uptData(UsersVO vo) throws Exception;
     int uptDataSp(UsersVO vo) throws Exception;
     int delData(UsersVO vo) throws Exception;
+    int uptState(UsersVO vo) throws Exception;
 }

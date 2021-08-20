@@ -43,4 +43,8 @@ public class UsersService {
     public int delData(UsersVO vo) throws Exception {
         return users.delData(vo);
     }
+
+    public int uptState(UsersVO vo) throws Exception {
+        return users.uptState(vo);
+    }
 }

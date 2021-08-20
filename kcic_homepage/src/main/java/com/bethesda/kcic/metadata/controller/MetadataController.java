@@ -53,6 +53,8 @@ public class MetadataController {
     @RequestMapping(value = "/sub02")
     public ModelAndView goSub02(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
+
+        mav.addObject("mItemLabel", request.getParameter("itemLabel"));
         mav.addObject("metaDataDomainList", metaDataService.getMetaDataDomainList());
         mav.setViewName("content/metadata/sub_0302.html");
         return mav;
