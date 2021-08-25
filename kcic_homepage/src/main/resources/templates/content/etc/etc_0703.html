@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/subLayout">
+
+<th:block layout:fragment="content">
+<div id="container">
+    <div id="spot">
+        <div class="img-box sub02">
+            <div class="tit-box">
+                <h2>웹접근성 및 저작권 정책</h2>
+            </div>
+        </div>
+        <div id="snb">
+            <ul class="nav">
+                <li>
+                    <a th:href="@{/etc/etc01}">홈페이지 이용 안내</a>
+                </li>
+                <li>
+                    <a th:href="@{/etc/etc02}">개인정보 처리방침</a>
+                </li>
+                <li class="active">
+                    <a th:href="@{/etc/etc03}">웹접근성 및 저작권 정책</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div id="con">
+            <div class="sub-tit">
+                <h3>웹접근성 및 저작권 정책</h3>
+                <ul id="navigater">
+                    <li class="home"></li>
+                    <li>웹접근성 및 저작권 정책</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+</th:block>
+
+</body>
+</html>
