@@ -53,7 +53,7 @@
                 <strong class="s-tit">분양자료 검색</strong>
                 <div class="check-search">
                     <ul class="search-list">
-                        <th:block th:each="metaDataDomain : ${metaDataDomainList}" >
+                        <th:block th:each="metaDataDomain : ${metaDataDomainList}"  >
                             <li>
                                 <input type="checkbox" th:id="|domainName-${metaDataDomainStat.count}|" name="mDomainList" th:value="${metaDataDomain.m_domain}" />
                                 <label th:for="|domainName-${metaDataDomainStat.count}|">
