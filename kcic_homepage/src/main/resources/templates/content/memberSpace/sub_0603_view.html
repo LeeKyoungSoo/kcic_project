@@ -14,22 +14,6 @@
             </div>
             <div id="snb">
                 <ul class="nav">
-                    <th:block th:if="${session['userLv']} == '9'" >
-                        <li>
-                            <a th:href="@{/memberSpace/sub07}">마이페이지</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/memberSpace/sub08}">분양신청관리</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/memberSpace/sub09}">회원관리</a>
-                        </li>
-                    </th:block>
-                    <th:block th:if="${session['userLv']} == '1'" >
-                        <li>
-                            <a th:href="@{/memberSpace/sub07}">마이페이지</a>
-                        </li>
-                    </th:block>
                     <li>
                         <a th:href="@{/memberSpace/sub01}">나의 스터디</a>
                     </li>
@@ -48,6 +32,22 @@
                     <li>
                         <a th:href="@{/noticeSpace/sub05}">FAQ</a>
                     </li>
+                    <th:block th:if="${session['userLv']} == '1'" >
+                        <li>
+                            <a th:href="@{/memberSpace/sub07}">회원정보변경</a>
+                        </li>
+                    </th:block>
+                    <th:block th:if="${session['userLv']} == '9'" >
+                        <li>
+                            <a th:href="@{/memberSpace/sub07}">회원정보변경</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/memberSpace/sub08}">분양신청관리</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/memberSpace/sub09}">회원관리</a>
+                        </li>
+                    </th:block>
                 </ul>
             </div>
         </div>
