@@ -47,8 +47,8 @@
                                     <strong>자료현황</strong>
                                     <a href="#" class="more-btn"></a>
                                 </div>
-                                <div class="chart-wrap">
-                                    <img src="/images/main/chart_01.jpg" alt="자료현황">
+                                <div id="chartBox" class="chart-wrap" style="height: 404px;">
+<!--                                    <img src="/images/main/chart_01.jpg" alt="자료현황">-->
                                 </div>
                                 <div class="chart-info">
                                     <strong>전체등록 현황</strong>
@@ -61,8 +61,8 @@
                                 <div class="tit-box">
                                     <strong>중재종류</strong>
                                 </div>
-                                <div class="chart-wrap">
-                                    <img src="/images/main/chart_02.jpg" alt="중재종류">
+                                <div id="dounutChart" class="chart-wrap" style="height: 404px;">
+<!--                                    <img src="/images/main/chart_02.jpg" alt="중재종류">-->
                                 </div>
                                 <div class="chart-info">
                                     <strong>등록전체 인원</strong>
@@ -132,7 +132,7 @@
                                             <div class="tit-box">
                                                 <strong>중재종류</strong>
                                             </div>
-                                            <div class="chart-wrap">
+                                            <div id="dounutChart2" class="chart-wrap" style="height: 104px;">
                                                 <img src="/images/main/chart_03.png" alt="중재종류">
                                             </div>
                                         </li>
@@ -421,7 +421,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a th:href="|@{/bbsApi/fileDownload}/임상연구자료_표준화_가이드라인(Ver.2.0)_0824.hwp|">
                                     <div class="mask-wrap">
                                         <div class="circle-01"></div>
                                         <div class="circle-02"></div>
@@ -434,7 +434,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a th:href="|@{/bbsApi/fileDownload}/codebook.pdf|">
                                     <div class="mask-wrap">
                                         <div class="circle-01"></div>
                                         <div class="circle-02"></div>
@@ -488,7 +488,14 @@
 
     </div>
 
+    <script th:src="@{/js/code/highcharts.js}"></script>
     <script>
+        $(document).ready(function () {
+            chartData();
+            dounutChart();
+            //dounutChart2();
+        });
+
         $(function(){
             $("#metadataSearch").click(function(){
                 if ( $("#itemLabel").val() == "" ) {
@@ -504,6 +511,298 @@
                 location.href = '[[@{/metadata/sub02}]]?itemLabel=' + $("#itemLabel").val();
             });
         });
+
+
+        function chartData() {
+            const data = {
+                chartYear : [
+                    2001,
+                    2002,
+                    2003,
+                    2004
+                ],
+                chartData : [
+                    5,
+                    2,
+                    3,
+                    7
+                ]
+            };
+            chartCreate(data);
+        }
+
+        function chartCreate(data) {
+            let myChart = Highcharts.chart('chartBox', {
+
+                /* 바 색상 */
+                colors: ['#2375C9','#51B7E8'],
+
+                /* 차트종류 */
+                chart: { type: 'column' },
+
+                /* 제목 */
+                title: { text: '' },
+
+                /* 부제목 */
+                subtitle: { text: ''},
+
+                /* X축 / Y 축 */
+                xAxis: {
+                    categories: data.chartYear,
+                    labels: {
+                        y: 20,
+                        style: {
+                            color:'#444',
+                            fontSize: '16px'
+                        }
+                    }
+                },
+                yAxis: {
+                    title: { text: '분양 횟수' },
+                    labels: {
+                        enabled: false,  //label 미사용 시 false로 지정.
+                    },
+                    stackLabels: {//스택 바에 사용하는 label 설정.(stacked bar 필수 설정 옵션)
+                        enabled: true,
+                        verticalAlign:"bottom", // y축 값 위치
+                        style: { //바 안의 y축 값 스타일
+                            textOutline:0,// label 수치의 outline 제거 0으로 지정.
+                            fontSize: '18px',
+                            fontWeight: '1000',
+                            color:'#ffffff'
+                        }
+                    }
+                },
+
+                /* 범례 */
+                legend: {enabled: false},
+
+                /* 툴팁 */
+                tooltip: {valueSuffix: '개'},
+
+                /*하이차트 레이블 삭제*/
+                credits: {enabled: false},
+
+                plotOptions: {
+                    column: {// 컬럼 차트 전체 옵션 지정
+                        stacking: 'normal'//stacked bar 필수 설정 옵션(default undefined)
+                    }, //y축 값 => x축 쪽으로 내리기 위한 코드
+                },
+
+                /* 표 데이터 */
+                series: [
+                    {
+                        name: '',
+                        colorByPoint : true, // 여러가지 바 색상을 지정 시 true
+                        data: data.chartData,
+                        dataLabels: {//바 상단의 수치값 개별 지정.
+                            enabled: true,
+                            format: '{y}',//수치 표현 포맷
+                            color: '#ffffff',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                ]
+            });
+        }
+    </script>
+
+    <script>
+        function dounutChart() {
+            //차트 색상 지정
+            Highcharts.setOptions({
+                colors: ['#51B7E8','#3f77cb', '#2375C9','#3202F1', '#6683CF', '#5933D9']
+            });
+            // Set up the chart
+            var chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'dounutChart',
+                    type: 'pie', //도넛 차트도 원형이기 때문에 pie로 지정함.
+                    margin: [0, 5, 5, 5],
+                    spacingRight:0,//차트 우측 여백 지정(default 10)
+                    style: {
+
+                        color: '#444',
+                        fontFamily: 'notoSans',
+                        fontWeight: '400',
+                    },
+                    backgroundColor:'rgba(255, 255, 255, 0)'
+                },
+                credits: {enabled: false}, //highchart 워터마크 숨김처리
+                title: {
+                    text: '10,451',
+                    x:-4,
+                    y:142,
+                },
+                legend: {
+                    align:'center',
+                    verticalAlign: 'bottom',
+                    width: 340,
+                    x: -5,
+                    y: -2,
+                    itemWidth: 110,
+                    itemDistance: 0,
+                    symbolHeight: 10,
+                    symbolWidth: 10,
+                    symbolPadding: 5,
+                    symbolRadius: 0,
+                    itemStyle: {
+                        color: '#333',
+                        fontSize: '14px',
+                        fontWeight:'normal'
+                    }
+                },
+                plotOptions: {
+                    pie: {//도넛(파이)차트 전체 옵션 지정.
+                        dataLabels: {
+                            enabled: true,
+                            distance: -20,
+                        },
+                        showInLegend: true,//범례 show/hide 설정. (series 내에서 개별 지정도 가능.)
+                        size: '60%',
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name:'',
+                    innerSize: '60%',//도넛 차트 지정시 내부 구멍 너비를 설정.(도넛 차트 필수 지정 옵션)
+                    data:[
+                        {
+                            name: 'Microarry',
+                            y: 60,
+
+                        },
+                        {
+                            name: 'Clinical Study',
+                            y: 10,
+
+                        },
+                        {
+                            name: 'NGS',
+                            y: 10,
+
+                        },
+                        {
+                            name: 'Contents-1',
+                            y: 8,
+
+                        },
+                        {
+                            name: 'Contents-2',
+                            y: 7,
+
+                        },
+                        {
+                            name: 'Contents-3',
+                            y: 6,
+
+                        }
+                    ],
+                    dataLabels: {
+                        enabled: false,
+                    }
+                }]
+            });
+        }
+    </script>
+    <script>
+        function dounutChart2() {
+            //차트 색상 지정
+            Highcharts.setOptions({
+                colors: ['#51B7E8','#3f77cb', '#2375C9','#3202F1', '#6683CF', '#5933D9']
+            });
+            // Set up the chart
+            var chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'dounutChart2',
+                    type: 'pie', //도넛 차트도 원형이기 때문에 pie로 지정함.
+                    margin: [0, 5, 5, 5],
+                    spacingRight:0,//차트 우측 여백 지정(default 10)
+                    style: {
+
+                        color: '#444',
+                        fontFamily: 'notoSans',
+                        fontWeight: '400',
+                    },
+                    backgroundColor:'rgba(255, 255, 255, 0)'
+                },
+                credits: {enabled: false}, //highchart 워터마크 숨김처리
+                title: {
+                    text: '10,451',
+                    x:-4,
+                    y:142,
+                },
+                legend: {
+                    align:'center',
+                    verticalAlign: 'bottom',
+                    width: 340,
+                    x: -5,
+                    y: -2,
+                    itemWidth: 110,
+                    itemDistance: 0,
+                    symbolHeight: 10,
+                    symbolWidth: 10,
+                    symbolPadding: 5,
+                    symbolRadius: 0,
+                    itemStyle: {
+                        color: '#333',
+                        fontSize: '14px',
+                        fontWeight:'normal'
+                    }
+                },
+                plotOptions: {
+                    pie: {//도넛(파이)차트 전체 옵션 지정.
+                        dataLabels: {
+                            enabled: true,
+                            distance: -20,
+                        },
+                        showInLegend: true,//범례 show/hide 설정. (series 내에서 개별 지정도 가능.)
+                        size: '60%',
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name:'',
+                    innerSize: '60%',//도넛 차트 지정시 내부 구멍 너비를 설정.(도넛 차트 필수 지정 옵션)
+                    data:[
+                        {
+                            name: 'Microarry',
+                            y: 60,
+
+                        },
+                        {
+                            name: 'Clinical Study',
+                            y: 10,
+
+                        },
+                        {
+                            name: 'NGS',
+                            y: 10,
+
+                        },
+                        {
+                            name: 'Contents-1',
+                            y: 8,
+
+                        },
+                        {
+                            name: 'Contents-2',
+                            y: 7,
+
+                        },
+                        {
+                            name: 'Contents-3',
+                            y: 6,
+
+                        }
+                    ],
+                    dataLabels: {
+                        enabled: false,
+                    }
+                }]
+            });
+        }
     </script>
 </th:block>
 
