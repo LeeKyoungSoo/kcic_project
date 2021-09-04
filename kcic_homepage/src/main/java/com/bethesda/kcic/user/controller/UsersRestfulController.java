@@ -1,11 +1,11 @@
 package com.bethesda.kcic.user.controller;
 
-import com.bethesda.kcic.datasales.domain.StudyAchieveVO;
 import com.bethesda.kcic.security.CustomEncrypt;
 import com.bethesda.kcic.user.domain.UsersVO;
 import com.bethesda.kcic.user.service.UsersService;
 import com.bethesda.kcic.util.DateTimeUtil;
-import org.apache.catalina.User;
+import com.bethesda.kcic.util.MailSend;
+import com.bethesda.kcic.util.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +16,90 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/usersApi")
 public class UsersRestfulController {
     @Autowired
     UsersService usersService;
-    
+
+    @Autowired
+    MailSend mailSend;
+
+    @PostMapping("/idSearch")
+    public HashMap goIdSearch(UsersVO vo) throws Exception {
+        HashMap resultMap = new HashMap<>();
+
+        UsersVO uservo = usersService.getDataSrch(vo);
+        int resultCode = 300;
+        String resultMsg = "";
+        if(uservo != null){
+            if ( uservo.getUseyn().equals("N")) {
+                resultMsg = "stopUser";
+            }
+            else if ( !uservo.getEmail().equals(vo.getEmail())) {
+                resultMsg = "noEmail";
+            }
+            else {
+                resultCode = 200;
+                resultMsg = uservo.getUserid();
+            }
+        }
+        else{
+            resultMsg = "fail";
+        }
+        resultMap.put("resultCode", resultCode);
+        resultMap.put("resultMsg", resultMsg);
+        return resultMap;
+    }
+
+
+    @PostMapping("/pwSearch")
+    public HashMap goPwSearch(UsersVO vo, HttpServletRequest request) throws Exception {
+        HashMap resultMap = new HashMap<>();
+        HttpSession session = request.getSession();
+
+        UsersVO usersvo = usersService.getDataSrch(vo);
+        int resultCode = 300;
+        String resultMsg = "";
+        if(usersvo != null){
+            if ( usersvo.getUseyn().equals("N")) {
+                resultMsg = "stopUser";
+            }
+            else if ( !usersvo.getEmail().equals(vo.getEmail())) {
+                resultMsg = "noEmail";
+            }
+            else {
+                String title = "임시패스워드 발송";
+                String sendpw = WebUtil.getTempPassword(8);
+                String body = "임시패스워드 : " + sendpw + "입니다.";
+
+                //mailSend.SendEmail("hawkeye9@naver.com", title, body);
+                mailSend.SendEmail(vo.getEmail(), title, body);
+
+                try {
+                    sendpw = CustomEncrypt.encryptPassword(vo.getUserpw() ,session.getAttribute("userId").toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                vo.setUserpw(sendpw);
+                int nResultCode = 1; //usersService.uptSrchPw(vo);
+                resultMsg = (nResultCode > 0) ?  "임시비밀번호가 메일로 발송되었습니다":"메일발송이 실패 했습니다.";
+
+                resultMap.put("resultCode", nResultCode);
+                resultMap.put("resultMsg", resultMsg);
+                return resultMap;
+            }
+        }
+        else{
+            resultMsg = "fail";
+        }
+        resultMap.put("resultCode", resultCode);
+        resultMap.put("resultMsg", resultMsg);
+        return resultMap;
+    }
+
     @PostMapping("/dataList")
     public HashMap goDataList(UsersVO vo) throws Exception {
         HashMap resultMap = new HashMap<>();

@@ -47,4 +47,12 @@ public class UsersService {
     public int uptState(UsersVO vo) throws Exception {
         return users.uptState(vo);
     }
+
+    public UsersVO getDataSrch(UsersVO vo) throws Exception {
+        return users.getDataSrch(vo);
+    }
+
+    public int uptSrchPw(UsersVO vo) throws Exception {
+        return users.uptSrchPw(vo);
+    }
 }

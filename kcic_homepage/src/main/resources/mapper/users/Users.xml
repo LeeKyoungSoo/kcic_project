@@ -2,6 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bethesda.kcic.user.mapper.Users">
+
+    <update id="uptSrchPw" parameterType="com.bethesda.kcic.user.domain.UsersVO">
+        <![CDATA[
+        /* Users.uptData */
+        UPDATE tb_members
+        SET
+            userpw =  #{userpw}
+        WHERE userid = #{userid}
+          and email = #{email}
+        ]]>
+    </update>
+
+    <select id="getDataSrch" parameterType="com.bethesda.kcic.user.domain.UsersVO" resultType="com.bethesda.kcic.user.domain.UsersVO">
+     <![CDATA[
+        /* Users.getDataView */
+        SELECT
+            uid
+             ,userid
+             ,userpw
+             ,usernm
+             ,sosuk
+             ,jobnm
+             ,email
+             ,userlv
+             ,useyn
+             ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
+        FROM tb_members
+        WHERE userid = #{userid}
+        ]]>
+        <if test='email != null and !email.equals("")'>
+            AND email = #{email}
+        </if>
+        <if test='usernm != null and !usernm.equals("")'>
+            AND usernm = #{usernm}
+        </if>
+    </select>
+
     <insert id="insData" parameterType="com.bethesda.kcic.user.domain.UsersVO">
         <![CDATA[
         /* Users.insData */

@@ -5,40 +5,72 @@
       layout:decorator="layout/subLayout">
 
 <th:block layout:fragment="content">
-<div id="container">
-    <div id="spot">
-        <div class="img-box sub02">
-            <div class="tit-box">
-                <h2>웹접근성 및 저작권 정책</h2>
+    <div id="container">
+        <div id="spot">
+            <div class="img-box sub02">
+                <div class="tit-box">
+                    <h2>웹접근성 및 저작권 정책</h2>
+                </div>
             </div>
-        </div>
-        <div id="snb">
-            <ul class="nav">
-                <li>
-                    <a th:href="@{/etc/etc01}">홈페이지 이용 안내</a>
-                </li>
-                <li>
-                    <a th:href="@{/etc/etc02}">개인정보 처리방침</a>
-                </li>
-                <li class="active">
-                    <a th:href="@{/etc/etc03}">웹접근성 및 저작권 정책</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div id="content">
-        <div id="con">
-            <div class="sub-tit">
-                <h3>웹접근성 및 저작권 정책</h3>
-                <ul id="navigater">
-                    <li class="home"></li>
-                    <li>웹접근성 및 저작권 정책</li>
+            <div id="snb">
+                <ul class="nav">
+                    <li>
+                        <a th:href="@{/etc/etc01}">홈페이지 이용 안내</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/etc/etc02}">개인정보 처리방침</a>
+                    </li>
+                    <li class="active">
+                        <a th:href="@{/etc/etc03}">웹접근성 및 저작권 정책</a>
+                    </li>
                 </ul>
             </div>
         </div>
+        <div id="content">
+            <div id="con">
+                <div class="sub-tit">
+                    <h3>웹접근성 및 저작권 정책</h3>
+                    <ul id="navigater">
+                        <li class="home"></li>
+                        <li class="m-now">웹접근성 및 저작권 정책</li>
+                    </ul>
+                </div>
 
+                <div class="con-area">
+                    <strong class="s-tit">바로 접근(Accessibility) 링크</strong>
+                    <p class="txt bmar_50">
+                        서비스 문서 시작부분에 반복되는 링크가 많은 페이지를 효율적으로 이용하기 위한 스킵 네비게이션(바로가기) 링크를 제공하고 있습니다.
+                    </p>
+                    <strong class="s-tit">문서 제목(title태그)</strong>
+                    <p class="txt bmar_50">
+                        모든 문서마다 문서의 제목(&lt;title &gt;)을 제공하고, 문서의 제목은 문서의 특성을 잘 나타내도록 간단명료하게 기술하고 있습니다.
+                    </p>
+                    <strong class="s-tit">문서의 구조화</strong>
+                    <p class="txt bmar_50">
+                        문서는 논리적인접근 및 키보드 접근이 가능하도록 헤딩(&lt;h1&gt;~&lt;h6&gt;), 문단(&lt;p&gt;), 목록(&lt;ul&gt;,&lt;ol&gt;, &lt;dl&gt;) 등의 태그를 사용하였습니다. 또한 디자인요소를 css를 사용하여 분리하고 있으며 스타일시트를 제거하더라도 콘텐츠를 이해할 수 있습니다.
+                    </p>
+                    <strong class="s-tit">이미지 정보</strong>
+                    <p class="txt bmar_50">
+                        텍스트가 아닌 콘텐츠에는 모두 대체 텍스트가 제공되고 있으며, 대체 텍스트 제공이 어려운 도형이미지는 별도의 텍스트정보를 제공하고 있습니다.
+                    </p>
+                    <strong class="s-tit">키보드 사용방법</strong>
+                    <p class="txt bmar_50">
+                        다음 문장으로 이동하실 때는 Tab키를 누릅니다.
+                        <br>
+                        이전 문장으로 이동하실 때는 Shift+Tab키를 누릅니다.
+                        <br>
+                        메뉴나 항목의 선택 또는 첨부파일 다운로드를 하실 때는 Enter키를 누릅니다.
+                        <br>
+                        이전 페이지로 이동하실 때는 백스페이스(←)키를 누릅니다.
+                    </p>
+
+                    <p class="txt">
+                        웹접근성 향상을 위해 여러분의 제안이나 의견을 환영합니다. 언제든 서비스에 관해 보완해야할 사항이나 불편한 점이 있으시면 의견을 주시기 바랍니다.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 </th:block>
 
 </body>

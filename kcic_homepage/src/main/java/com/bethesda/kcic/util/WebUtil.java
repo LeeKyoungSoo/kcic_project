@@ -19,6 +19,28 @@ public class WebUtil {
     protected static final Logger log = LogManager.getLogger();
 
     /**
+     * 전달된 파라미터에 맞게 난수를 생성한다
+     * @param len : 생성할 난수의 길이
+     * @param dupCd : 중복 허용 여부 (1: 중복허용, 2:중복제거)
+     */
+    public static String getTempPassword(int length) {
+        int index = 0;
+        char[] charArr = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+                'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a',
+                'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+                'w', 'x', 'y', 'z' };
+
+        StringBuffer sb = new StringBuffer();
+
+        for (int i = 0; i < length; i++) {
+            index = (int) (charArr.length * Math.random());
+            sb.append(charArr[index]);
+        }
+
+        return sb.toString();
+    }
+
+    /**
      * 파일다운로드
      *
      * @param file

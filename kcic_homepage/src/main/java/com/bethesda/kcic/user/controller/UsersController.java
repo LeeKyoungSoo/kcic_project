@@ -17,4 +17,18 @@ public class UsersController {
         mav.setViewName("content/users/registmember.html");
         return mav;
     }
+
+    @RequestMapping(value = "/idsearch")
+    public ModelAndView goIdSearch(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("content/users/idSearch.html");
+        return mav;
+    }
+
+    @RequestMapping(value = "/pwsearch")
+    public ModelAndView goPwSearch(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("content/users/pwSearch.html");
+        return mav;
+    }
 }

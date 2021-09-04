@@ -126,6 +126,17 @@
 #con .form-search .search-list-01 > li .input-box .int-wrap{display: table-cell;width:99%;padding:0 10px;vertical-align: middle;}
 #con .form-search .search-list-01 > li .input-box .int-wrap .intxt,
 #con .form-search .search-list-01 > li .input-box .int-wrap .select-box{width:100%;}
+
+#con .form-search .search-list-02{margin-bottom:20px;border:1px solid #e9e9e9;border-bottom:none;}
+#con .form-search .search-list-02:after{content: '';display: block;clear: both;}
+#con .form-search .search-list-02 > li{float:left;width:50%;border-right:1px solid #e9e9e9;border-bottom:1px solid #e9e9e9;}
+#con .form-search .search-list-02 > li:last-child{border-right: 0;}
+#con .form-search .search-list-02 > li .input-box{display: table;}
+#con .form-search .search-list-02 > li .input-box .tit-wrap{display: table-cell;width:1%;}
+#con .form-search .search-list-02 > li .input-box .tit-wrap > strong{display: block;width:250px;border-right:1px solid #e9e9e9;line-height:53px;color:#292929;font-weight:700;font-size:1.063rem;text-align: center;background:#f5f7f9;}
+#con .form-search .search-list-02 > li .input-box .int-wrap{display: table-cell;width:99%;padding:0 10px;vertical-align: middle;}
+#con .form-search .search-list-02 > li .input-box .int-wrap .intxt{width:100%;}
+
 #con .form-search .from-btn{text-align: right;}
 
 #con .table-wrap{width:100%;}
@@ -136,6 +147,8 @@
 #con .table-wrap .table-01 td.ltxt{padding-left:30px;text-align: left;}
 #con .table-wrap .table-01 td > a{overflow:hidden;display: inline-block;max-width:800px;color:#969aa4;font-weight: 500;font-size:0.9375rem;text-overflow: ellipsis;white-space: nowrap;}
 #con .table-wrap .table-01 td > a > span{display: inline-block;margin-right:5px;}
+
+
 
 /*말줄임 필요할때*/
 
@@ -163,6 +176,12 @@
 #con .search-wrap > ul > li .search-int .btn-wrap{display: table-cell;width: 1%;}
 #con .search-wrap > ul > li .search-int .btn-wrap .srh-btn{width:70px;height: 40px;margin-right:10px;border:none;text-align: center;line-height: 40px;color:#fff;font-weight: 500;font-size:0.9375rem;font-family:'Noto Sans KR', sans-serif;background:#006cc7;}
 
+
+@media screen and (max-width:1400px){
+    #con .form-search .search-list-02 > li .input-box .tit-wrap > strong{width:200px;}
+}
+
+
 @media screen and (max-width:1200px){
     #con .form-search .search-list-01{height:auto;}
     #con .form-search .search-list-01 > li .input-box{display: block;}
@@ -170,6 +189,8 @@
     #con .form-search .search-list-01 > li .input-box .tit-wrap > strong{width:100%;border:none;}
     #con .form-search .search-list-01 > li .input-box .int-wrap{display: block;width:100%;padding:10px 5px;}
 
+    
+    #con .form-search .search-list-02 > li .input-box .tit-wrap > strong{width:150px;}
 }
 
 
@@ -185,11 +206,14 @@
     #con .search-wrap > ul > li .search-int{width:100%;}
 
     #con .date-list > li .date-box .intxt{padding-left:5px;}
+
+    #con .form-search .search-list-02 > li .input-box .tit-wrap > strong{width:100px;}
     
 }
 
 @media screen and (max-width:800px){
-    #con .form-search .search-list-01 > li{float:none;width:100%;border-bottom:1px solid #e9e9e9;border-right:none;}
+    #con .form-search .search-list-01 > li,
+    #con .form-search .search-list-02 > li{float:none;width:100%;border-bottom:1px solid #e9e9e9;border-right:none;}
 }
 
 
@@ -980,6 +1004,18 @@
     #con .login-box .login-menu .menu-list > li:first-child{padding-left:0;}
 }
 
+
+/*비밀번호 찾기*/
+#con .pw-search > p{margin-bottom:50px;color:#292929;font-weight: 500;font-size: 1.25rem;text-align: center;line-height: 1.5;}
+
+@media screen and (max-width:800px){
+    #con .pw-search > p > br{display: none;}
+}
+
+@media screen and (max-width:600px){
+    #con .pw-search > p{margin-bottom:20px;font-size:1.125rem;}
+}
+
 /* form */
 #content .w_100s{width:100%;}
 #content .w_90s{width:90%;}
@@ -1073,3 +1109,6 @@
     #con .table-03 .r-box .apply-btn{margin:5px 0 0;]}
     #con .table-03 .r-box .select-box{width:100%;}
 }
+
+
+#con .color-01{color:#133783;}
