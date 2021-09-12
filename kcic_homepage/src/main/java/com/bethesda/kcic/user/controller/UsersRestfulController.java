@@ -55,12 +55,11 @@ public class UsersRestfulController {
 
 
     @PostMapping("/pwSearch")
-    public HashMap goPwSearch(UsersVO vo, HttpServletRequest request) throws Exception {
+    public HashMap goPwSearch(UsersVO vo) throws Exception {
         HashMap resultMap = new HashMap<>();
-        HttpSession session = request.getSession();
 
         UsersVO usersvo = usersService.getDataSrch(vo);
-        int resultCode = 300;
+        int resultCode = 200;
         String resultMsg = "";
         if(usersvo != null){
             if ( usersvo.getUseyn().equals("N")) {
@@ -72,22 +71,22 @@ public class UsersRestfulController {
             else {
                 String title = "임시패스워드 발송";
                 String sendpw = WebUtil.getTempPassword(8);
-                String body = "임시패스워드 : " + sendpw + "입니다.";
-
-                //mailSend.SendEmail("hawkeye9@naver.com", title, body);
+                String body = sendpw;
                 mailSend.SendEmail(vo.getEmail(), title, body);
 
                 try {
-                    sendpw = CustomEncrypt.encryptPassword(vo.getUserpw() ,session.getAttribute("userId").toString());
+                    sendpw = CustomEncrypt.encryptPassword(sendpw ,usersvo.getUserid());
+                    vo.setUserpw(sendpw);
+                    if ( usersService.uptSrchPw(vo) < 1 ) {
+                        resultCode = 0;
+                    }
                 } catch (Exception e) {
+                    resultCode = 0;
                     e.printStackTrace();
                 }
 
-                vo.setUserpw(sendpw);
-                int nResultCode = 1; //usersService.uptSrchPw(vo);
-                resultMsg = (nResultCode > 0) ?  "임시비밀번호가 메일로 발송되었습니다":"메일발송이 실패 했습니다.";
-
-                resultMap.put("resultCode", nResultCode);
+                resultMsg = (resultCode > 0) ?  "임시비밀번호가 메일로 발송되었습니다":"메일발송이 실패 했습니다.";
+                resultMap.put("resultCode", resultCode);
                 resultMap.put("resultMsg", resultMsg);
                 return resultMap;
             }

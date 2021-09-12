@@ -29,8 +29,11 @@
              ,useyn
              ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
         FROM tb_members
-        WHERE userid = #{userid}
+        WHERE 1 = 1
         ]]>
+        <if test='userid != null and !userid.equals("")'>
+            AND userid = #{userid}
+        </if>
         <if test='email != null and !email.equals("")'>
             AND email = #{email}
         </if>
