@@ -13,7 +13,7 @@ public class MailSend {
 
     public void SendEmail(String mailAddress, String mailTitle, String mailCont)  {
         String msgboxFront = "<center><table width='400' height='100' cellpadding='0' cellspacing='1' bgcolor='#004c8e'><tr><td bgcolor='#e0e0e5' height='30' align='center'>" +
-                "<span style='color:#004c8e;font-size:16px;'>KCIC - 신규 비밀번호 발급</span></td></tr><tr><td bgcolor='#e0e0e5' height='70' align='center'>" +
+                "<span style='color:#004c8e;font-size:16px;'>KCDH - 신규 비밀번호 발급</span></td></tr><tr><td bgcolor='#e0e0e5' height='70' align='center'>" +
                 "<span style='color:#fa6a23;font-size:16px;font-weight:600'>";
         String msgboxTail = "</span></td></tr></table></center>";
 

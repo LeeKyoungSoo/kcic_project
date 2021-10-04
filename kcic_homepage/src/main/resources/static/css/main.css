@@ -204,7 +204,7 @@
 #section03{background-image: url('../images/main/section_04.jpg');background-position: center;background-size: cover;background-repeat: no-repeat;}
 #section03 .menu-banner{overflow:hidden;}
 #section03 .menu-banner:after{content:'';display: block;clear: both;}
-#section03 .menu-banner > li{float:left;width:20%;border-right: 1px solid rgba(255,255,255,.2);}
+#section03 .menu-banner > li{float:left;width:25%;border-right: 1px solid rgba(255,255,255,.2);}
 #section03 .menu-banner > li:last-child{border-right: none;}
 #section03 .menu-banner > li > a{display: block;position:relative;z-index:1;height:400px;padding-top:100px;text-align: center;color:#fff;}
 #section03 .menu-banner > li > a .menu-bg{overflow:hidden;position: absolute;top:50%;left:50%;z-index:-1;width:calc(100% + 20px);height:calc(100% + 20px);background:#287ccc;transform:translate(-50%,-50%) scale(0);transition: all .3s;box-shadow: 1px 1px 14px 1px rgba(0,0,0,.3);}

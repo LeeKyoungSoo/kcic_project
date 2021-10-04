@@ -62,7 +62,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/accounts/login")
-                .defaultSuccessUrl("/memberSpace/sub01");
+                .successHandler(new LoginSuccessHandler("/"));
+                //.defaultSuccessUrl("/memberSpace/sub01");
 
         http.authorizeRequests()
                 .and()

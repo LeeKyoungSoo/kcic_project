@@ -14,6 +14,11 @@ public class LoginController {
     @RequestMapping(value = "/login")
     public ModelAndView goLogin(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
+
+        //이전 페이지 저장
+        String referrer = request.getHeader("Referer");
+        request.getSession().setAttribute("prevPage", referrer);
+
         mav.setViewName("content/users/login.html");
         return mav;
     }
