@@ -625,8 +625,8 @@
 
 #con .sub0301 .list-wrap .tit-list > li .tit-box{float:left;width:250px;}
 #con .sub0301 .list-wrap .tit-list > li > ul{overflow: hidden;margin-right:-70px;}
-#con .sub0301 .list-wrap .tit-list > li > ul > li.li01{float:left;}
-#con .sub0301 .list-wrap .tit-list > li > ul > li.li01 .tit-box{width:200px;background:#0b2a55;}
+#con .sub0301 .list-wrap .tit-list > li > ul > li.li01{float:left;width:45%;margin-right:70px;}
+#con .sub0301 .list-wrap .tit-list > li > ul > li.li01 .tit-box{width:100%;background:#0b2a55;}
 #con .sub0301 .list-wrap .tit-list > li > ul > li.li02{overflow: hidden;}
 #con .sub0301 .list-wrap .tit-list > li > ul > li.li02 .tit-box{width:100%;}
 #con .sub0301 .list-wrap .list-01{background-image: url('../images/sub/03/sub_03_01_bg.png');background-position: center;background-repeat: no-repeat;background-size: cover;}
@@ -636,37 +636,38 @@
 #con .sub0301 .list-wrap .list-01 > li .list-02 > li{display:table;margin-bottom:20px;}
 #con .sub0301 .list-wrap .list-01 > li:last-child .list-02 > li{margin-bottom:0;}
 #con .sub0301 .list-wrap .list-01 > li .list-02 > li > div{display: table-cell;width:1%;vertical-align: middle;}
-#con .sub0301 .list-wrap .list-01 > li .list-02 > li > div .txt-box{width:250px;}
+#con .sub0301 .list-wrap .list-01 > li .list-02 > li > div .txt-box{width:250px;font-size: 1rem;}
 #con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03{display: table-cell;width:99%;}
 #con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li{}
 #con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04{}
 #con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li{margin-bottom:20px;}
 #con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li:last-child{margin-bottom:0;}
 #con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li:after{content:'';display: block;clear: both;}
-#con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li .txt-box{float:left;width:200px;}
-#con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li .txt-box-02{overflow:hidden;height: 55px;padding-left:60px;line-height: 55px;background:#aeb6ca;}
+#con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li .txt-box{float:left;width:45%;margin-right:70px;padding:0 20px 0 30px;text-align: left;line-height: 55px;}
+#con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li .txt-box > p{display: inline-block;line-height: 1.8;font-size: 1rem;}
+#con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li .txt-box-02{overflow:hidden;height: 55px;padding:0 20px 0 30px;line-height: 55px;background:#aeb6ca;}
 #con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li .txt-box-02 .txt-en{display: inline-block;margin-right:30px;font-family: 'Montserrat' ,'Noto Sans KR', sans-serif;font-weight: 400;color:#fff;}
-#con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li .txt-box-02 .txt{display: inline-block;color:#fff;font-weight: 400;}
+#con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li .txt-box-02 .txt{display: inline-block;color:#fff;font-weight: 400;line-height: 1.7;font-size: 1rem;}
 
 
 @media screen and (max-width:1400px){
     #con .sub0301 .img-box{height:450px;}
     #con .sub0301 .list-wrap{padding:50px 30px;}
     #con .sub0301 .list-wrap .tit-list > li .tit-box{width:200px;margin-right:50px;}
-    #con .sub0301 .list-wrap .tit-list > li > ul > li.li01 .tit-box{width:170px;}
+    #con .sub0301 .list-wrap .tit-list > li > ul > li.li01{margin-right:50px;}
     #con .sub0301 .list-wrap .tit-list > li > ul{margin-right:-50px;}
-    #con .sub0301 .list-wrap .list-01{background-position: 5% center;}
+    #con .sub0301 .list-wrap .list-01{background-position: top left -55px;}
     #con .sub0301 .list-wrap .list-01 > li .txt-box{margin-right:50px;}
-    #con .sub0301 .list-wrap .list-01 > li .list-02 > li > div .txt-box{width:200px;}
-    #con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li .txt-box{width:170px;}
-    #con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li .txt-box-02{padding-left:30px;}
+    #con .sub0301 .list-wrap .list-01 > li .list-02 > li > div .txt-box{width:200px;padding-left:20px;}
+    #con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li .txt-box{margin-right:50px;}
+    #con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li .txt-box-02{padding-left:20px;}
 }
 
 @media screen and (max-width:1200px){
     #con .sub0301 .list-wrap{padding:30px 10px;}
     #con .sub0301 .list-wrap .tit-list > li .tit-box{margin-right:30px;}
     #con .sub0301 .list-wrap .tit-list > li > ul{margin-right:-30px;}
-    #con .sub0301 .list-wrap .list-01{background-position:20% center;}
+    #con .sub0301 .list-wrap .list-01{background-position: top left -65px;}
     #con .sub0301 .list-wrap .list-01 > li .txt-box{margin-right:30px;}
     #con .sub0301 .list-wrap .list-01 > li .list-02 > li .list-03 > li .list-04 > li .txt-box-02{padding-left:20px;}
 }

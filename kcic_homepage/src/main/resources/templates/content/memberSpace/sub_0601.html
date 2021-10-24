@@ -26,9 +26,11 @@
                     <li>
                         <a th:href="@{/noticeSpace/sub06}">보도자료</a>
                     </li>
-                    <li>
+
+                    <!--<li>
                         <a th:href="@{/noticeSpace/sub04}">일정관리</a>
-                    </li>
+                    </li>-->
+
                     <li>
                         <a th:href="@{/noticeSpace/sub05}">FAQ</a>
                     </li>
@@ -324,8 +326,8 @@
                         $("#fileView").show();
                     }
 
-                    if ( data.metaView != null) {
-                        metadata(data.metaView);
+                    if ( data.dataList != null) {
+                        metadata(data);
                     }
 
                     if ( rowData.fileList.length > 0 ) {
@@ -343,22 +345,22 @@
             $("#dataGride2 tbody").empty();
             $("#totalCount").empty();
             let strHtml = '<tr><th>도메인</th><th>변수명</th><th>항목명</th><th>데이터유형</th><th>데이터타입</th><th>코드 설명</th><th>길이</th><th>단위</th></tr>';
-            if (data.length > 0 ) {
-                $.each(data, function (key) {
+            if (data.dataList.length > 0 ) {
+                $.each(data.dataList, function (key) {
                     strHtml += '<tr>';
-                    strHtml += '<td>' + data[key].m_domain + '</td>';
-                    strHtml += '<td>' + data[key].m_item_name + '</td>';
-                    strHtml += '<td>' + data[key].m_item_label + '</td>';
-                    strHtml += '<td>' + data[key].m_data_type + '</td>';
-                    strHtml += '<td>' + data[key].m_input_type + '</td>';
-                    strHtml += '<td>' + data[key].m_item_codelist + '</td>';
-                    strHtml += '<td>' + data[key].m_item_length + '</td>';
-                    strHtml += '<td>' + data[key].m_measurement_unit + '</td>';
+                    strHtml += '<td>' + data.dataList[key].domain + '</td>';
+                    strHtml += '<td>' + data.dataList[key].item_name + '</td>';
+                    strHtml += '<td>' + data.dataList[key].item_label + '</td>';
+                    strHtml += '<td>' + data.dataList[key].data_type + '</td>';
+                    strHtml += '<td>' + data.dataList[key].input_type + '</td>';
+                    strHtml += '<td>' + data.dataList[key].code_list + '</td>';
+                    strHtml += '<td>' + data.dataList[key].length + '</td>';
+                    strHtml += '<td>' + data.dataList[key].measurement_unit + '</td>';
                     strHtml += '</tr>';
                 });
             }
             else {
-                strHtml += '<tr><td colspan="9">신청 데이터가 없습니다.</td></tr>';
+                strHtml += '<tr><td colspan="8">신청한 데이터가 없습니다.</td></tr>';
             }
             $("#dataGride2 tbody").html(strHtml);
         }

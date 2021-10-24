@@ -406,20 +406,21 @@
 #content .link-site{background:#fff;text-align: center;}
 #content .link-site > ul{display:inline-block;height:100px;padding-top:30px;}
 #content .link-site > ul:after{content:'';display: block;clear: both;}
-#content .link-site > ul > li{float:left;margin:0 25px;}
+#content .link-site > ul > li{float:left;margin:0 50px;}
+#content .link-site > ul > li:first-child{margin-left: 0;}
+#content .link-site > ul > li:last-child{margin-right: 0;}
 #content .link-site > ul > li > a{display:block;}
 
 @media screen and (max-width:1500px){
-    #content .link-site > ul > li{margin:0 15px;}
-    #content .link-site > ul > li > a > img{width:150px;height: auto;}
+    #content .link-site > ul > li{margin:0 35px;}
+}
+
+@media screen and (max-width:1400px){
+    #content .link-site > ul > li{margin:0 25px;}
 }
 
 @media screen and (max-width:1200px){
-    #content .link-site > ul > li{margin:0 5px;}
-}
-
-@media screen and (max-width:1000px){
     #content .link-site{overflow-x: auto;}
-    #content .link-site > ul{width:1000px;}
+    #content .link-site > ul{width:1200px;}
 }
 

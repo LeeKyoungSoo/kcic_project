@@ -18,7 +18,7 @@
                     <a th:href="@{/datasales/sub01}">분양 절차 안내 및 신청</a>
                 </li>
                 <li>
-                    <a th:href="@{/datasales/sub02}">분양 자료 항목 및 검색</a>
+                    <a th:href="@{/datasales/sub02}">분양 자료 목록</a>
                 </li>
                 <li class="active">
                     <a th:href="@{/datasales/sub03}">분양 현황</a>
@@ -43,13 +43,12 @@
 
                 <strong class="s-tit">연도별 분양 현황</strong>
 
-                <!--
                 <div class="chart-img">
-                    <img src="/images/sub/04/chart.jpg" alt="연도별 분양 현황">
+                    준비중입니다.
                 </div>
-                -->
 
-                <div id="chartBox" class="chart-img"></div>
+
+                <div id="chartBox" class="chart-img" style="display: none"></div>
 
                 <strong class="s-tit">자료분양 내역</strong>
 
@@ -101,7 +100,9 @@
     <script lang="javascript">
         $(document).ready(function () {
             goDataList(1);
-            chartData();
+
+            //준비중
+            //chartData();
         });
 
         function chartData() {

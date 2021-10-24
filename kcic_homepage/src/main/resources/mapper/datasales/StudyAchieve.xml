@@ -59,6 +59,7 @@
              ,partuser
              ,purpose
              ,cont
+             ,studySeq
              ,DATE_FORMAT(sdt, '%Y-%m-%d') AS sdt
              ,DATE_FORMAT(edt, '%Y-%m-%d') AS edt
              ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
@@ -84,6 +85,7 @@
              ,studynm
              ,sosuk
              ,readuser
+             ,studySeq
              ,DATE_FORMAT(sdt, '%Y-%m-%d') AS sdt
              ,DATE_FORMAT(regDt, '%Y-%m-%d') AS regDt
              ,CASE
@@ -157,6 +159,7 @@
             ,regid
             ,regdt
             ,itemlist
+            ,studySeq
         )
         VALUES
         (
@@ -172,6 +175,7 @@
             ,#{regid}
             ,now()
             ,#{itemlist}
+            ,#{studySeq}
         )
         ]]>
     </insert>

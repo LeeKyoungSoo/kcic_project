@@ -32,5 +32,11 @@ public class MetaDataVO extends CommonVO implements Serializable{
 
     private List<String> mDomainList;
     private List<String> itemSeqList;
+
+    private List<String> pStudyOid;
+    private List<String> pDomain;
+    private String pItemName;
+    private String pItemLabel;
+    private String pKeyword;
 }
 

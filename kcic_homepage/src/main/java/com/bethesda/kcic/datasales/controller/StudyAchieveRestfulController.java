@@ -6,6 +6,7 @@ import com.bethesda.kcic.datasales.service.StudyAchieveService;
 import com.bethesda.kcic.metadata.domain.MetaDataVO;
 import com.bethesda.kcic.metadata.service.StudyMetaDataService;
 import com.bethesda.kcic.util.BaseMap;
+import com.bethesda.kcic.util.HttpClientUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,6 +69,15 @@ public class StudyAchieveRestfulController {
 
         List<String> itemSeqList = new ArrayList<>();
         if ( dataView.getItemlist() != null && !dataView.getItemlist().equals("")) {
+
+            BaseMap baseMap = new BaseMap();
+            baseMap.put("study_oid", dataView.getStudySeq());
+            baseMap.put("p_item_seq", dataView.getItemlist());
+            String url = "http://106.241.16.5:48084/service/KcdhSync/selStudyDetailInfo";
+            baseMap = HttpClientUtil.post(url, baseMap);
+            resultMap.put("dataList", baseMap.get("studyMetadataList"));
+
+            /*
             String[] temp = dataView.getItemlist().split(",");
             for (String tempVal : temp) {
                 itemSeqList.add(tempVal);
@@ -76,6 +86,7 @@ public class StudyAchieveRestfulController {
             metaDataVO.setItemSeqList(itemSeqList);
             metaDataVO.setOffSet(-1);
             resultMap.put("metaView", studyMetaDataService.getMetaDataList(metaDataVO));
+            */
         }
         resultMap.put("dataView", dataView);
 

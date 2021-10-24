@@ -17,7 +17,9 @@ public class LoginController {
 
         //이전 페이지 저장
         String referrer = request.getHeader("Referer");
-        request.getSession().setAttribute("prevPage", referrer);
+        if ( !referrer.contains("/accounts/login") ) {
+            request.getSession().setAttribute("prevPage", referrer);
+        }
 
         mav.setViewName("content/users/login.html");
         return mav;

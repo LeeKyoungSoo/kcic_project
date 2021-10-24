@@ -17,9 +17,9 @@
                 <li>
                     <a th:href="@{/metadata/sub01}">메타데이터 소개</a>
                 </li>
-                <!--<li>
-                    <a th:href="@{/metadata/sub02}">메타데이터 항목 검색</a>
-                </li>-->
+                <li>
+                    <a th:href="@{/metadata/sub02}">표준변수 메타데이터 항목검색</a>
+                </li>
                 <li class="active">
                     <a th:href="@{/metadata/sub03}">데이터셋별 메타데이터 목록</a>
                 </li>
@@ -44,38 +44,107 @@
                 <input type="hidden" id="studySeq" name="studySeq" value="1" />
                 <input type="hidden" id="mDomain" name="mDomain" />
                 <input type="hidden" id="mItemName" name="mItemName" />
-                <input type="hidden" id="mItemLabel" name="mItemLabel" />
-            </form>
-            <div class="con-area">
-                <div class="metadata-list">
-                    <div class="metadata-tab">
-                        <div class="h-box">
-                            <strong>데이터셋</strong>
+                <input type="hidden" id="mItemLabel" name="mItemLabel" th:value="${mItemLabel}" />
+                <input type="hidden" id="searchGubun" name="searchGubun" th:value="${searchGubun}" />
+
+                <div class="con-area">
+                    <div id="searchDetail" class="sub02">
+                        <div>
+                            <style>
+                                .table_hs {
+                                    border-spacing:0px;
+                                    border-collapse:collapse;
+                                }
+                                .td_title_hs {
+                                    background-color:#132058;
+                                    border: 1px solid #6a9ed1;
+                                    padding:10px;
+                                    color:#ffffff;
+                                    font-size:14px;
+                                    font-weight:600;
+                                }
+                                .td_cont_hs {
+                                    background-color:#ffffff;
+                                    border: 1px solid #6a9ed1;
+                                    padding:10px;
+                                    color:#3b3b1f;
+                                    font-size:14px;
+                                    font-weight:400;
+                                    vertical-align: top;
+                                }
+                            </style>
+
+                            <table class="table_hs">
+                                <colgroup>
+                                    <col width="40%">
+                                    <col width="40%">
+                                    <col width="10%">
+                                    <col width="10%">
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th class="td_title_hs">임상연구명</th>
+                                    <th class="td_title_hs">도메인명</th>
+                                    <th class="td_title_hs">변수명</th>
+                                    <th class="td_title_hs">항목명</th>
+                                </tr>
+                                <tr>
+                                    <td class="td_cont_hs" id="dataList"></td>
+                                    <td class="td_cont_hs" id="domainList"></td>
+                                    <td class="td_cont_hs">
+                                        <input type="text" id="pItemName" name="pItemName" class="intxt" />
+                                    </td>
+                                    <td class="td_cont_hs">
+                                        <input type="text" id="pItemLabel" name="pItemLabel" class="intxt" />
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <ul class="metadata-menu">
-                            <th:block th:each="metaDataDomain : ${metaDataDomainList}" >
-                                <li>
-                                    <a href="#" th:onclick="|goSearch('${metaDataDomain.study_seq}')|">[[${metaDataDomain.study_name}]]</a>
-                                </li>
-                            </th:block>
-                        </ul>
                     </div>
+
+                    <div class="form-search" style="margin-top: 20px;">
+                        <div class="from-btn">
+                            <span id="searchTotal">검색어 : <input type="text" id="pKeyword" name="pKeyword" class="intxt" th:value="${mItemLabel}" /></span>
+                            <input type="button" value="조회" class="rfc-btn" style="cursor: pointer;" onclick="goSearch();">
+                            <span id="searchMod"><input type="button" value="상세조건" class="rfc-btn" style="cursor: pointer;" onclick="goSearchModeChange();"></span>
+                            <input type="button" value="엑셀다운로드" class="rfc-btn" style="cursor: pointer;width:120px;" onclick="downloadExcel('');">
+                        </div>
+                    </div>
+
                     <div class="metadata-table">
                         <div class="table-wrap">
                             <table class="table-01" id="dataGride" name="dataGride">
+                                <colgroup>
+                                    <col width="10%">
+                                    <col width="15%">
+                                    <col width="15%">
+                                    <col width="15%">
+                                    <col width="10%">
+                                    <col width="15%">
+                                    <col width="10%">
+                                    <col width="10%">
+                                </colgroup>
                                 <tbody></tbody>
                             </table>
                         </div>
                         <div style="width: 100%">
                             <div id="paging" class="paging" style="margin: 30px 0px 0px 0px;float:left;width:500px;text-align:left;" >
                             </div>
-                            <div class="from-btn" style="float:right;width:200px">
-                                <a href="javascript:downloadExcel('');" class="down-btn">엑셀다운로드</a>
-                            </div>
+
+                            <!--<div class="from-btn tmar_20" style="float:right;width:400px;color:blue">
+                                <div class="select-box">
+                                   <select id="pageSizeVal" style="width: 100px;">
+                                        <option value="45">45</option>
+                                        <option value="45">30</option>
+                                        <option value="45">15</option>
+                                    </select>
+                                </div>
+                            </div>-->
                         </div>
                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -83,8 +152,63 @@
 <script th:src="@{/js/bethesda/board.js}" type="text/javascript"></script>
 <script lang="javascript">
     $(document).ready(function () {
-        goDataList(1);
+        if ( $("#searchGubun").val() != "Y" ) {
+            $("#searchDetail").show();
+            $("#searchTotal").hide();
+            $("#searchMod").hide();
+            goMetaDataDomainList();
+        }
+        else {
+            $("#searchDetail").hide();
+            $("#searchTotal").show();
+            $("#searchMod").show();
+            goDataList(1);
+        }
     });
+
+    function goSearchModeChange() {
+        $("#searchMod").hide();
+        $("#searchDetail").show();
+        $("#searchTotal").hide();
+        $("#dataGride tbody").empty();
+        goMetaDataDomainList();
+    }
+
+    function goMetaDataDomainList() {
+        let strHtml = "";
+        let param = $("form[name=metadataFrm]").serialize();
+        $.ajax({
+            url: '[[@{/metadataApi/studyMetaDataDomain}]]',
+            type: 'post',
+            data: param,
+            success: function (data) {
+                console.log(data);
+                $("#dataList").empty();
+                if (data.dataList.length > 0 ) {
+                    $.each(data.dataList, function (key) {
+                        strHtml += '<input type="checkbox" name="pStudyOid" value="' + data.dataList[key].study_oid + '">';
+                        strHtml += '<span style="height:100%;line-height:24px;padding: 10px 20px 10px 20px;">' + data.dataList[key].study_name_short + '</span>';
+                        strHtml += '<br>';
+                    });
+                }
+                $("#dataList").html(strHtml);
+
+                $("#domainList").empty();
+                strHtml = "";
+                if (data.domainList.length > 0 ) {
+                    $.each(data.domainList, function (key) {
+                        strHtml += '<input type="checkbox" name="pDomain" value="' + data.domainList[key].m_domain + '">';
+                        strHtml += '<span style="height:100%;line-height:24px;padding: 10px 20px 10px 20px;">' + data.domainList[key].m_domain + '</span>';
+                        strHtml += '<br>';
+                    });
+                }
+                $("#domainList").html(strHtml);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    }
 
     function goDataList(currentPage) {
         $("#pageNum").val(currentPage);
@@ -96,27 +220,28 @@
             data: param,
             success: function (data) {
                 $("#dataGride tbody").empty();
-                //console.log(data.totalCnt);
-                strHtml = '<tr><th>도메인</th><th>변수명</th><th>항목명</th><th>데이터유형</th><th>데이터타입</th><th>코드 설명</th><th>길이</th><th>단위</th></tr>';
+                console.log(data);
+
+                strHtml = '<tr><th>과제명</th><th>도메인</th><th>변수명</th><th>항목명</th><th>데이터유형</th><th>데이터타입</th><th>코드설명</th><th>길이</th></tr>';
                 if (data.dataList.length > 0 ) {
                     $.each(data.dataList, function (key) {
                         strHtml += '<tr>';
-                        strHtml += '<td>' + data.dataList[key].m_domain + '</td>';
-                        strHtml += '<td>' + data.dataList[key].m_item_name + '</td>';
-                        strHtml += '<td>' + data.dataList[key].m_item_label + '</td>';
-                        strHtml += '<td>' + data.dataList[key].m_data_type + '</td>';
-                        strHtml += '<td>' + data.dataList[key].m_input_type + '</td>';
-                        strHtml += '<td>' + data.dataList[key].m_item_codelist + '</td>';
-                        strHtml += '<td>' + data.dataList[key].m_item_length + '</td>';
-                        strHtml += '<td>' + data.dataList[key].m_measurement_unit + '</td>';
+                        strHtml += '<td>' + data.dataList[key].study_name + '</td>';
+                        strHtml += '<td>' + data.dataList[key].domain + '</td>';
+                        strHtml += '<td>' + data.dataList[key].item_name + '</td>';
+                        strHtml += '<td>' + data.dataList[key].item_label + '</td>';
+                        strHtml += '<td>' + data.dataList[key].input_type + '</td>';
+                        strHtml += '<td>' + data.dataList[key].data_type + '</td>';
+                        strHtml += '<td>' + data.dataList[key].comments + '</td>';
+                        strHtml += '<td>' + data.dataList[key].length + '</td>';
                         strHtml += '</tr>';
                     });
                 }
                 else {
-                    strHtml += '<tr><td colspan="9">검색된 데이터가 없습니다.</td></tr>';
+                    strHtml += '<tr><td colspan="8">검색된 데이터가 없습니다.</td></tr>';
                 }
                 $("#dataGride tbody").html(strHtml);
-                paging(data.totalCnt, $("#pageNum").val(), $("#pageSize").val(), 5, 'paging', 'active', 'goDataList');
+                paging(data.totCnt, $("#pageNum").val(), $("#pageSize").val(), 5, 'paging', 'active', 'goDataList');
             },
             error: function (data) {
                 console.log(data);
@@ -141,7 +266,6 @@
     }
 </script>
 <iframe id="innerFrm" name="innerFrm" style="width:0;height:0;display:none;"></iframe>
-
 </th:block>
 </body>
 </html>

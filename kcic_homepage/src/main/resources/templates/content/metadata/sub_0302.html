@@ -17,9 +17,9 @@
                 <li>
                     <a th:href="@{/metadata/sub01}">메타데이터 소개</a>
                 </li>
-                <!--<li class="active">
-                    <a th:href="@{/metadata/sub02}">메타데이터 항목 검색</a>
-                </li>-->
+                <li class="active">
+                    <a th:href="@{/metadata/sub02}">표준변수 메타데이터 항목검색</a>
+                </li>
                 <li>
                     <a th:href="@{/metadata/sub03}">데이터셋별 메타데이터 목록</a>
                 </li>
@@ -29,11 +29,11 @@
     <div id="content">
         <div id="con">
             <div class="sub-tit">
-                <h3>메타데이터 항목 검색</h3>
+                <h3>표준변수 메타데이터 항목검색</h3>
                 <ul id="navigater">
                     <li class="home"></li>
                     <li>메타데이터</li>
-                    <li class="m-now">메타데이터 항목 검색</li>
+                    <li class="m-now">표준변수 메타데이터 항목검색</li>
                 </ul>
             </div>
             <form id="metadataFrm" name="metadataFrm" method="post">
@@ -119,9 +119,10 @@
             type: 'post',
             data: param,
             success: function (data) {
+                console.log(data);
+
                 $("#dataGride tbody").empty();
-                //console.log(data.totalCnt);
-                strHtml = '<tr><th>도메인</th><th>변수명</th><th>항목명</th><th>데이터유형</th><th>데이터타입</th><th>코드 설명</th><th>길이</th><th>단위</th></tr>';
+                strHtml = '<tr><th>도메인</th><th>변수명</th><th>항목명</th><th>데이터유형</th><th>데이터타입</th><th>코드 설명</th><th>길이</th></tr>';
                 if (data.dataList.length > 0 ) {
                     $.each(data.dataList, function (key) {
                         strHtml += '<tr>';
@@ -132,12 +133,12 @@
                         strHtml += '<td>' + data.dataList[key].m_input_type + '</td>';
                         strHtml += '<td>' + data.dataList[key].m_item_codelist + '</td>';
                         strHtml += '<td>' + data.dataList[key].m_item_length + '</td>';
-                        strHtml += '<td>' + data.dataList[key].m_measurement_unit + '</td>';
+                        //strHtml += '<td>' + data.dataList[key].m_measurement_unit + '</td>';
                         strHtml += '</tr>';
                     });
                 }
                 else {
-                    strHtml += '<tr><td colspan="9">검색된 데이터가 없습니다.</td></tr>';
+                    strHtml += '<tr><td colspan="8">검색된 데이터가 없습니다.</td></tr>';
                 }
                 $("#dataGride tbody").html(strHtml);
                 paging(data.totalCnt, $("#pageNum").val(), $("#pageSize").val(), 5, 'paging', 'active', 'goDataList');

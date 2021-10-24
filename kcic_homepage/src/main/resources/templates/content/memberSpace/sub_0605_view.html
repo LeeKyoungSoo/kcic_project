@@ -17,7 +17,7 @@
                 <li>
                     <a th:href="@{/memberSpace/sub01}">나의 스터디</a>
                 </li>
-                <li class="active">
+                <li>
                     <a th:href="@{/noticeSpace/sub02}">공지사항</a>
                 </li>
                 <li>
@@ -31,7 +31,7 @@
                     <a th:href="@{/noticeSpace/sub04}">일정관리</a>
                 </li>-->
 
-                <li>
+                <li class="active">
                     <a th:href="@{/noticeSpace/sub05}">FAQ</a>
                 </li>
                 <th:block th:if="${session['userLv']} == '1'" >
@@ -56,11 +56,11 @@
     <div id="content">
         <div id="con">
             <div class="sub-tit">
-                <h3>공지사항</h3>
+                <h3>FAQ</h3>
                 <ul id="navigater">
                     <li class="home"></li>
                     <li>회원공간</li>
-                    <li class="m-now">공지사항</li>
+                    <li class="m-now">FAQ</li>
                 </ul>
             </div>
             <form id="metadataFrm" name="metadataFrm" method="post">
@@ -113,7 +113,7 @@
                     </ul>
                     <div class="board-btn">
                         <th:block th:if="${session['userLv']} == '9'" >
-                        <input id="modifyBtn" class="bod-btn" type="button" value="수정" onclick="goBbsDataEdit();">
+                        <input id="modifyBtn" class="bod-btn" type="button" value="수정" onclick="godataEdit();">
                         <input id="deleteBtn" class="bod-btn" type="button" value="삭제" onclick="goDelete();">
                         </th:block>
                         <input id="listBtn"   class="bod-btn" type="button" value="목록" onclick="goList();">
@@ -122,6 +122,7 @@
             </div>
             </form>
             <form id="zipDown" name="zipDown">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 <input type="hidden" id="f_fidList" name="f_fidList" />
             </form>
         </div>
@@ -175,6 +176,9 @@
                     $("#regId").html(data.dataView.regId);
                     $("#regNm").html(data.dataView.regNm);
                     $("#regDt").html(data.dataView.regDt);
+                    $("#toDt").html(data.dataView.toDt);
+                    $("#fromDt").html(data.dataView.fromDt);
+                    $("#placeNm").html(data.dataView.placeNm);
                     $("#hit").html(data.dataView.hit);
 
                     if ( data.dataView.fileList.length > 0 ) {
@@ -223,7 +227,7 @@
                 strHtml = strHtml + "<li>";
                 strHtml = strHtml + "   <div class='check-box'><input type='checkbox' id='file-" + i + "' name='fidList' value='" +  retObj.fid + "' /><label for='file-" + i + "'><span></span>";
                 strHtml = strHtml + " " + retObj.fileOrgNm + "   </label></div>";
-                strHtml = strHtml + "<a href='[[@{/bbsApi/bbsFileDownload}]]/" + retObj.fid + "' class='btn' download='" + retObj.fileOrgNm + "'>다운로드</a>";
+                strHtml = strHtml + "<a href='[[@{/studyAcApi/bbsFileDownload}]]/" + retObj.fid + "' class='btn' download='" + retObj.fileOrgNm + "'>다운로드</a>";
                 strHtml = strHtml + "</li>";
             }
         }
@@ -250,13 +254,13 @@
 
     function  goList() {
         let f = document.metadataFrm;
-        f.action = "[[@{/noticeSpace/sub02}]]";
+        f.action = "[[@{/noticeSpace/sub05}]]";
         f.submit();
     }
 
-    function goBbsDataEdit() {
+    function godataEdit() {
         let f = document.metadataFrm;
-        f.action = "[[@{/noticeSpace/sub02Edit}]]";
+        f.action = "[[@{/noticeSpace/sub05Edit}]]";
         f.submit();
     }
 </script>

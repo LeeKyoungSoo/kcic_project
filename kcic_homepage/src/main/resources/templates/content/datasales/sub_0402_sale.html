@@ -18,7 +18,7 @@
                     <a th:href="@{/datasales/sub01}">분양 절차 안내 및 신청</a>
                 </li>
                 <li class="active">
-                    <a th:href="@{/datasales/sub02}">분양 자료 항목 및 검색</a>
+                    <a th:href="@{/datasales/sub02}">분양 자료 목록</a>
                 </li>
                 <li>
                     <a th:href="@{/datasales/sub03}">분양 현황</a>
@@ -32,11 +32,11 @@
     <div id="content">
         <div id="con">
             <div class="sub-tit">
-                <h3>분양 자료 항목 및 검색</h3>
+                <h3>분양 자료 목록</h3>
                 <ul id="navigater">
                     <li class="home"></li>
                     <li>데이터 분양</li>
-                    <li class="m-now">분양 자료 항목 및 검색</li>
+                    <li class="m-now">분양 자료 목록</li>
                 </ul>
             </div>
 
@@ -45,6 +45,7 @@
                 <input type="hidden" id="sid" name="sid" />
                 <input type="hidden" id="gubun" name="gubun"/>
                 <input type="hidden" id="itemlist" name="itemlist"/>
+                <input type="hidden" id="studySeq" name="studySeq" th:value="${param.studySeq}" />
                 <input type="hidden" id="itemSeqList" name="itemSeqList" th:value="${param.itemSeqList}"/>
             <div class="con-area">
                 <strong class="s-tit">분양신청</strong>
@@ -164,19 +165,19 @@
                     if (data.dataList.length > 0 ) {
                         $.each(data.dataList, function (key) {
                             strHtml += '<tr>';
-                            strHtml += '<td>' + data.dataList[key].m_domain + '</td>';
-                            strHtml += '<td>' + data.dataList[key].m_item_name + '</td>';
-                            strHtml += '<td>' + data.dataList[key].m_item_label + '</td>';
-                            strHtml += '<td>' + data.dataList[key].m_data_type + '</td>';
-                            strHtml += '<td>' + data.dataList[key].m_input_type + '</td>';
-                            strHtml += '<td>' + data.dataList[key].m_item_codelist + '</td>';
-                            strHtml += '<td>' + data.dataList[key].m_item_length + '</td>';
-                            strHtml += '<td>' + data.dataList[key].m_measurement_unit + '</td>';
+                            strHtml += '<td>' + data.dataList[key].domain + '</td>';
+                            strHtml += '<td>' + data.dataList[key].item_name + '</td>';
+                            strHtml += '<td>' + data.dataList[key].item_label + '</td>';
+                            strHtml += '<td>' + data.dataList[key].data_type + '</td>';
+                            strHtml += '<td>' + data.dataList[key].input_type + '</td>';
+                            strHtml += '<td>' + data.dataList[key].code_list + '</td>';
+                            strHtml += '<td>' + data.dataList[key].length + '</td>';
+                            strHtml += '<td>' + data.dataList[key].measurement_unit + '</td>';
                             strHtml += '</tr>';
                         });
                     }
                     else {
-                        strHtml += '<tr><td colspan="9">선택 데이터가 없습니다.</td></tr>';
+                        strHtml += '<tr><td colspan="8">선택된 데이터가 없습니다.</td></tr>';
                     }
                     $("#dataGride tbody").html(strHtml);
                 },

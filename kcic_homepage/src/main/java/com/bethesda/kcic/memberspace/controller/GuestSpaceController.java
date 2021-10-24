@@ -159,6 +159,22 @@ public class GuestSpaceController {
         return mav;
     }
 
+    @RequestMapping(value = "/sub05View")
+    public ModelAndView goSub05View(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("content/memberSpace/sub_0605_view.html");
+        return mav;
+    }
+
+    @RequestMapping(value = "/sub05Edit")
+    public ModelAndView goSub05Edit(HttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("param", request);
+        mav.setViewName("content/memberSpace/sub_0605_edit.html");
+        return mav;
+    }
+
     /**
      * 보도자료 목록
      * @param request

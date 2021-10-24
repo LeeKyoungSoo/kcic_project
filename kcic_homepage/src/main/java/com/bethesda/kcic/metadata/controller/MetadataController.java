@@ -5,7 +5,9 @@ import com.bethesda.kcic.metadata.service.MetaDataService;
 import com.bethesda.kcic.metadata.service.StudyMetaDataService;
 import com.bethesda.kcic.util.BaseMap;
 import com.bethesda.kcic.util.DateTimeUtil;
+import com.bethesda.kcic.util.HttpClientUtil;
 import com.bethesda.kcic.util.WebUtil;
+import com.google.gson.internal.LinkedTreeMap;
 import lombok.extern.java.Log;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
@@ -22,7 +24,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Log
@@ -55,7 +59,7 @@ public class MetadataController {
         ModelAndView mav = new ModelAndView();
 
         mav.addObject("mItemLabel", request.getParameter("itemLabel"));
-        mav.addObject("metaDataDomainList", metaDataService.getMetaDataDomainList());
+        //mav.addObject("metaDataDomainList", metaDataService.getMetaDataDomainList());
         mav.setViewName("content/metadata/sub_0302.html");
         return mav;
     }
@@ -63,7 +67,10 @@ public class MetadataController {
     @RequestMapping(value = "/sub03")
     public ModelAndView goSub03(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("metaDataDomainList", studyMetaDataService.getMetaDataDomainList());
+        //mav.addObject("metaDataDomainList", studyMetaDataService.getMetaDataDomainList());
+
+        mav.addObject("mItemLabel", request.getParameter("itemLabel"));
+        mav.addObject("searchGubun", request.getParameter("searchGubun"));
         mav.setViewName("content/metadata/sub_0303.html");
         return mav;
     }
@@ -122,7 +129,6 @@ public class MetadataController {
             header.add("데이터타입");
             header.add("코드설명");
             header.add("길이");
-            header.add("단위");
 
             row = sheet.createRow(rowIdx++);
             for (int i = 0; i < header.size(); i++) {
@@ -156,8 +162,40 @@ public class MetadataController {
             dataKeys.add("m_input_type");
             dataKeys.add("m_item_codelist");
             dataKeys.add("m_item_length");
-            dataKeys.add("m_measurement_unit");
 
+            BaseMap baseMap = new BaseMap();
+            baseMap.put("p_page_no", vo.getPageNum());
+            baseMap.put("p_PagePerCount", vo.getPageSize());
+            baseMap.put("p_domain", vo.getMDomain());
+            baseMap.put("p_item_name", vo.getMItemName());
+            baseMap.put("p_item_label", vo.getMItemLabel());
+            String url = "http://106.241.16.5:48084/service/KcdhSync/selMetadataInfo";
+            baseMap = HttpClientUtil.post(url, baseMap);
+
+            if ( Double.parseDouble(baseMap.get("totCnt").toString()) > 100000) {
+                row = sheet.createRow(rowIdx++);
+                cell = row.createCell(0);
+                cell.setCellType(Cell.CELL_TYPE_STRING);
+                cell.setCellValue("검색된 데이타가 10만건이 넘었습니다. 검색 범위를 재설정하시거나 관리자에게 문의하세요.");
+                cell.setCellStyle(dataStyle);
+            } else {
+                List<HashMap> dataHumanView = (List<HashMap>)baseMap.get("metadataList");
+                for (Map excelRowData : dataHumanView) {
+                    row = sheet.createRow(rowIdx++);
+                    for (int i = 0; i < dataKeys.size(); i++) {
+                        cell = row.createCell(i);
+                        cell.setCellType(Cell.CELL_TYPE_STRING);
+                        String temp = "";
+                        if ( excelRowData.get(dataKeys.get(i)) != null ) {
+                            temp = excelRowData.get(dataKeys.get(i)).toString();
+                        }
+                        cell.setCellValue(temp);
+                        cell.setCellStyle(dataStyle);
+                    }
+                }
+            }
+
+            /*
             if (metaDataService.getMetaDataCnt(vo) > 100000) {
                 row = sheet.createRow(rowIdx++);
                 cell = row.createCell(0);
@@ -176,6 +214,7 @@ public class MetadataController {
                     }
                 }
             }
+            */
 
             File Folder = new File(filePath);
             if (!Folder.exists()) {
@@ -268,7 +307,7 @@ public class MetadataController {
             headerStyle.setBorderBottom(CellStyle.BORDER_THIN);
 
             List<String> header = new ArrayList<String>();
-            header.add("스터디명");
+            header.add("과제명");
             header.add("도메인");
             header.add("변수명");
             header.add("항목명");
@@ -276,7 +315,6 @@ public class MetadataController {
             header.add("데이터타입");
             header.add("코드설명");
             header.add("길이");
-            header.add("단위");
 
             row = sheet.createRow(rowIdx++);
             for (int i = 0; i < header.size(); i++) {
@@ -304,29 +342,42 @@ public class MetadataController {
 
             List<String> dataKeys = new ArrayList<String>();
             dataKeys.add("study_name");
-            dataKeys.add("m_domain");
-            dataKeys.add("m_item_name");
-            dataKeys.add("m_item_label");
-            dataKeys.add("m_data_type");
-            dataKeys.add("m_input_type");
-            dataKeys.add("m_item_codelist");
-            dataKeys.add("m_item_length");
-            dataKeys.add("m_measurement_unit");
+            dataKeys.add("domain");
+            dataKeys.add("item_name");
+            dataKeys.add("item_label");
+            dataKeys.add("input_type");
+            dataKeys.add("data_type");
+            dataKeys.add("comments");
+            dataKeys.add("length");
 
-            if (studyMetaDataService.getMetaDataCnt(vo) > 100000) {
+            BaseMap baseMap = new BaseMap();
+            baseMap.put("p_study_oid", vo.getPStudyOid());
+            baseMap.put("p_domain", vo.getPDomain());
+            baseMap.put("p_item_name", vo.getPItemName());
+            baseMap.put("p_item_label", vo.getPItemLabel());
+            baseMap.put("p_keyword", vo.getPItemLabel());
+            baseMap.put("p_page_no", "0");
+            String url = "http://106.241.16.5:48084/service/KcdhSync/selStudyMetadataInfo";
+            baseMap = HttpClientUtil.post(url, baseMap);
+            List<HashMap> dataHumanView = (List<HashMap>)baseMap.get("metadataList");
+
+            if (dataHumanView.size() > 100000) {
                 row = sheet.createRow(rowIdx++);
                 cell = row.createCell(0);
                 cell.setCellType(Cell.CELL_TYPE_STRING);
                 cell.setCellValue("검색된 데이타가 10만건이 넘었습니다. 검색 범위를 재설정하시거나 관리자에게 문의하세요.");
                 cell.setCellStyle(dataStyle);
             } else {
-                List<BaseMap> metaDataList = studyMetaDataService.getMetaDataExcelList(vo);
-                for (BaseMap excelRowData : metaDataList) {
+                for (Map excelRowData : dataHumanView) {
                     row = sheet.createRow(rowIdx++);
                     for (int i = 0; i < dataKeys.size(); i++) {
                         cell = row.createCell(i);
                         cell.setCellType(Cell.CELL_TYPE_STRING);
-                        cell.setCellValue(excelRowData.getString(dataKeys.get(i)));
+                        String temp = "";
+                        if ( excelRowData.get(dataKeys.get(i)) != null ) {
+                            temp = excelRowData.get(dataKeys.get(i)).toString();
+                        }
+                        cell.setCellValue(temp);
                         cell.setCellStyle(dataStyle);
                     }
                 }

@@ -35,4 +35,6 @@ public class DataSaleVO extends CommonVO {
     private String gubun;
 
     private List<BoardFileVO> fileList;
+    private String studySeq;
+
 }

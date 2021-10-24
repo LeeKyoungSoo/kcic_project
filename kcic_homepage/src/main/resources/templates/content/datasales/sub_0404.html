@@ -18,7 +18,7 @@
                     <a th:href="@{/datasales/sub01}">분양 절차 안내 및 신청</a>
                 </li>
                 <li>
-                    <a th:href="@{/datasales/sub02}">분양 자료 항목 및 검색</a>
+                    <a th:href="@{/datasales/sub02}">분양 자료 목록</a>
                 </li>
                 <li>
                     <a th:href="@{/datasales/sub03}">분양 현황</a>
@@ -58,9 +58,11 @@
                                 <div class="btn-wrap">
                                     <input type="button" value="검색" class="srh-btn" style="cursor: pointer;" onclick="goSearch();">
                                 </div>
+                                <th:block th:if="${session['userLv']} == '9'" >
                                 <div class="btn-wrap">
                                     <input type="button" value="등록" class="srh-btn" style="cursor: pointer;" onclick="goNewData('');">
                                 </div>
+                                </th:block>
                             </div>
                         </li>
                     </ul>
